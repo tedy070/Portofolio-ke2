@@ -464,6 +464,66 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   .edu-card:nth-child(n) { margin-top: 0; }
   .reveal-left, .reveal-right { transform: translateY(30px); }
 }
+
+  /* Pengaturan Ukuran: Ikon Besar & Kalimat Kecil */
+.edu-icon {
+  font-size: 48px; /* Ukuran ikon diperbesar */
+  margin: 15px 0;
+  display: inline-block;
+}
+
+.edu-desc {
+  font-size: 12px; /* Ukuran kalimat diperkecil */
+  line-height: 1.6;
+  color: var(--text2);
+  opacity: 0.8;
+}
+
+.edu-role {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+/* 1. Animasi Berputar (Gerigi) */
+.icon-spin {
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 2. Efek Cahaya (Web Dev) */
+.icon-glow {
+  font-family: var(--mono);
+  font-weight: bold;
+  animation: pulse-glow 2s ease-in-out infinite;
+  text-shadow: 0 0 5px var(--purple);
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    text-shadow: 0 0 5px var(--purple), 0 0 10px var(--purple);
+    transform: scale(1);
+  }
+  50% { 
+    text-shadow: 0 0 15px var(--purple), 0 0 25px var(--purple);
+    transform: scale(1.05);
+  }
+}
+
+/* 3. Animasi Naik Turun (Toga) */
+.icon-bounce {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+  
 /* ── SKILLS ── */
 #skills{background:var(--bg1);padding:clamp(60px,8vw,100px) clamp(20px,5%,80px);}
 .skills-header{text-align:center;margin-bottom:56px;}
@@ -989,44 +1049,45 @@ section:nth-child(even) .hero-glow-1 {
     </h2>
     
     <div class="edu-cards">
-      <div class="edu-card reveal-left visible" style="transition-delay:.0s">
-        <div class="edu-period">2023 – <span class="lang-target" data-in="Sekarang" data-en="Now">Sekarang</span></div>
-        <div class="edu-icon">⚙️</div>
-        <div class="edu-role lang-target" data-in="Senior Frontend Dev" data-en="Senior Frontend Dev">Senior Frontend Dev</div>
-        <div class="edu-place">Tech Startup Unicorn</div>
-        <div class="edu-divider"></div>
-        <p class="edu-desc lang-target" 
-           data-in="Memimpin tim 5 orang developer. Implementasi arsitektur Micro-frontend dan optimasi performa web." 
-           data-en="Leading a team of 5 developers. Implementing Micro-frontend architecture and optimizing web performance.">
-           Memimpin tim 5 orang developer. Implementasi arsitektur Micro-frontend dan optimasi performa web.
-        </p>
-      </div>
+  <div class="edu-card reveal-left visible" style="transition-delay:.0s">
+    <div class="edu-period">2023 – <span class="lang-target" data-in="Sekarang" data-en="Now">Sekarang</span></div>
+    <div class="edu-icon icon-spin">⚙️</div>
+    <div class="edu-role lang-target" data-in="Senior Frontend Dev" data-en="Senior Frontend Dev">Senior Frontend Dev</div>
+    <div class="edu-place">Tech Startup Unicorn</div>
+    <div class="edu-divider"></div>
+    <p class="edu-desc lang-target" 
+       data-in="Memimpin tim 5 orang developer. Implementasi arsitektur Micro-frontend dan optimasi performa web." 
+       data-en="Leading a team of 5 developers. Implementing Micro-frontend architecture and optimizing web performance.">
+       Memimpin tim 5 orang developer. Implementasi arsitektur Micro-frontend dan optimasi performa web.
+    </p>
+  </div>
 
-      <div class="edu-card reveal visible" style="transition-delay:.1s">
-        <div class="edu-period">2020 – 2023</div>
-        <div class="edu-icon" style="color:var(--purple);">&lt; &gt;</div>
-        <div class="edu-role lang-target" data-in="Web Developer" data-en="Web Developer">Web Developer</div>
-        <div class="edu-place lang-target" data-in="Freelance Profesional" data-en="Professional Freelance">Freelance Profesional</div>
-        <div class="edu-divider"></div>
-        <p class="edu-desc lang-target" 
-           data-in="Menyelesaikan 30+ proyek website internasional. Spesialisasi dalam pembuatan landing page konversi tinggi." 
-           data-en="Completed 30+ international website projects. Specialized in creating high-conversion landing pages.">
-           Menyelesaikan 30+ proyek website internasional. Spesialisasi dalam pembuatan landing page konversi tinggi.
-        </p>
-      </div>
+  <div class="edu-card reveal visible" style="transition-delay:.1s">
+    <div class="edu-period">2020 – 2023</div>
+    <div class="edu-icon icon-glow" style="color:var(--purple);">&lt; &gt;</div>
+    <div class="edu-role lang-target" data-in="Web Developer" data-en="Web Developer">Web Developer</div>
+    <div class="edu-place lang-target" data-in="Freelance Profesional" data-en="Professional Freelance">Freelance Profesional</div>
+    <div class="edu-divider"></div>
+    <p class="edu-desc lang-target" 
+       data-in="Menyelesaikan 30+ proyek website internasional. Spesialisasi dalam pembuatan landing page konversi tinggi." 
+       data-en="Completed 30+ international website projects. Specialized in creating high-conversion landing pages.">
+       Menyelesaikan 30+ proyek website internasional. Spesialisasi dalam pembuatan landing page konversi tinggi.
+    </p>
+  </div>
 
-      <div class="edu-card reveal-right visible" style="transition-delay:.2s">
-        <div class="edu-period">2016 – 2020</div>
-        <div class="edu-icon">🎓</div>
-        <div class="edu-role lang-target" data-in="Sarjana Komputer" data-en="Bachelor of Computer Science">Sarjana Komputer</div>
-        <div class="edu-place lang-target" data-in="Universitas Teknologi" data-en="University of Technology">Universitas Teknologi</div>
-        <div class="edu-divider"></div>
-        <p class="edu-desc lang-target" 
-           data-in="Lulus Cum Laude (IPK 3.8). Ketua Divisi Riset & Teknologi BEM Fakultas. Pemenang Hackathon Nasional." 
-           data-en="Graduated Cum Laude (GPA 3.8). Head of Research & Technology Division of Faculty Student Council. National Hackathon Winner.">
-           Lulus Cum Laude (IPK 3.8). Ketua Divisi Riset & Teknologi BEM Fakultas. Pemenang Hackathon Nasional.
-        </p>
-      </div>
+  <div class="edu-card reveal-right visible" style="transition-delay:.2s">
+    <div class="edu-period">2016 – 2020</div>
+    <div class="edu-icon icon-bounce">🎓</div>
+    <div class="edu-role lang-target" data-in="Sarjana Komputer" data-en="Bachelor of Computer Science">Sarjana Komputer</div>
+    <div class="edu-place lang-target" data-in="Universitas Teknologi" data-en="University of Technology">Universitas Teknologi</div>
+    <div class="edu-divider"></div>
+    <p class="edu-desc lang-target" 
+       data-in="Lulus Cum Laude (IPK 3.8). Ketua Divisi Riset & Teknologi BEM Fakultas. Pemenang Hackathon Nasional." 
+       data-en="Graduated Cum Laude (GPA 3.8). Head of Research & Technology Division of Faculty Student Council. National Hackathon Winner.">
+       Lulus Cum Laude (IPK 3.8). Ketua Divisi Riset & Teknologi BEM Fakultas. Pemenang Hackathon Nasional.
+    </p>
+  </div>
+</div>
     </div>
   </div>
 </section>
