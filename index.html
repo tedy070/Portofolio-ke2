@@ -136,6 +136,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   white-space:nowrap;
 }
 /* Styling Tombol Bahasa */
+/* Styling Tombol Bahasa */
 .btn-lang {
   padding: 8px 16px;
   border-radius: 30px;
@@ -148,15 +149,16 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px; /* Jarak antara icon globe dan teks */
   transition: all .25s;
+  min-width: 80px; /* Menjaga lebar tombol tetap konsisten saat teks berubah */
+  justify-content: center;
 }
 
 .btn-lang:hover {
   background: var(--bg4);
   border-color: var(--accent);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .btn-lang svg {
@@ -165,20 +167,12 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   color: var(--accent);
 }
 
+/* Lang text sekarang hanya berisi satu label */
 .lang-text {
   letter-spacing: 1px;
-  color: var(--text2);
+  color: var(--text); /* Langsung gunakan warna teks utama */
+  text-transform: uppercase;
 }
-
-.active-lang {
-  color: var(--text); /* Warna bahasa yang sedang aktif */
-}
-
-/* Garis pemisah tipis antara IN dan EN */
-.lang-text {
-  display: flex;
-  align-items: center;
-  gap: 5px;
 }
 /* Hamburger mobile */
 .nav-hamburger{display:none;width:36px;height:36px;border-radius:8px;background:var(--bg3);border:1px solid var(--border2);align-items:center;justify-content:center;cursor:pointer;flex-direction:column;gap:5px;padding:10px;}
@@ -1650,38 +1644,30 @@ setInterval(updateTime, 10000);
  const langBtn = document.getElementById('lang-btn');
 let currentLang = 'IN';
 
-// Pastikan hanya ada SATU addEventListener agar tidak bentrok
 langBtn.addEventListener('click', () => {
     // 1. Toggle State
     currentLang = currentLang === 'IN' ? 'EN' : 'IN';
     
-    // 2. Update Visual Tombol
+    // 2. Update Tampilan Tombol (Hanya menampilkan bahasa yang aktif)
     const langText = langBtn.querySelector('.lang-text');
     if (langText) {
-        langText.innerHTML = currentLang === 'EN' 
-            ? 'IN | <span class="active-lang">EN</span>' 
-            : '<span class="active-lang">IN</span> | EN';
+        // Jika sedang IN maka tampilkan "ID", jika sedang EN tampilkan "EN"
+        langText.textContent = currentLang === 'IN' ? 'ID' : 'EN';
     }
 
     // 3. Update Semua Kalimat (.lang-target)
     const targets = document.querySelectorAll('.lang-target');
     targets.forEach(el => {
         const text = el.getAttribute(`data-${currentLang.toLowerCase()}`);
-        if (text) {
-            // Gunakan innerHTML jika di data-in/en Anda ada tag <em> atau <span>
-            el.innerHTML = text; 
-        }
+        if (text) el.innerHTML = text;
     });
 
-    // 4. Update Placeholder (Penting untuk Form Kontak & Testimonial)
+    // 4. Update Placeholder
     const placeholders = document.querySelectorAll('.lang-target-placeholder');
     placeholders.forEach(el => {
         const ph = el.getAttribute(`data-${currentLang.toLowerCase()}`);
         if (ph) el.placeholder = ph;
     });
-
-    // 5. Jika pakai Typed.js
-    // updateTyped(typedWords[currentLang]);
 });
 </script>
 </body>
