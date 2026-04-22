@@ -31,6 +31,33 @@
   --r2:16px;
   --r3:24px;
 }
+
+  /* ── TAMBAHKAN DI BAGIAN ATAS ── */
+body {
+  position: relative;
+  background: var(--bg); 
+}
+
+/* Background grid yang konsisten di semua halaman */
+body::before {
+  content: '';
+  position: fixed; 
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(124, 58, 237, .04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 58, 237, .04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 40%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Pastikan semua section transparan agar grid di belakang terlihat */
+.section, #tentang, #edukasi, #skills, #proyek, #testimonial, #kontak {
+  background: transparent !important; /* Gunakan transparent agar grid body terlihat */
+  position: relative;
+  z-index: 1;
+}
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;cursor:auto;}
