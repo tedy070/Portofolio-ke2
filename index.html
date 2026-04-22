@@ -135,9 +135,51 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   display:flex;align-items:center;gap:6px;
   white-space:nowrap;
 }
-.btn-hire:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 6px 20px rgba(91,141,238,.35);}
-.btn-hire svg{width:14px;height:14px;}
+/* Styling Tombol Bahasa */
+.btn-lang {
+  padding: 8px 16px;
+  border-radius: 30px;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all .25s;
+}
 
+.btn-lang:hover {
+  background: var(--bg4);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-lang svg {
+  width: 16px;
+  height: 16px;
+  color: var(--accent);
+}
+
+.lang-text {
+  letter-spacing: 1px;
+  color: var(--text2);
+}
+
+.active-lang {
+  color: var(--text); /* Warna bahasa yang sedang aktif */
+}
+
+/* Garis pemisah tipis antara IN dan EN */
+.lang-text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 /* Hamburger mobile */
 .nav-hamburger{display:none;width:36px;height:36px;border-radius:8px;background:var(--bg3);border:1px solid var(--border2);align-items:center;justify-content:center;cursor:pointer;flex-direction:column;gap:5px;padding:10px;}
 .nav-hamburger span{display:block;width:16px;height:1.5px;background:var(--text2);border-radius:2px;transition:all .3s;}
@@ -776,79 +818,96 @@ section:nth-child(even) .hero-glow-1 {
 <div class="grain"></div>
 <div id="scroll-bar"></div>
 
-<!-- ══ NAV ══ -->
 <nav id="navbar">
   <a href="#beranda" class="nav-brand">
     <div class="nav-brand-mark">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
     </div>
-    <span class="nav-brand-text">Tedi.<span>
+    <span class="nav-brand-text">Tedi.</span>
   </a>
 
   <div class="nav-center" id="nav-center">
-    <a href="#beranda" class="nav-link active">Beranda</a>
-    <a href="#tentang" class="nav-link">Tentang</a>
-    <a href="#edukasi" class="nav-link">Edukasi</a>
-    <a href="#skills" class="nav-link">Skills</a>
-    <a href="#proyek" class="nav-link">Proyek</a>
-    <a href="#testimonial" class="nav-link">Testimonial</a>
-    <a href="#kontak" class="nav-link">Kontak</a>
+    <ul class="nav-menu-list">
+      <li class="list active"><a href="#beranda" class="nav-link lang-target" data-in="Beranda" data-en="Home">Beranda</a></li>
+      <li class="list"><a href="#tentang" class="nav-link lang-target" data-in="Tentang" data-en="About">Tentang</a></li>
+      <li class="list"><a href="#edukasi" class="nav-link lang-target" data-in="Edukasi" data-en="Education">Edukasi</a></li>
+      <li class="list"><a href="#skills" class="nav-link lang-target" data-in="Skills" data-en="Skills">Skills</a></li>
+      <li class="list"><a href="#proyek" class="nav-link lang-target" data-in="Proyek" data-en="Projects">Proyek</a></li>
+      <li class="list"><a href="#testimonial" class="nav-link lang-target" data-in="Testimonial" data-en="Testimonial">Testimonial</a></li>
+      <li class="list"><a href="#kontak" class="nav-link lang-target" data-in="Kontak" data-en="Contact">Kontak</a></li>
+      <div class="indicator"></div>
+    </ul>
   </div>
 
   <div class="nav-end">
-    <button class="nav-icon-btn" id="theme-btn" title="Toggle tema" aria-label="Toggle tema">
+    <button class="nav-icon-btn" id="theme-btn" title="Toggle tema">
       <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
-    <a href="#kontak" class="btn-hire">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      Hire Me
-    </a>
-    <div class="nav-hamburger" id="hamburger" role="button" aria-label="Menu">
+    
+    <div class="lang-switcher">
+      <button class="btn-lang" id="lang-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        <span class="lang-text"><span class="active-lang">IN</span> | EN</span>
+      </button>
+    </div>
+
+    <div class="nav-hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
   </div>
 </nav>
-
-<!-- Mobile Nav -->
-<div class="nav-mobile" id="nav-mobile">
-  <a href="#beranda" class="nav-link">Beranda</a>
-  <a href="#tentang" class="nav-link">Tentang</a>
-  <a href="#edukasi" class="nav-link">Edukasi</a>
-  <a href="#skills" class="nav-link">Skills</a>
-  <a href="#proyek" class="nav-link">Proyek</a>
-  <a href="#testimonial" class="nav-link">Testimonial</a>
-  <a href="#kontak" class="nav-link">Kontak</a>
+  
+  <div class="nav-mobile" id="nav-mobile">
+  <a href="#beranda" class="nav-link lang-target" data-in="Beranda" data-en="Home">Beranda</a>
+  <a href="#tentang" class="nav-link lang-target" data-in="Tentang" data-en="About">Tentang</a>
+  <a href="#edukasi" class="nav-link lang-target" data-in="Edukasi" data-en="Education">Edukasi</a>
+  <a href="#skills" class="nav-link lang-target" data-in="Skills" data-en="Skills">Skills</a>
+  <a href="#proyek" class="nav-link lang-target" data-in="Proyek" data-en="Projects">Proyek</a>
+  <a href="#testimonial" class="nav-link lang-target" data-in="Testimonial" data-en="Testimonial">Testimonial</a>
+  <a href="#kontak" class="nav-link lang-target" data-in="Kontak" data-en="Contact">Kontak</a>
 </div>
 
-<!-- ══ HERO ══ -->
 <section id="beranda" class="section" style="padding-top:100px;">
   <div class="hero-glow hero-glow-1"></div>
   <div class="hero-glow hero-glow-2"></div>
+  
   <div class="hero-content">
-    <div class="hero-badge">Open to Work 2025</div>
-    <h1 class="hero-h1">Solusi Kreatif</h1>
-    <h1 class="hero-h1-grad">Dunia Digital</h1>
-    <p class="hero-typed-wrap">Saya seorang <strong>&#8203;</strong><span class="hero-typed" id="typed-text"></span></p>
-    <p class="hero-desc">Mengubah ide kompleks menjadi website modern, responsif, dan interaktif yang membantu bisnis Anda tumbuh lebih cepat.</p>
+    <div class="hero-badge lang-target" data-in="Tersedia untuk Bekerja 2026" data-en="Open to Work 2026">Tersedia untuk Bekerja 2026</div>
+    <h1 class="hero-h1">Tedi Zakaria Perdana</h1>
+    <h1 class="hero-h1-grad lang-target" data-in="Dunia Digital" data-en="Digital World">Dunia Digital</h1>
+    
+    <p class="hero-typed-wrap">
+      <span class="lang-target" data-in="Saya seorang" data-en="I am a">Saya seorang</span> 
+      <strong>&#8203;</strong><span class="hero-typed" id="typed-text"></span>
+    </p>
+    
+    <p class="hero-desc lang-target" 
+       data-in="Mengubah ide kompleks menjadi website modern, responsif, dan interaktif yang membantu bisnis Anda tumbuh lebih cepat." 
+       data-en="Transforming complex ideas into modern, responsive, and interactive websites that help your business grow faster.">
+       Mengubah ide kompleks menjadi website modern, responsif, dan interaktif yang membantu bisnis Anda tumbuh lebih cepat.
+    </p>
+
     <div class="hero-btns">
-      <a href="#proyek" class="btn-primary">Lihat Portfolio →</a>
-      <a href="#tentang" class="btn-secondary">Tentang Saya 👤</a>
+      <a href="#proyek" class="btn-primary lang-target" data-in="Lihat Portofolio →" data-en="View Portfolio →">Lihat Portofolio →</a>
+      <a href="#tentang" class="btn-secondary lang-target" data-in="Tentang Saya 👤" data-en="About Me 👤">Tentang Saya 👤</a>
     </div>
+
     <div class="hero-stats">
       <div class="stat-item">
         <div class="stat-num" data-count="5">0</div>
-        <div class="stat-label">Pengalaman</div>
+        <div class="stat-label lang-target" data-in="Pengalaman" data-en="Experience">Pengalaman</div>
       </div>
       <div class="stat-item">
         <div class="stat-num" data-count="50">0</div>
-        <div class="stat-label">Proyek</div>
+        <div class="stat-label lang-target" data-in="Proyek" data-en="Projects">Proyek</div>
       </div>
       <div class="stat-item">
         <div class="stat-num" data-count="20">0</div>
-        <div class="stat-label">Klien</div>
+        <div class="stat-label lang-target" data-in="Klien" data-en="Clients">Klien</div>
       </div>
     </div>
   </div>
+
   <div class="hero-visual">
     <div class="hero-photo">
       <div style="width:100%;height:500px;background:linear-gradient(160deg,#1a1f2e,#0d1117);display:flex;align-items:center;justify-content:center;">
@@ -856,12 +915,11 @@ section:nth-child(even) .hero-glow-1 {
       </div>
       <div class="hero-photo-border"></div>
     </div>
+    
     <div class="hero-code">
       <div class="code-bar">
-        <div class="code-dot r"></div>
-        <div class="code-dot y"></div>
-        <div class="code-dot g"></div>
-        <span class="code-bar-title">&gt;_ app.js</span>
+        <div class="code-dot r"></div><div class="code-dot y"></div><div class="code-dot g"></div>
+        <span class="code-bar-title">>_ app.js</span>
       </div>
       <div class="code-body">
         <div><span class="c-const">const</span> <span class="c-var">identity</span> <span class="c-eq">= {</span></div>
@@ -878,70 +936,71 @@ section:nth-child(even) .hero-glow-1 {
   <div class="hero-glow hero-glow-1"></div>
   <div class="hero-glow hero-glow-2"></div>
   <div class="hero-content">
-  <div class="section-eyebrow reveal">Overview</div>
-  <h2 class="section-h2 reveal">About the <em>Developer</em></h2>
-  <div class="about-layout" style="margin-top:48px">
-    <div class="acard reveal-l" style="grid-row:span 2">
-      <div class="acard-title">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        Who Am I?
-      </div>
-      <p class="acard-text">Halo! Saya <strong>Tedi.</strong>, seorang <strong>Fullstack Developer</strong> berbasis di Indonesia. Saya memiliki passion mendalam dalam menciptakan antarmuka digital yang tidak hanya fungsional tetapi juga memanjakan mata. Dengan latar belakang Teknik Informatika, saya menjembatani logika kode dengan estetika desain.</p>
-      <div class="stack-chips" style="margin-top:24px">
-        <div class="stack-chip">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#61DAFB" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2a10.45 10.45 0 0 1 9 5.22 10.45 10.45 0 0 1 0 9.56A10.45 10.45 0 0 1 12 22a10.45 10.45 0 0 1-9-5.22 10.45 10.45 0 0 1 0-9.56A10.45 10.45 0 0 1 12 2z"/></svg>
-          React
+    <div class="section-eyebrow reveal lang-target" data-in="Ringkasan" data-en="Overview">Ringkasan</div>
+    
+    <h2 class="section-h2 reveal lang-target" 
+        data-in="Tentang sang Developer" 
+        data-en="About the Developer">
+        Tentang sang <em>Developer</em>
+    </h2>
+
+    <div class="about-layout" style="margin-top:48px">
+      <div class="acard reveal-l" style="grid-row:span 2">
+        <div class="acard-title lang-target" data-in="Siapa Saya?" data-en="Who Am I?">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Siapa Saya?
         </div>
-        <div class="stack-chip">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#68D391" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          Node.js
+        
+        <p class="acard-text lang-target" 
+           data-in="Halo! Saya Tedi., seorang Fullstack Developer berbasis di Indonesia. Saya memiliki passion mendalam dalam menciptakan antarmuka digital yang tidak hanya fungsional tetapi juga memanjakan mata. Dengan latar belakang Teknik Informatika, saya menjembatani logika kode dengan estetika desain." 
+           data-en="Hello! I'm Tedi., a Fullstack Developer based in Indonesia. I have a deep passion for creating digital interfaces that are not only functional but also visually pleasing. With an Informatics Engineering background, I bridge code logic with design aesthetics.">
+           Halo! Saya <strong>Tedi.</strong>, seorang <strong>Fullstack Developer</strong> berbasis di Indonesia. Saya memiliki passion mendalam dalam menciptakan antarmuka digital yang tidak hanya fungsional tetapi juga memanjakan mata. Dengan latar belakang Teknik Informatika, saya menjembatani logika kode dengan estetika desain.
+        </p>
+
+        <div class="stack-chips" style="margin-top:24px">
+          <div class="stack-chip"><svg viewBox="0 0 24 24" fill="none" stroke="#61DAFB" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2a10.45 10.45 0 0 1 9 5.22 10.45 10.45 0 0 1 0 9.56A10.45 10.45 0 0 1 12 22a10.45 10.45 0 0 1-9-5.22 10.45 10.45 0 0 1 0-9.56A10.45 10.45 0 0 1 12 2z"/></svg> React</div>
+          <div class="stack-chip"><svg viewBox="0 0 24 24" fill="none" stroke="#68D391" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Node.js</div>
+          <div class="stack-chip"><svg viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> TypeScript</div>
         </div>
-        <div class="stack-chip">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          TypeScript
+      </div>
+
+      <div class="acard reveal" style="transition-delay:.1s">
+        <div class="acard-num">5+</div>
+        <div class="acard-num-label lang-target" data-in="Tahun Pengalaman" data-en="Years Experience">Tahun Pengalaman</div>
+        <div style="height:16px"></div>
+        <div class="acard-num" style="color:var(--teal)">50+</div>
+        <div class="acard-num-label lang-target" data-in="Proyek Selesai" data-en="Projects Done">Proyek Selesai</div>
+      </div>
+
+      <div class="acard reveal" style="transition-delay:.2s">
+        <div class="acard-title lang-target" data-in="Fokus Saat Ini" data-en="Current Focus">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          Fokus Saat Ini
         </div>
-        <div class="stack-chip">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          Figma
+        <p class="acard-text lang-target" style="font-size:13px"
+           data-in="Mendalami integrasi Web3 & AI. Membangun masa depan satu demi satu commit."
+           data-en="Deep diving into Web3 & AI Integration. Building the future one commit at a time.">
+           Mendalami integrasi <span style="color:var(--accent2);font-weight:500">Web3</span> & <span style="color:var(--rose);font-weight:500">AI Integration</span>. Membangun masa depan satu demi satu commit.
+        </p>
+      </div>
+
+      <div class="acard acard-span2 reveal" style="transition-delay:.15s">
+        <div class="acard-title lang-target" data-in="Lokasi Utama" data-en="Base Station">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Lokasi Utama
         </div>
-      </div>
-    </div>
-    <div class="acard reveal" style="transition-delay:.1s">
-      <div class="acard-num">5+</div>
-      <div class="acard-num-label">Years Experience</div>
-      <div style="height:16px"></div>
-      <div class="acard-num" style="color:var(--teal)">50+</div>
-      <div class="acard-num-label">Projects Done</div>
-    </div>
-    <div class="acard reveal" style="transition-delay:.2s">
-      <div class="acard-title">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        Current Focus
-      </div>
-      <p class="acard-text" style="font-size:13px">Deep diving into <span style="color:var(--accent2);font-weight:500">Web3</span> & <span style="color:var(--rose);font-weight:500">AI Integration</span>. Building the future one commit at a time.</p>
-      <div class="stack-chips" style="margin-top:12px">
-        <span class="stack-chip" style="font-size:11px">Solidity</span>
-        <span class="stack-chip" style="font-size:11px">OpenAI API</span>
-        <span class="stack-chip" style="font-size:11px">LangChain</span>
-      </div>
-    </div>
-    <div class="acard acard-span2 reveal" style="transition-delay:.15s">
-      <div class="acard-title">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        Base Station
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
-        <div>
-          <div style="font-size:14px;color:var(--text2)">Medan, Indonesia (GMT+7)</div>
-          <div style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--teal);margin-top:6px">
-            <div style="width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal)"></div>
-            Open for Remote Work
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+          <div>
+            <div style="font-size:14px;color:var(--text2)">Medan, Indonesia (GMT+7)</div>
+            <div style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--teal);margin-top:6px">
+              <div style="width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal)"></div>
+              <span class="lang-target" data-in="Tersedia untuk Kerja Remote" data-en="Open for Remote Work">Tersedia untuk Kerja Remote</span>
+            </div>
           </div>
+          <div style="font-size:12px;color:var(--text3)" id="local-time"></div>
         </div>
-        <div style="font-size:12px;color:var(--text3)" id="local-time"></div>
       </div>
     </div>
-  </div>
   </div>
 </section>
 
@@ -950,35 +1009,51 @@ section:nth-child(even) .hero-glow-1 {
   <div class="hero-glow hero-glow-2"></div>
 
   <div class="hero-content">
-    <p class="section-label reveal visible">TIMELINE</p>
-    <h2 class="section-title reveal visible">Edukasi & <span>Pengalaman</span></h2>
+    <p class="section-label reveal visible lang-target" data-in="LINI MASA" data-en="TIMELINE">LINI MASA</p>
+    <h2 class="section-title reveal visible lang-target" 
+        data-in="Edukasi & Pengalaman" 
+        data-en="Education & Experience">
+        Edukasi & <span>Pengalaman</span>
+    </h2>
     
     <div class="edu-cards">
       <div class="edu-card reveal-left visible" style="transition-delay:.0s">
-        <div class="edu-period">2023 – Now</div>
+        <div class="edu-period">2023 – <span class="lang-target" data-in="Sekarang" data-en="Now">Sekarang</span></div>
         <div class="edu-icon">⚙️</div>
-        <div class="edu-role">Senior Frontend Dev</div>
+        <div class="edu-role lang-target" data-in="Senior Frontend Dev" data-en="Senior Frontend Dev">Senior Frontend Dev</div>
         <div class="edu-place">Tech Startup Unicorn</div>
         <div class="edu-divider"></div>
-        <p class="edu-desc">Memimpin tim 5 orang developer. Implementasi arsitektur Micro-frontend dan optimasi performa web.</p>
+        <p class="edu-desc lang-target" 
+           data-in="Memimpin tim 5 orang developer. Implementasi arsitektur Micro-frontend dan optimasi performa web." 
+           data-en="Leading a team of 5 developers. Implementing Micro-frontend architecture and optimizing web performance.">
+           Memimpin tim 5 orang developer. Implementasi arsitektur Micro-frontend dan optimasi performa web.
+        </p>
       </div>
 
       <div class="edu-card reveal visible" style="transition-delay:.1s">
         <div class="edu-period">2020 – 2023</div>
         <div class="edu-icon" style="color:var(--purple);">&lt; &gt;</div>
-        <div class="edu-role">Web Developer</div>
-        <div class="edu-place">Freelance Professional</div>
+        <div class="edu-role lang-target" data-in="Web Developer" data-en="Web Developer">Web Developer</div>
+        <div class="edu-place lang-target" data-in="Freelance Profesional" data-en="Professional Freelance">Freelance Profesional</div>
         <div class="edu-divider"></div>
-        <p class="edu-desc">Menyelesaikan 30+ proyek website internasional. Spesialisasi dalam pembuatan landing page konversi tinggi.</p>
+        <p class="edu-desc lang-target" 
+           data-in="Menyelesaikan 30+ proyek website internasional. Spesialisasi dalam pembuatan landing page konversi tinggi." 
+           data-en="Completed 30+ international website projects. Specialized in creating high-conversion landing pages.">
+           Menyelesaikan 30+ proyek website internasional. Spesialisasi dalam pembuatan landing page konversi tinggi.
+        </p>
       </div>
 
       <div class="edu-card reveal-right visible" style="transition-delay:.2s">
         <div class="edu-period">2016 – 2020</div>
         <div class="edu-icon">🎓</div>
-        <div class="edu-role">Sarjana Komputer</div>
-        <div class="edu-place">Universitas Teknologi</div>
+        <div class="edu-role lang-target" data-in="Sarjana Komputer" data-en="Bachelor of Computer Science">Sarjana Komputer</div>
+        <div class="edu-place lang-target" data-in="Universitas Teknologi" data-en="University of Technology">Universitas Teknologi</div>
         <div class="edu-divider"></div>
-        <p class="edu-desc">Lulus Cum Laude (IPK 3.8). Ketua Divisi Riset & Teknologi BEM Fakultas. Pemenang Hackathon Nasional.</p>
+        <p class="edu-desc lang-target" 
+           data-in="Lulus Cum Laude (IPK 3.8). Ketua Divisi Riset & Teknologi BEM Fakultas. Pemenang Hackathon Nasional." 
+           data-en="Graduated Cum Laude (GPA 3.8). Head of Research & Technology Division of Faculty Student Council. National Hackathon Winner.">
+           Lulus Cum Laude (IPK 3.8). Ketua Divisi Riset & Teknologi BEM Fakultas. Pemenang Hackathon Nasional.
+        </p>
       </div>
     </div>
   </div>
@@ -988,60 +1063,67 @@ section:nth-child(even) .hero-glow-1 {
   <div class="hero-glow hero-glow-1"></div>
   <div class="hero-glow hero-glow-2"></div>
   <div class="hero-content">
-  <div class="skills-header">
-    <div class="section-eyebrow reveal" style="justify-content:center">Tech Stack</div>
-    <h2 class="section-h2 reveal" style="text-align:center">Tools & <em>Workflow</em></h2>
-  </div>
-  <div class="skills-grid" id="skills-grid">
-    <div class="skill-card reveal" style="transition-delay:.05s" data-level="92">
-      <div class="skill-icon-bg">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#61DAFB" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2a10.45 10.45 0 0 1 9 5.22 10.45 10.45 0 0 1 0 9.56A10.45 10.45 0 0 1 12 22a10.45 10.45 0 0 1-9-5.22 10.45 10.45 0 0 1 0-9.56A10.45 10.45 0 0 1 12 2z"/></svg>
-      </div>
-      <div class="skill-name">React JS</div>
-      <div class="skill-desc">Frontend Library</div>
-      <div class="skill-bar-wrap"><div class="skill-bar" style="width:0%"></div></div>
+    
+    <div class="skills-header">
+      <div class="section-eyebrow reveal lang-target" style="justify-content:center" data-in="Keahlian Teknologi" data-en="Tech Stack">Keahlian Teknologi</div>
+      <h2 class="section-h2 reveal lang-target" style="text-align:center" data-in="Alat & Alur Kerja" data-en="Tools & Workflow">Alat & <em>Alur Kerja</em></h2>
     </div>
-    <div class="skill-card reveal" style="transition-delay:.1s" data-level="88">
-      <div class="skill-icon-bg">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06z"/><path d="M10 2c1 .5 2 2 2 5"/></svg>
+
+    <div class="skills-grid" id="skills-grid">
+      <div class="skill-card reveal" style="transition-delay:.05s" data-level="92">
+        <div class="skill-icon-bg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#61DAFB" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2a10.45 10.45 0 0 1 9 5.22 10.45 10.45 0 0 1 0 9.56A10.45 10.45 0 0 1 12 22a10.45 10.45 0 0 1-9-5.22 10.45 10.45 0 0 1 0-9.56A10.45 10.45 0 0 1 12 2z"/></svg>
+        </div>
+        <div class="skill-name">React JS</div>
+        <div class="skill-desc lang-target" data-in="Pustaka Frontend" data-en="Frontend Library">Pustaka Frontend</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:0%"></div></div>
       </div>
-      <div class="skill-name">Tailwind CSS</div>
-      <div class="skill-desc">Utility-first Framework</div>
-      <div class="skill-bar-wrap"><div class="skill-bar" style="width:0%"></div></div>
-    </div>
-    <div class="skill-card reveal" style="transition-delay:.15s" data-level="95">
-      <div class="skill-icon-bg">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#F7DF1E" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+
+      <div class="skill-card reveal" style="transition-delay:.1s" data-level="88">
+        <div class="skill-icon-bg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06z"/><path d="M10 2c1 .5 2 2 2 5"/></svg>
+        </div>
+        <div class="skill-name">Tailwind CSS</div>
+        <div class="skill-desc lang-target" data-in="Kerangka Kerja Berbasis Utilitas" data-en="Utility-first Framework">Kerangka Kerja Berbasis Utilitas</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:0%"></div></div>
       </div>
-      <div class="skill-name">JavaScript ES6+</div>
-      <div class="skill-desc">Core Language</div>
-      <div class="skill-bar-wrap"><div class="skill-bar" style="width:0%"></div></div>
-    </div>
-    <div class="skill-card reveal" style="transition-delay:.2s" data-level="80">
-      <div class="skill-icon-bg">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+
+      <div class="skill-card reveal" style="transition-delay:.15s" data-level="95">
+        <div class="skill-icon-bg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F7DF1E" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div class="skill-name">JavaScript ES6+</div>
+        <div class="skill-desc lang-target" data-in="Bahasa Inti" data-en="Core Language">Bahasa Inti</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:0%"></div></div>
       </div>
-      <div class="skill-name">Figma</div>
-      <div class="skill-desc">UI/UX Design</div>
-      <div class="skill-bar-wrap"><div class="skill-bar" style="width:0%"></div></div>
-    </div>
-    <div class="skill-card reveal" style="transition-delay:.25s" data-level="85">
-      <div class="skill-icon-bg">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+
+      <div class="skill-card reveal" style="transition-delay:.2s" data-level="80">
+        <div class="skill-icon-bg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div class="skill-name">Figma</div>
+        <div class="skill-desc lang-target" data-in="Desain UI/UX" data-en="UI/UX Design">Desain UI/UX</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:0%"></div></div>
       </div>
-      <div class="skill-name">Git & GitHub</div>
-      <div class="skill-desc">Version Control</div>
-      <div class="skill-bar-wrap"><div class="skill-bar" style="width:0%"></div></div>
-    </div>
-    <div class="skill-card reveal" style="transition-delay:.3s" data-level="83">
-      <div class="skill-icon-bg">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#68D391" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+
+      <div class="skill-card reveal" style="transition-delay:.25s" data-level="85">
+        <div class="skill-icon-bg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div class="skill-name">Git & GitHub</div>
+        <div class="skill-desc lang-target" data-in="Kontrol Versi" data-en="Version Control">Kontrol Versi</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:0%"></div></div>
       </div>
-      <div class="skill-name">Node & Next.js</div>
-      <div class="skill-desc">Fullstack Framework</div>
-      <div class="skill-bar-wrap"><div class="skill-bar" style="width:0%"></div></div>
+
+      <div class="skill-card reveal" style="transition-delay:.3s" data-level="83">
+        <div class="skill-icon-bg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#68D391" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="skill-name">Node & Next.js</div>
+        <div class="skill-desc lang-target" data-in="Kerangka Kerja Fullstack" data-en="Fullstack Framework">Kerangka Kerja Fullstack</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:0%"></div></div>
+      </div>
     </div>
-  </div>
   </div>
 </section>
 
@@ -1049,19 +1131,19 @@ section:nth-child(even) .hero-glow-1 {
 <section id="proyek" class="section" style="padding-top:100px;">
   <div class="hero-glow hero-glow-1"></div>
   <div class="hero-glow hero-glow-2"></div>
-  <div class="hero-content"></div>
+  
   <div class="proj-header reveal">
     <div>
-      <div class="section-eyebrow">Portfolio</div>
-      <h2 class="section-h2" style="margin-bottom:0">Selected <em>Works</em></h2>
+      <div class="section-eyebrow lang-target" data-in="Portofolio" data-en="Portfolio">Portofolio</div>
+      <h2 class="section-h2 lang-target" style="margin-bottom:0" data-in="Karya Terpilih" data-en="Selected Works">Karya <em>Terpilih</em></h2>
     </div>
-    <a href="#" class="proj-see-all">
+    <a href="#" class="proj-see-all lang-target" data-in="Lihat Semua" data-en="See All">
       Lihat Semua
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>
   </div>
+
   <div class="proj-grid">
-    <!-- Card Besar -->
     <div class="pcard pcard-big reveal-l" style="transition-delay:.05s">
       <div class="pcard-img" style="height:340px">
         <div class="pcard-img-bg"></div>
@@ -1073,27 +1155,25 @@ section:nth-child(even) .hero-glow-1 {
         </div>
       </div>
       <div class="pcard-body">
-        <div class="pcard-cat">Web Application</div>
+        <div class="pcard-cat lang-target" data-in="Aplikasi Web" data-en="Web Application">Aplikasi Web</div>
         <div class="pcard-name">Finance Dashboard Pro</div>
-        <p class="pcard-desc">Dashboard keuangan real-time dengan visualisasi data interaktif, laporan otomatis, dan integrasi API perbankan.</p>
+        <p class="pcard-desc lang-target" 
+           data-in="Dashboard keuangan real-time dengan visualisasi data interaktif, laporan otomatis, dan integrasi API perbankan." 
+           data-en="Real-time finance dashboard with interactive data visualization, automated reports, and banking API integration.">
+           Dashboard keuangan real-time dengan visualisasi data interaktif, laporan otomatis, dan integrasi API perbankan.
+        </p>
         <div class="pcard-tags">
-          <span class="pcard-tag">React</span>
-          <span class="pcard-tag">Node.js</span>
-          <span class="pcard-tag">Chart.js</span>
-          <span class="pcard-tag">REST API</span>
+          <span class="pcard-tag">React</span><span class="pcard-tag">Node.js</span><span class="pcard-tag">Chart.js</span>
         </div>
         <div class="pcard-footer">
-          <a href="#" class="pcard-link">
-            Live Demo
+          <a href="#" class="pcard-link lang-target" data-in="Demo Langsung" data-en="Live Demo">
+            Demo Langsung
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           </a>
-          <div class="pcard-arrow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </div>
         </div>
       </div>
     </div>
-    <!-- Card Kecil 1 -->
+
     <div class="pcard reveal" style="transition-delay:.1s">
       <div class="pcard-img" style="height:180px">
         <div class="pcard-img-bg" style="background:linear-gradient(135deg,rgba(45,212,191,.04),rgba(91,141,238,.03))"></div>
@@ -1105,17 +1185,19 @@ section:nth-child(even) .hero-glow-1 {
         </div>
       </div>
       <div class="pcard-body">
-        <div class="pcard-cat">Finance App</div>
+        <div class="pcard-cat lang-target" data-in="Aplikasi Keuangan" data-en="Finance App">Aplikasi Keuangan</div>
         <div class="pcard-name">Crypto Hunter</div>
-        <p class="pcard-desc">Pelacak harga kripto real-time dengan notifikasi harga target.</p>
-        <div class="pcard-tags"><span class="pcard-tag">Next.js</span><span class="pcard-tag">WebSocket</span></div>
+        <p class="pcard-desc lang-target" 
+           data-in="Pelacak harga kripto real-time dengan notifikasi harga target." 
+           data-en="Real-time crypto price tracker with target price notifications.">
+           Pelacak harga kripto real-time dengan notifikasi harga target.
+        </p>
         <div class="pcard-footer">
-          <a href="#" class="pcard-link">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-          <div class="pcard-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          <a href="#" class="pcard-link lang-target" data-in="Lihat Proyek" data-en="View Project">Lihat Proyek <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
       </div>
     </div>
-    <!-- Card Kecil 2 -->
+
     <div class="pcard reveal" style="transition-delay:.15s">
       <div class="pcard-img" style="height:180px">
         <div class="pcard-img-bg" style="background:linear-gradient(135deg,rgba(240,98,146,.04),rgba(91,141,238,.03))"></div>
@@ -1127,13 +1209,15 @@ section:nth-child(even) .hero-glow-1 {
         </div>
       </div>
       <div class="pcard-body">
-        <div class="pcard-cat">E-Commerce</div>
+        <div class="pcard-cat lang-target" data-in="E-Commerce" data-en="E-Commerce">E-Commerce</div>
         <div class="pcard-name">ShopFlow</div>
-        <p class="pcard-desc">Platform toko online dengan sistem pembayaran terintegrasi.</p>
-        <div class="pcard-tags"><span class="pcard-tag">React</span><span class="pcard-tag">Stripe</span></div>
+        <p class="pcard-desc lang-target" 
+           data-in="Platform toko online dengan sistem pembayaran terintegrasi." 
+           data-en="Online store platform with integrated payment systems.">
+           Platform toko online dengan sistem pembayaran terintegrasi.
+        </p>
         <div class="pcard-footer">
-          <a href="#" class="pcard-link">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-          <div class="pcard-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          <a href="#" class="pcard-link lang-target" data-in="Lihat Proyek" data-en="View Project">Lihat Proyek <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
       </div>
     </div>
@@ -1144,56 +1228,74 @@ section:nth-child(even) .hero-glow-1 {
 <section id="testimonial" class="section" style="padding-top:100px;">
   <div class="hero-glow hero-glow-1"></div>
   <div class="hero-glow hero-glow-2"></div>
-  <div class="hero-content"></div>
-  <div class="section-eyebrow reveal">Reviews</div>
-  <h2 class="section-h2 reveal">Kata <em>Klien</em></h2>
-  <div class="testi-layout">
-    <div class="testi-scroll-wrap reveal-l">
-      <div class="testi-cols">
-        <div><div class="testi-col-inner up" id="col-up"></div></div>
-        <div><div class="testi-col-inner down" id="col-down"></div></div>
+  
+  <div class="hero-content">
+    <div class="section-eyebrow reveal lang-target" data-in="Ulasan" data-en="Reviews">Ulasan</div>
+    <h2 class="section-h2 reveal lang-target" data-in="Kata Klien" data-en="Client Stories">Kata <em>Klien</em></h2>
+    
+    <div class="testi-layout">
+      <div class="testi-scroll-wrap reveal-l">
+        <div class="testi-cols">
+          <div><div class="testi-col-inner up" id="col-up"></div></div>
+          <div><div class="testi-col-inner down" id="col-down"></div></div>
+        </div>
       </div>
-    </div>
-    <div class="testi-form reveal-r" style="transition-delay:.1s">
-      <div class="testi-form-title">Tinggalkan Ulasan</div>
-      <div class="testi-form-sub">Bagikan pengalaman bekerja sama dengan saya</div>
-      <div class="preview-box">
-        <div class="preview-label">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          Preview Live
-        </div>
-        <div class="preview-stars" id="prev-stars">
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="#e8b84b" stroke="#e8b84b" stroke-width="1"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="#e8b84b" stroke="#e8b84b" stroke-width="1"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="#e8b84b" stroke="#e8b84b" stroke-width="1"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="#e8b84b" stroke="#e8b84b" stroke-width="1"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="#e8b84b" stroke="#e8b84b" stroke-width="1"/></svg>
-        </div>
-        <p class="preview-text" id="prev-text">"Ulasan Anda akan muncul di sini..."</p>
-        <div class="preview-person">
-          <div class="preview-av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-          <div>
-            <div class="preview-name" id="prev-name">Nama Anda</div>
-            <div class="preview-comp" id="prev-comp">Perusahaan</div>
+
+      <div class="testi-form reveal-r" style="transition-delay:.1s">
+        <div class="testi-form-title lang-target" data-in="Tinggalkan Ulasan" data-en="Leave a Review">Tinggalkan Ulasan</div>
+        <div class="testi-form-sub lang-target" data-in="Bagikan pengalaman bekerja sama dengan saya" data-en="Share your experience working with me">Bagikan pengalaman bekerja sama dengan saya</div>
+        
+        <div class="preview-box">
+          <div class="preview-label lang-target" data-in="Pratinjau Langsung" data-en="Live Preview">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Pratinjau Langsung
+          </div>
+          
+          <div class="preview-stars" id="prev-stars">
+            </div>
+          
+          <p class="preview-text lang-target" id="prev-text" 
+             data-in='"Ulasan Anda akan muncul di sini..."' 
+             data-en='"Your review will appear here..."'>
+             "Ulasan Anda akan muncul di sini..."
+          </p>
+          
+          <div class="preview-person">
+            <div class="preview-av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div>
+              <div class="preview-name lang-target" id="prev-name" data-in="Nama Anda" data-en="Your Name">Nama Anda</div>
+              <div class="preview-comp lang-target" id="prev-comp" data-in="Perusahaan" data-en="Company">Perusahaan</div>
+            </div>
           </div>
         </div>
+
+        <div class="star-row">
+          <button class="star-btn lit" data-v="1">★</button>
+          <button class="star-btn lit" data-v="2">★</button>
+          <button class="star-btn lit" data-v="3">★</button>
+          <button class="star-btn lit" data-v="4">★</button>
+          <button class="star-btn lit" data-v="5">★</button>
+        </div>
+
+        <div class="frow">
+          <input class="finput lang-target-placeholder" id="t-nama" 
+                 data-in="Nama Anda" data-en="Your Name" 
+                 placeholder="Nama Anda" oninput="updatePreview()">
+          
+          <input class="finput lang-target-placeholder" id="t-perus" 
+                 data-in="Perusahaan" data-en="Company" 
+                 placeholder="Perusahaan" oninput="updatePreview()">
+        </div>
+
+        <textarea class="ftextarea lang-target-placeholder" id="t-text" 
+                  data-in="Ceritakan pengalaman Anda..." data-en="Tell me about your experience..." 
+                  placeholder="Ceritakan pengalaman Anda..." oninput="updatePreview()"></textarea>
+
+        <button class="btn-submit lang-target" onclick="submitTestimonial()" data-in="Kirim Ulasan" data-en="Submit Review">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Kirim Ulasan
+        </button>
       </div>
-      <div class="star-row">
-        <button class="star-btn lit" data-v="1">★</button>
-        <button class="star-btn lit" data-v="2">★</button>
-        <button class="star-btn lit" data-v="3">★</button>
-        <button class="star-btn lit" data-v="4">★</button>
-        <button class="star-btn lit" data-v="5">★</button>
-      </div>
-      <div class="frow">
-        <input class="finput" id="t-nama" placeholder="Nama Anda" oninput="updatePreview()">
-        <input class="finput" id="t-perus" placeholder="Perusahaan" oninput="updatePreview()">
-      </div>
-      <textarea class="ftextarea" id="t-text" placeholder="Ceritakan pengalaman Anda..." oninput="updatePreview()"></textarea>
-      <button class="btn-submit" onclick="submitTestimonial()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        Kirim Ulasan
-      </button>
     </div>
   </div>
 </section>
@@ -1202,105 +1304,108 @@ section:nth-child(even) .hero-glow-1 {
 <section id="kontak" class="section" style="padding-top:100px;">
   <div class="hero-glow hero-glow-1"></div>
   <div class="hero-glow hero-glow-2"></div>
-  <div class="hero-content"></div>
-  <div class="section-eyebrow reveal">Kontak</div>
-  <h2 class="section-h2 reveal">Mari <em>Berkolaborasi</em></h2>
-  <div class="contact-layout">
-    <div class="contact-left">
-      <div class="ccard reveal" style="transition-delay:.05s">
-        <div class="ccard-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+  <div class="hero-content">
+    <div class="section-eyebrow reveal lang-target" data-in="Kontak" data-en="Contact">Kontak</div>
+    <h2 class="section-h2 reveal lang-target" data-in="Mari Berkolaborasi" data-en="Let's Collaborate">Mari <em>Berkolaborasi</em></h2>
+    
+    <div class="contact-layout">
+      <div class="contact-left">
+        <div class="ccard reveal" style="transition-delay:.05s">
+          <div class="ccard-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="ccard-label lang-target" data-in="Surel" data-en="Email">Surel</div>
+            <div class="ccard-val">hizkia@dev.id</div>
+          </div>
+          <div class="ccard-copy" onclick="copyText('hizkia@dev.id')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </div>
         </div>
-        <div>
-          <div class="ccard-label">Email</div>
-          <div class="ccard-val">hizkia@dev.id</div>
+
+        <div class="ccard reveal" style="transition-delay:.1s">
+          <div class="ccard-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.36 13a2 2 0 0 1 2-2.18h3"/></svg>
+          </div>
+          <div>
+            <div class="ccard-label">WhatsApp</div>
+            <div class="ccard-val">+62 812-3456-7890</div>
+          </div>
+          <div class="ccard-copy" onclick="copyText('+62 812-3456-7890')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </div>
         </div>
-        <div class="ccard-copy" onclick="copyText('hizkia@dev.id')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+
+        <div class="ccard reveal" style="transition-delay:.15s">
+          <div class="ccard-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div>
+            <div class="ccard-label lang-target" data-in="Lokasi" data-en="Location">Lokasi</div>
+            <div class="ccard-val lang-target" data-in="Medan, Indonesia (Bisa Remote)" data-en="Medan, Indonesia (Remote OK)">Medan, Indonesia (Bisa Remote)</div>
+          </div>
+        </div>
+
+        <div class="social-grid reveal" style="transition-delay:.2s">
+          <a href="#" class="social-btn linkedin">LinkedIn</a>
+          <a href="#" class="social-btn github">GitHub</a>
+          <a href="#" class="social-btn wa">WhatsApp</a>
         </div>
       </div>
-      <div class="ccard reveal" style="transition-delay:.1s">
-        <div class="ccard-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.36 13a2 2 0 0 1 2-2.18h3"/></svg>
+
+      <div class="contact-form reveal-r" style="transition-delay:.1s">
+        <div class="form-title lang-target" data-in="Kirim Pesan" data-en="Send Message">Kirim Pesan</div>
+        <div class="form-sub lang-target" data-in="Saya biasanya membalas dalam 24 jam" data-en="I usually reply within 24 hours">Saya biasanya membalas dalam 24 jam</div>
+        
+        <div class="frow">
+          <input class="finput lang-target-placeholder" id="c-nama" data-in="Nama Anda" data-en="Your Name" placeholder="Nama Anda">
+          <input class="finput lang-target-placeholder" id="c-email" data-in="Email Anda" data-en="Your Email" placeholder="Email Anda" type="email">
         </div>
-        <div>
-          <div class="ccard-label">WhatsApp</div>
-          <div class="ccard-val">+62 812-3456-7890</div>
-        </div>
-        <div class="ccard-copy" onclick="copyText('+62 812-3456-7890')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-        </div>
+
+        <select class="fselect" id="c-topic">
+          <option value="" class="lang-target" data-in="Topik Diskusi" data-en="Discussion Topic">Topik Diskusi</option>
+          <option class="lang-target" data-in="Website Baru" data-en="New Website">Website Baru</option>
+          <option class="lang-target" data-in="Desain Ulang Website" data-en="Website Redesign">Desain Ulang Website</option>
+          <option class="lang-target" data-in="Aplikasi Web" data-en="Web Application">Aplikasi Web</option>
+          <option class="lang-target" data-in="Konsultasi" data-en="Consultation">Konsultasi</option>
+          <option class="lang-target" data-in="Lainnya" data-en="Others">Lainnya</option>
+        </select>
+
+        <textarea class="ftextarea lang-target-placeholder" id="c-msg" style="height:120px" data-in="Ceritakan proyek atau kebutuhan Anda..." data-en="Tell me about your project or needs..." placeholder="Ceritakan proyek atau kebutuhan Anda..."></textarea>
+        
+        <button class="btn-submit lang-target" onclick="sendMessage(this)" data-in="Kirim Pesan" data-en="Send Message">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Kirim Pesan
+        </button>
       </div>
-      <div class="ccard reveal" style="transition-delay:.15s">
-        <div class="ccard-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        </div>
-        <div>
-          <div class="ccard-label">Lokasi</div>
-          <div class="ccard-val">Medan, Indonesia (Remote OK)</div>
-        </div>
-      </div>
-      <div class="social-grid reveal" style="transition-delay:.2s">
-        <a href="#" class="social-btn linkedin">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
-        <a href="#" class="social-btn github">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          GitHub
-        </a>
-        <a href="#" class="social-btn wa">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.1.544 4.07 1.497 5.783L0 24l6.337-1.466A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.78 9.78 0 0 1-5.002-1.374l-.36-.214-3.724.862.882-3.617-.235-.372A9.78 9.78 0 0 1 2.182 12C2.182 6.582 6.582 2.182 12 2.182S21.818 6.582 21.818 12 17.418 21.818 12 21.818z"/></svg>
-          WhatsApp
-        </a>
-        <a href="#" class="social-btn twitter">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          Twitter
-        </a>
-      </div>
-    </div>
-    <div class="contact-form reveal-r" style="transition-delay:.1s">
-      <div class="form-title">Kirim Pesan</div>
-      <div class="form-sub">Saya biasanya membalas dalam 24 jam</div>
-      <div class="frow">
-        <input class="finput" id="c-nama" placeholder="Nama Anda">
-        <input class="finput" id="c-email" placeholder="Email Anda" type="email">
-      </div>
-      <select class="fselect" id="c-topic">
-        <option value="">Topik Diskusi</option>
-        <option>Website Baru</option>
-        <option>Redesign Website</option>
-        <option>Aplikasi Web</option>
-        <option>Konsultasi</option>
-        <option>Lainnya</option>
-      </select>
-      <textarea class="ftextarea" id="c-msg" style="height:120px" placeholder="Ceritakan proyek atau kebutuhan Anda..."></textarea>
-      <button class="btn-submit" onclick="sendMessage(this)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        Kirim Pesan
-      </button>
     </div>
   </div>
 </section>
-
 <!-- ══ FOOTER ══ -->
 <footer>
   <div class="footer-cta">
-    <div class="footer-eyebrow">Siap Berkolaborasi?</div>
-    <div class="footer-big">Let's Build</div>
-    <div class="footer-big-em">Something Great</div>
+    <div class="footer-eyebrow lang-target" data-in="Siap Berkolaborasi?" data-en="Ready to Collaborate?">Siap Berkolaborasi?</div>
+    <div class="footer-big lang-target" data-in="Mari Bangun" data-en="Let's Build">Mari Bangun</div>
+    <div class="footer-big-em lang-target" data-in="Sesuatu yang Hebat" data-en="Something Great">Sesuatu yang Hebat</div>
     <a href="mailto:hizkia@dev.id" class="footer-email">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       Tedi Zakaria Perdana
     </a>
   </div>
+  
   <div class="footer-bottom">
-    <div class="footer-copy">© 2026 Tedi Zakaria Perdana. Semua hak cipta dilindungi.</div>
-    <div class="footer-links">
-      <a href="#beranda">Beranda</a>
-      <a href="#proyek">Proyek</a>
-      <a href="#kontak">Kontak</a>
+    <div class="footer-copy lang-target" 
+         data-in="© 2026 Tedi Zakaria Perdana. Semua hak cipta dilindungi." 
+         data-en="© 2026 Tedi Zakaria Perdana. All rights reserved.">
+         © 2026 Tedi Zakaria Perdana. Semua hak cipta dilindungi.
     </div>
+    
+    <div class="footer-links">
+      <a href="#beranda" class="lang-target" data-in="Beranda" data-en="Home">Beranda</a>
+      <a href="#proyek" class="lang-target" data-in="Proyek" data-en="Projects">Proyek</a>
+      <a href="#kontak" class="lang-target" data-in="Kontak" data-en="Contact">Kontak</a>
+    </div>
+    
     <div class="footer-socials">
       <a href="#" class="footer-social" title="GitHub">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
@@ -1308,13 +1413,11 @@ section:nth-child(even) .hero-glow-1 {
       <a href="#" class="footer-social" title="LinkedIn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
       </a>
-      <a href="#" class="footer-social" title="Twitter/X">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      </a>
     </div>
+    
     <div class="footer-status">
       <div class="footer-online"></div>
-      Online
+      <span class="lang-target" data-in="Aktif" data-en="Online">Aktif</span>
     </div>
   </div>
 </footer>
@@ -1543,6 +1646,43 @@ function updateTime() {
 }
 updateTime();
 setInterval(updateTime, 10000);
+
+ const langBtn = document.getElementById('lang-btn');
+let currentLang = 'IN';
+
+// Pastikan hanya ada SATU addEventListener agar tidak bentrok
+langBtn.addEventListener('click', () => {
+    // 1. Toggle State
+    currentLang = currentLang === 'IN' ? 'EN' : 'IN';
+    
+    // 2. Update Visual Tombol
+    const langText = langBtn.querySelector('.lang-text');
+    if (langText) {
+        langText.innerHTML = currentLang === 'EN' 
+            ? 'IN | <span class="active-lang">EN</span>' 
+            : '<span class="active-lang">IN</span> | EN';
+    }
+
+    // 3. Update Semua Kalimat (.lang-target)
+    const targets = document.querySelectorAll('.lang-target');
+    targets.forEach(el => {
+        const text = el.getAttribute(`data-${currentLang.toLowerCase()}`);
+        if (text) {
+            // Gunakan innerHTML jika di data-in/en Anda ada tag <em> atau <span>
+            el.innerHTML = text; 
+        }
+    });
+
+    // 4. Update Placeholder (Penting untuk Form Kontak & Testimonial)
+    const placeholders = document.querySelectorAll('.lang-target-placeholder');
+    placeholders.forEach(el => {
+        const ph = el.getAttribute(`data-${currentLang.toLowerCase()}`);
+        if (ph) el.placeholder = ph;
+    });
+
+    // 5. Jika pakai Typed.js
+    // updateTyped(typedWords[currentLang]);
+});
 </script>
 </body>
 </html>
