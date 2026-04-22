@@ -218,7 +218,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 #beranda {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 460px;
+  grid-template-columns: 1fr 480px; /* Sedikit diperlebar untuk kartu */
   align-items: center;
   gap: 60px;
   padding: 120px clamp(20px, 5%, 80px) 80px;
@@ -226,7 +226,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   overflow: hidden;
 }
 
-/* Background Elements */
+/* Background & Orbs */
 .hero-bg-grid {
   position: absolute;
   inset: 0;
@@ -243,39 +243,13 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   border-radius: 50%;
   pointer-events: none;
   filter: blur(100px);
-  z-index: 1;
+  z-index: 0; /* Orb di paling belakang */
 }
-
 .hero-orb-1 { width: 500px; height: 500px; top: -150px; left: -100px; background: rgba(91, 141, 238, .14); }
 .hero-orb-2 { width: 400px; height: 400px; bottom: -100px; right: 0; background: rgba(45, 212, 191, .1); }
 
-/* --- HERO LEFT CONTENT --- */
-.hero-left {
-  position: relative;
-  z-index: 10;
-}
-
-.hero-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px 6px 10px;
-  border-radius: 30px;
-  background: rgba(91, 141, 238, 0.08);
-  border: 1px solid rgba(91, 141, 238, 0.2);
-  font-size: 12px;
-  color: var(--text2);
-  margin-bottom: 28px;
-  animation: fadeUp 0.6s 0.1s both;
-}
-
-.hero-tag-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--teal);
-  box-shadow: 0 0 10px var(--teal);
-}
+/* --- LEFT CONTENT --- */
+.hero-left { position: relative; z-index: 10; }
 
 .hero-h1 {
   font-family: var(--serif);
@@ -283,7 +257,6 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   line-height: 1.1;
   color: var(--text);
   margin-bottom: 8px;
-  animation: fadeUp 0.6s 0.2s both;
 }
 
 .hero-h1-em {
@@ -292,67 +265,61 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   display: block;
   color: transparent;
   -webkit-text-stroke: 1.5px var(--accent2);
-  animation: fadeUp 0.6s 0.25s both;
   margin-bottom: 24px;
 }
 
-.hero-desc {
-  font-size: 15px;
-  color: var(--text2);
-  line-height: 1.8;
-  max-width: 480px;
-  margin-bottom: 40px;
-  animation: fadeUp 0.6s 0.3s both;
-}
-
-/* --- HERO VISUAL (RIGHT) --- */
-.hero-visual {
+/* --- RIGHT VISUAL (KARTU & KODE) --- */
+.hero-right {
   position: relative;
   z-index: 20;
   animation: fadeInRight 0.8s 0.3s both;
 }
 
-.hero-photo {
-  width: 100%;
+.hero-card {
+  background: var(--bg1);
+  border: 1px solid var(--border);
   border-radius: 24px;
   overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
   position: relative;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+  z-index: 1; /* Di bawah box kode */
 }
 
-.hero-photo img {
-  width: 100%;
-  height: 540px;
-  object-fit: cover;
-  filter: grayscale(100%) contrast(1.1);
-  display: block;
-  transition: filter 0.5s ease;
+.hero-card-top {
+  height: 100px;
+  background: linear-gradient(135deg, var(--blue), var(--sky));
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 
-.hero-photo:hover img {
-  filter: grayscale(0%) contrast(1);
-}
-
-.hero-photo::after {
-  content: '';
+.hero-avatar {
+  width: 80px; height: 80px;
+  background: white;
+  border-radius: 20px;
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(124,58,237,.15), rgba(236,72,153,.1));
-  mix-blend-mode: overlay;
+  bottom: -40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: 4px solid var(--bg1);
 }
 
-/* --- ANIMASI KODE (Posisi di atas & kiri foto) --- */
+.hero-card-body { padding: 55px 24px 24px; text-align: center; }
+
+/* --- FLOATING CODE BOX --- */
 .hero-code {
   position: absolute;
-  top: 40px;      /* Posisi dari atas */
-  left: -80px;    /* Geser ke kiri keluar dari frame foto */
-  width: 320px;
-  background: #111827; /* Darker slate */
+  top: -30px;    /* Floating di atas kartu */
+  left: -60px;   /* Menggantung ke kiri */
+  width: 300px;
+  background: #111827;
   border: 1px solid rgba(124, 58, 237, 0.4);
   border-radius: 16px;
-  z-index: 30;    /* Pastikan di atas foto */
+  z-index: 10;   /* Di atas kartu profil */
   overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
   animation: floatCode 4s ease-in-out infinite;
 }
 
@@ -361,43 +328,36 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   50% { transform: translateY(-15px) rotate(1deg); }
 }
 
-.code-bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 16px;
-  background: #1f2937;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+/* Status Dot Animation */
+.hero-status-dot {
+  width: 8px; height: 8px;
+  background: var(--green);
+  border-radius: 50%;
+  position: relative;
+}
+.hero-status-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
 }
 
-.code-dot { width: 10px; height: 10px; border-radius: 50%; }
-.code-dot.r { background: #ff5f56; }
-.code-dot.y { background: #ffbd2e; }
-.code-dot.g { background: #27c93f; }
-
-.code-body {
-  padding: 20px;
-  font-family: 'Fira Code', var(--mono);
-  font-size: 13px;
-  line-height: 1.6;
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
 }
 
-/* Utility Colors for Code */
-.c-const { color: #c792ea; }
-.c-var   { color: #82aaff; }
-.c-key   { color: #f07178; }
-.c-val   { color: #c3e88d; }
-
-/* Responsive Adjustment */
+/* Responsive */
 @media (max-width: 1100px) {
   #beranda {
     grid-template-columns: 1fr;
     text-align: center;
-    padding-top: 100px;
+    gap: 80px;
   }
-  .hero-left { display: flex; flex-direction: column; align-items: center; }
-  .hero-visual { order: -1; width: 100%; max-width: 400px; margin: 0 auto 40px; }
-  .hero-code { left: -20px; width: 260px; } /* Sesuaikan posisi di layar kecil */
+  .hero-right { margin: 0 auto; }
+  .hero-code { left: -20px; top: -40px; width: 260px; }
 }
 
 /* ── SECTION COMMON ── */
@@ -873,51 +833,52 @@ body.light nav{background:rgba(245,247,255,.9);}
   </div>
 
   <div class="hero-right">
-    <div class="hero-card">
-      <div class="hero-card-top">
-        <div class="hero-card-top-grid"></div>
-        <div class="hero-avatar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </div>
-      </div>
-      <div class="hero-card-body">
-        <div class="hero-card-name">Tedi Zakaria Perdana</div>
-        <div class="hero-card-role">Fullstack Developer</div>
-        <div class="hero-card-tags">
-          <span class="hero-tag-chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            GMT+7 · Medan
-          </span>
-          <span class="hero-tag-chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.36 13a2 2 0 0 1 2-2.18h3"/></svg>
-            Remote
-          </span>
-          <span class="hero-tag-chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            Full Stack
-          </span>
-        </div>
-        <div class="hero-card-status">
-          <div class="hero-status-dot"></div>
-          Open to new opportunities
-        </div>
+  <div class="hero-card">
+    <div class="hero-card-top">
+      <div class="hero-card-top-grid"></div>
+      <div class="hero-avatar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
       </div>
     </div>
-     <div class="hero-code">
-      <div class="code-bar">
-        <div class="code-dot r"></div>
-        <div class="code-dot y"></div>
-        <div class="code-dot g"></div>
-        <span class="code-bar-title">&gt;_ app.js</span>
+    <div class="hero-card-body">
+      <div class="hero-card-name">Tedi Zakaria Perdana</div>
+      <div class="hero-card-role">Fullstack Developer</div>
+      <div class="hero-card-tags">
+        <span class="hero-tag-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          GMT+7 · Brebes
+        </span>
+        <span class="hero-tag-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.36 13a2 2 0 0 1 2-2.18h3"/></svg>
+          Remote
+        </span>
       </div>
-      <div class="code-body">
-        <div><span class="c-const">const</span> <span class="c-var">identity</span> <span class="c-eq">= {</span></div>
-        <div>&nbsp;&nbsp;<span class="c-key">name:</span> <span class="c-val">"Tedi."</span><span class="c-eq">,</span></div>
-        <div id="code-typing">&nbsp;&nbsp;<span class="c-key">role:</span> <span class="c-val" id="code-role"></span></div>
-        <div style="color:var(--text3);margin-top:8px">_&nbsp;<span class="c-cursor"></span></div>
+      <div class="hero-card-status">
+        <div class="hero-status-dot"></div>
+        <span>Open to new opportunities</span>
       </div>
     </div>
   </div>
+
+  <div class="hero-code">
+    <div class="code-bar">
+      <div class="code-dot r"></div>
+      <div class="code-dot y"></div>
+      <div class="code-dot g"></div>
+      <span class="code-bar-title">app.js</span>
+    </div>
+    <div class="code-body">
+      <div><span class="c-const">const</span> <span class="c-var">identity</span> <span class="c-eq">=</span> <span class="c-brace">{</span></div>
+      <div class="code-indent"><span class="c-key">name:</span> <span class="c-val">"Tedi"</span>,</div>
+      <div class="code-indent"><span class="c-key">role:</span> <span class="c-val">"Developer"</span><span class="c-cursor"></span></div>
+      <div><span class="c-brace">}</span></div>
+    </div>
+  </div>
+</div>
+    </div>
+</div>
 </section>
 
 <!-- ══ TENTANG ══ -->
