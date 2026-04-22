@@ -7,149 +7,134 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#06080f;
-  --bg1:#090c16;
-  --bg2:#0e1220;
-  --bg3:#141929;
-  --bg4:#1c2235;
-  --border:rgba(255,255,255,0.06);
-  --border2:rgba(255,255,255,0.11);
-  --border3:rgba(255,255,255,0.18);
-  --accent:#5b8dee;
-  --accent2:#7fa8f5;
-  --gold:#e8b84b;
-  --teal:#2dd4bf;
-  --rose:#f06292;
-  --text:#eef2ff;
-  --text2:#8b9dc3;
-  --text3:#3d4f6e;
-  --serif:'Instrument Serif',serif;
-  --sans:'DM Sans',sans-serif;
-  --mono:'JetBrains Mono',monospace;
-  --r:10px;
-  --r2:16px;
-  --r3:24px;
-}
-
-  /* ── TAMBAHKAN DI BAGIAN ATAS ── */
-body {
-  position: relative;
-  background: var(--bg); 
-}
-
-/* Background grid yang konsisten di semua halaman */
-body::before {
-  content: '';
-  position: fixed; 
-  inset: 0;
-  background-image: 
-    linear-gradient(rgba(124, 58, 237, .04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(124, 58, 237, .04) 1px, transparent 1px);
-  background-size: 80px 80px;
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 40%, transparent 100%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Pastikan semua section transparan agar grid di belakang terlihat */
-.section, #tentang, #edukasi, #skills, #proyek, #testimonial, #kontak {
-  background: transparent !important; /* Gunakan transparent agar grid body terlihat */
-  position: relative;
-  z-index: 1;
-}
-*{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;cursor:auto;}
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar{width:3px;}
-::-webkit-scrollbar-track{background:var(--bg);}
-::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px;}
-
-/* ── SCROLL PROGRESS ── */
-#scroll-bar{position:fixed;top:0;left:0;width:0%;height:2px;background:linear-gradient(90deg,var(--accent),var(--teal));z-index:1000;transition:width .1s;}
-
-/* ── GRAIN ── */
-.grain{position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
-
 :root {
-  --bg-color: #0f172a;
-  --accent-color: #0ea5e9;
-  --text-color: #ffffff;
+    --bg: #06080f;
+    --bg1: #090c16;
+    --bg2: #0e1220;
+    --bg3: #141929;
+    --bg4: #1c2235;
+    --border: rgba(255, 255, 255, 0.06);
+    --border2: rgba(255, 255, 255, 0.11);
+    --accent: #5b8dee;
+    --teal: #2dd4bf;
+    --text: #eef2ff;
+    --text2: #8b9dc3;
+    --sans: 'DM Sans', sans-serif;
+    --r: 10px;
+    --r2: 16px;
 }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  font-family: 'Poppins', sans-serif;
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
 }
 
-.navbar {
-  position: relative;
-  padding: 10px 20px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 60px;
-  backdrop-filter: blur(15px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-  border: 0.5px solid #ccc;
+/* ── BACKGROUND GRID GLOBAL ── */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(124, 58, 237, .04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124, 58, 237, .04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 40%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
 }
 
-.navbar ul {
-  display: flex;
-  position: relative;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* ── NAVBAR STYLING ── */
+#navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    z-index: 1000;
+    width: max-content;
+    padding: 10px 25px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 60px;
+    backdrop-filter: blur(15px);
+    border: 0.5px solid var(--border2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
 }
 
-.navbar ul li {
-  position: relative;
-  z-index: 2;
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 700;
 }
 
-.navbar ul li a {
-  position: relative;
-  display: block;
-  padding: 10px 25px;
-  color: var(--text-color);
-  text-decoration: none;
-  font-size: 1em;
-  font-weight: 500;
-  opacity: 0.7;
-  transition: 0.5s;
+.nav-brand-mark {
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.navbar ul li.active a {
-  opacity: 1;
-  color: #fff;
+.nav-brand-mark svg { width: 18px; height: 18px; color: #fff; }
+
+.navbar-menu ul {
+    display: flex;
+    list-style: none;
+    position: relative;
 }
 
-/* Efek Indicator dengan Gradasi Pink & Ungu */
+.navbar-menu ul li a {
+    padding: 10px 20px;
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.4s;
+    position: relative;
+    z-index: 2;
+}
+
+.navbar-menu ul li.active a { color: #fff; }
+
+/* ── SLIDING INDICATOR ── */
 .indicator {
-  position: absolute;
-  top: 5px;
-  height: 40px; 
-  /* Menggunakan Linear Gradient Pink ke Ungu */
-  background: linear-gradient(135deg, #f472b6, #a855f7); 
-  border-radius: 30px;
-  z-index: 1;
-  transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Transisi lebih smooth */
-  
-  /* Shadow disesuaikan dengan warna ungu agar terlihat menyala (glow) */
-  box-shadow: 0 5px 20px rgba(168, 85, 247, 0.4);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 38px;
+    background: linear-gradient(135deg, #f472b6, #a855f7);
+    border-radius: 30px;
+    z-index: 1;
+    transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 5px 15px rgba(168, 85, 247, 0.4);
 }
 
-/* Hamburger mobile */
-.nav-hamburger{display:none;width:36px;height:36px;border-radius:8px;background:var(--bg3);border:1px solid var(--border2);align-items:center;justify-content:center;cursor:pointer;flex-direction:column;gap:5px;padding:10px;}
-.nav-hamburger span{display:block;width:16px;height:1.5px;background:var(--text2);border-radius:2px;transition:all .3s;}
-.nav-mobile{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(6,8,15,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:16px;z-index:899;flex-direction:column;gap:4px;}
-.nav-mobile.open{display:flex;}
-.nav-mobile .nav-link{padding:10px 14px;border-radius:var(--r);}
-
+.btn-hire {
+    padding: 10px 20px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+  
 /* ── HERO ── */
 #beranda{
   min-height:100vh;
@@ -783,52 +768,29 @@ section:nth-child(even) .hero-glow-1 {
 
 <!-- ══ NAV ══ -->
 <nav id="navbar">
-  <a href="#beranda" class="nav-brand">
-    <div class="nav-brand-mark">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-    </div>
-    <span class="nav-brand-text">Tedi.<span>
-  </a>
-
-  <nav class="navbar">
-  <ul>
-    <li class="list active">
-     <a href="#beranda" class="nav-link">Beranda</a>
-    </li>
-    <li class="list">
-     <a href="#tentang" class="nav-link">Tentang</a>
-    </li>
-    <li class="list">
-     <a href="#edukasi" class="nav-link">Edukasi</a>
-    </li>
-    <li class="list">
-       <a href="#skills" class="nav-link">Skills</a>
-    </li>
-    <li class="list">
-      <a href="#proyek" class="nav-link">Proyek</a>
-    </li>
-    <li class="list">
-     <a href="#testimonial" class="nav-link">Testimonial</a>
-    </li>
-    <li class="list">
-      <a href="#contact">Contact</a>
-    </li>
-    <a href="#kontak" class="nav-link">Kontak</a>
-  </ul>
-</nav>
-
-  <div class="nav-end">
-    <button class="nav-icon-btn" id="theme-btn" title="Toggle tema" aria-label="Toggle tema">
-      <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
-    <a href="#kontak" class="btn-hire">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      Hire Me
+    <a href="#beranda" class="nav-brand">
+        <div class="nav-brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <span class="nav-brand-text">Tedi.</span>
     </a>
-  </div>
-    </span>
-    </span>
-  </a>
+
+    <div class="navbar-menu">
+        <ul>
+            <li class="list active"><a href="#beranda">Beranda</a></li>
+            <li class="list"><a href="#tentang">Tentang</a></li>
+            <li class="list"><a href="#edukasi">Edukasi</a></li>
+            <li class="list"><a href="#skills">Skills</a></li>
+            <li class="list"><a href="#proyek">Proyek</a></li>
+            <li class="list"><a href="#kontak">Kontak</a></li>
+            <div class="indicator"></div>
+        </ul>
+    </div>
+
+    <a href="#kontak" class="btn-hire">
+        <svg style="width:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Hire Me
+    </a>
 </nav>
 
 <!-- ══ HERO ══ -->
