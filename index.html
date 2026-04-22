@@ -695,6 +695,50 @@ body.light nav{background:rgba(245,247,255,.9);}
   .frow{grid-template-columns:1fr;}
   .hero-btns{flex-direction:column;align-items:flex-start;}
 }
+
+  /* 1. Pastikan semua section tembus pandang agar cahaya terlihat */
+#tentang, #edukasi, #skills, #proyek, #testimonial, #kontak {
+  background: transparent !important;
+  position: relative;
+  overflow: hidden; /* Supaya cahaya tidak melebar keluar layar */
+}
+
+/* 2. Atur ulang posisi Glow agar menyebar secara artistik di halaman */
+
+/* Glow di sisi kiri (Ungu) */
+.hero-glow-1 {
+  position: absolute;
+  top: -10%;
+  left: -150px;
+  width: 500px;
+  height: 500px;
+  background: rgba(124, 58, 237, 0.15); /* Ungu transparan */
+  filter: blur(120px);
+  border-radius: 50%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Glow di sisi kanan (Pink) */
+.hero-glow-2 {
+  position: absolute;
+  bottom: 0;
+  right: -100px;
+  width: 450px;
+  height: 450px;
+  background: rgba(236, 72, 153, 0.12); /* Pink transparan */
+  filter: blur(120px);
+  border-radius: 50%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* 3. Tambahkan sedikit variasi untuk section genap agar tidak monoton */
+section:nth-child(even) .hero-glow-1 {
+  left: auto;
+  right: -100px;
+  background: rgba(91, 141, 238, 0.12); /* Biru untuk variasi */
+}
 </style>
 </head>
 <body>
@@ -800,7 +844,10 @@ body.light nav{background:rgba(245,247,255,.9);}
 </section>
 
 <!-- ══ TENTANG ══ -->
-<section id="tentang" class="section">
+<section id="tentang" class="section" style="padding-top:100px;">
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-content">
   <div class="section-eyebrow reveal">Overview</div>
   <h2 class="section-h2 reveal">About the <em>Developer</em></h2>
   <div class="about-layout" style="margin-top:48px">
@@ -865,10 +912,14 @@ body.light nav{background:rgba(245,247,255,.9);}
       </div>
     </div>
   </div>
+  </div>
 </section>
 
 <!-- ══ EDUKASI ══ -->
-<section id="edukasi" class="section" style="background:var(--bg1)">
+<section id="edukasi" class="section" style="padding-top:100px;">
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-content">
   <p class="section-label reveal">TIMELINE</p>
   <h2 class="section-title reveal">Edukasi & Pengalaman</h2>
   <div class="edu-cards">
@@ -897,10 +948,14 @@ body.light nav{background:rgba(245,247,255,.9);}
       <p class="edu-desc">Lulus Cum Laude (IPK 3.8). Ketua Divisi Riset & Teknologi BEM Fakultas. Pemenang Hackathon Nasional 2019.</p>
     </div>
   </div>
+  </div>
 </section>
 
 <!-- ══ SKILLS ══ -->
-<section id="skills" class="section" style="background:var(--bg1)">
+<section id="skills" class="section" style="padding-top:100px;">
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-content">
   <div class="skills-header">
     <div class="section-eyebrow reveal" style="justify-content:center">Tech Stack</div>
     <h2 class="section-h2 reveal" style="text-align:center">Tools & <em>Workflow</em></h2>
@@ -955,10 +1010,14 @@ body.light nav{background:rgba(245,247,255,.9);}
       <div class="skill-bar-wrap"><div class="skill-bar" style="width:0%"></div></div>
     </div>
   </div>
+  </div>
 </section>
 
 <!-- ══ PROYEK ══ -->
-<section id="proyek" class="section">
+<section id="proyek" class="section" style="padding-top:100px;">
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-content"></div>
   <div class="proj-header reveal">
     <div>
       <div class="section-eyebrow">Portfolio</div>
@@ -1050,7 +1109,10 @@ body.light nav{background:rgba(245,247,255,.9);}
 </section>
 
 <!-- ══ TESTIMONIAL ══ -->
-<section id="testimonial" class="section" style="background:var(--bg1)">
+<section id="testimonial" class="section" style="padding-top:100px;">
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-content"></div>
   <div class="section-eyebrow reveal">Reviews</div>
   <h2 class="section-h2 reveal">Kata <em>Klien</em></h2>
   <div class="testi-layout">
@@ -1105,7 +1167,10 @@ body.light nav{background:rgba(245,247,255,.9);}
 </section>
 
 <!-- ══ KONTAK ══ -->
-<section id="kontak">
+<section id="kontak" class="section" style="padding-top:100px;">
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-content"></div>
   <div class="section-eyebrow reveal">Kontak</div>
   <h2 class="section-h2 reveal">Mari <em>Berkolaborasi</em></h2>
   <div class="contact-layout">
@@ -1194,7 +1259,7 @@ body.light nav{background:rgba(245,247,255,.9);}
     <div class="footer-big-em">Something Great</div>
     <a href="mailto:hizkia@dev.id" class="footer-email">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      hizkia@dev.id
+      Tedi Zakaria Perdana
     </a>
   </div>
   <div class="footer-bottom">
