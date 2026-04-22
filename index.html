@@ -259,21 +259,23 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
 
 /* Code snippet card */
-.code-card{
-  background:#0d1117;border:1px solid rgba(91,141,238,.18);
-  border-radius:var(--r2);overflow:hidden;margin-top:16px;
-}
-.code-topbar{
+.code-bar{
   display:flex;align-items:center;gap:6px;
-  padding:8px 12px;background:#0a0e17;
+  padding:10px 14px;
+  background:#151b2d;
   border-bottom:1px solid rgba(255,255,255,.05);
 }
-.code-dot{width:9px;height:9px;border-radius:50%;}
-.code-dot.r{background:#ff5f57;}.code-dot.y{background:#febc2e;}.code-dot.g{background:#28c840;}
-.code-filename{font-size:11px;color:var(--text3);font-family:var(--mono);margin-left:6px;}
-.code-body{padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:1.8;}
-.c-kw{color:#c792ea;}.c-fn{color:#82aaff;}.c-str{color:#c3e88d;}.c-prop{color:#f07178;}.c-muted{color:#546e7a;}.c-cursor{display:inline-block;width:7px;height:13px;background:var(--accent2);vertical-align:middle;animation:blink .7s step-end infinite;}
-
+.code-dot{width:10px;height:10px;border-radius:50%;}
+.code-dot.r{background:#ff5f56;}
+.code-dot.y{background:#ffbd2e;}
+.code-dot.g{background:#27c93f;}
+.code-bar-title{font-size:11px;color:var(--text3);margin-left:6px;font-family:var(--mono);}
+.code-body{
+  padding:16px;
+  font-family:var(--mono);font-size:12px;
+  line-height:1.8;
+}
+  
 /* ══════════════════════
    SECTIONS
 ══════════════════════ */
@@ -861,47 +863,32 @@ body.light nav{background:rgba(245,247,255,.9);}
 
 <!-- ══ EDUKASI ══ -->
 <section id="edukasi" class="section" style="background:var(--bg1)">
-  <div class="section-eyebrow reveal">Timeline</div>
-  <h2 class="section-h2 reveal">Edukasi & <em>Pengalaman</em></h2>
-  <div class="edu-layout">
-    <div class="edu-card reveal-l" style="transition-delay:0s">
-      <div class="edu-period">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        2023 – Now
-      </div>
-      <div class="edu-icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-      </div>
+  <p class="section-label reveal">TIMELINE</p>
+  <h2 class="section-title reveal">Edukasi & Pengalaman</h2>
+  <div class="edu-cards">
+    <div class="edu-card reveal-left" style="transition-delay:.0s">
+      <div class="edu-period">2023 – Now</div>
+      <div class="edu-icon">⚙️</div>
       <div class="edu-role">Senior Frontend Dev</div>
       <div class="edu-place">Tech Startup Unicorn</div>
       <div class="edu-divider"></div>
-      <p class="edu-desc">Memimpin tim 5 developer. Implementasi arsitektur Micro-frontend dan optimasi performa web hingga 40%.</p>
+      <p class="edu-desc">Memimpin tim 5 orang developer. Implementasi arsitektur Micro-frontend dan optimasi performa web hingga 40%.</p>
     </div>
     <div class="edu-card reveal" style="transition-delay:.1s">
-      <div class="edu-period">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        2020 – 2023
-      </div>
-      <div class="edu-icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-      </div>
+      <div class="edu-period">2020 – 2023</div>
+      <div class="edu-icon" style="color:var(--purple);">&lt; &gt;</div>
       <div class="edu-role">Web Developer</div>
       <div class="edu-place">Freelance Professional</div>
       <div class="edu-divider"></div>
-      <p class="edu-desc">Menyelesaikan 30+ proyek website internasional. Spesialisasi landing page konversi tinggi & e-commerce.</p>
+      <p class="edu-desc">Menyelesaikan 30+ proyek website internasional. Spesialisasi dalam pembuatan toko online dan landing page konversi tinggi.</p>
     </div>
-    <div class="edu-card reveal-r" style="transition-delay:.2s">
-      <div class="edu-period">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        2016 – 2020
-      </div>
-      <div class="edu-icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-      </div>
+    <div class="edu-card reveal-right" style="transition-delay:.2s">
+      <div class="edu-period">2016 – 2020</div>
+      <div class="edu-icon">🎓</div>
       <div class="edu-role">Sarjana Komputer</div>
       <div class="edu-place">Universitas Teknologi</div>
       <div class="edu-divider"></div>
-      <p class="edu-desc">Lulus Cum Laude (IPK 3.8). Ketua Divisi Riset BEM Fakultas. Pemenang Hackathon Nasional 2019.</p>
+      <p class="edu-desc">Lulus Cum Laude (IPK 3.8). Ketua Divisi Riset & Teknologi BEM Fakultas. Pemenang Hackathon Nasional 2019.</p>
     </div>
   </div>
 </section>
