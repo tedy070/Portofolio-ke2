@@ -424,16 +424,6 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 .reveal-left { transform: translateX(-50px); }
 .reveal-right { transform: translateX(50px); }
 
-.edu-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 48px;
-  align-items: start;
-  position: relative;
-  z-index: 5;
-}
-
 .edu-card {
   background: var(--bg2);
   border: 1px solid var(--border);
@@ -465,18 +455,34 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   .reveal-left, .reveal-right { transform: translateY(30px); }
 }
 
-  /* Pengaturan Ukuran: Ikon Besar & Kalimat Kecil */
-.edu-icon {
-  font-size: 48px; /* Ukuran ikon diperbesar */
-  margin: 15px 0;
-  display: inline-block;
+  .edu-card {
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Agar bisa mengatur posisi elemen di dalamnya */
+  padding: 30px;
+  /* ... styling lainnya ... */
 }
 
+/* Jika ingin ikon melayang di sebelah kanan atas teks */
+.edu-icon {
+  position: absolute;
+  right: 30px;
+  top: 50px; /* Sesuaikan dengan tinggi edu-period */
+  font-size: 48px;
+}
+
+/* Jika ikon tetap di dalam alur tapi ingin diratakan ke kanan */
+/* Hapus position absolute di atas dan gunakan ini: */
+.edu-icon {
+  align-self: flex-end; 
+  margin: 10px 0;
+}
+*/
+
 .edu-desc {
-  font-size: 12px; /* Ukuran kalimat diperkecil */
-  line-height: 1.6;
+  font-size: 12px;
   color: var(--text2);
-  opacity: 0.8;
+  text-align: left; /* Tetap rata kiri untuk teks */
 }
 
 .edu-role {
@@ -1049,47 +1055,42 @@ section:nth-child(even) .hero-glow-1 {
     </h2>
     
     <div class="edu-cards">
-  <div class="edu-card reveal-left visible" style="transition-delay:.0s">
+  <div class="edu-card reveal-left visible">
     <div class="edu-period">2023 – <span class="lang-target" data-in="Sekarang" data-en="Now">Sekarang</span></div>
-    <div class="edu-icon icon-spin">⚙️</div>
+    
     <div class="edu-role lang-target" data-in="Senior Frontend Dev" data-en="Senior Frontend Dev">Senior Frontend Dev</div>
     <div class="edu-place">Tech Startup Unicorn</div>
+    
+    <div class="edu-icon icon-spin">⚙️</div>
+    
     <div class="edu-divider"></div>
-    <p class="edu-desc lang-target" 
-       data-in="Memimpin tim 5 orang developer. Implementasi arsitektur Micro-frontend dan optimasi performa web." 
-       data-en="Leading a team of 5 developers. Implementing Micro-frontend architecture and optimizing web performance.">
-       Memimpin tim 5 orang developer. Implementasi arsitektur Micro-frontend dan optimasi performa web.
-    </p>
+    <p class="edu-desc lang-target" data-in="..." data-en="...">...</p>
   </div>
 
-  <div class="edu-card reveal visible" style="transition-delay:.1s">
+  <div class="edu-card reveal visible">
     <div class="edu-period">2020 – 2023</div>
-    <div class="edu-icon icon-glow" style="color:var(--purple);">&lt; &gt;</div>
     <div class="edu-role lang-target" data-in="Web Developer" data-en="Web Developer">Web Developer</div>
-    <div class="edu-place lang-target" data-in="Freelance Profesional" data-en="Professional Freelance">Freelance Profesional</div>
+    <div class="edu-place lang-target" data-in="Freelance" data-en="Freelance">Freelance</div>
+    
+    <div class="edu-icon icon-glow" style="color:var(--purple);">&lt; &gt;</div>
+    
     <div class="edu-divider"></div>
-    <p class="edu-desc lang-target" 
-       data-in="Menyelesaikan 30+ proyek website internasional. Spesialisasi dalam pembuatan landing page konversi tinggi." 
-       data-en="Completed 30+ international website projects. Specialized in creating high-conversion landing pages.">
-       Menyelesaikan 30+ proyek website internasional. Spesialisasi dalam pembuatan landing page konversi tinggi.
-    </p>
+    <p class="edu-desc lang-target" data-in="..." data-en="...">...</p>
   </div>
 
-  <div class="edu-card reveal-right visible" style="transition-delay:.2s">
+  <div class="edu-card reveal-right visible">
     <div class="edu-period">2016 – 2020</div>
+    <div class="edu-role lang-target" data-in="Sarjana" data-en="Bachelor">Sarjana Komputer</div>
+    <div class="edu-place lang-target" data-in="Universitas" data-en="University">Universitas Teknologi</div>
+    
     <div class="edu-icon icon-bounce">🎓</div>
-    <div class="edu-role lang-target" data-in="Sarjana Komputer" data-en="Bachelor of Computer Science">Sarjana Komputer</div>
-    <div class="edu-place lang-target" data-in="Universitas Teknologi" data-en="University of Technology">Universitas Teknologi</div>
+    
     <div class="edu-divider"></div>
-    <p class="edu-desc lang-target" 
-       data-in="Lulus Cum Laude (IPK 3.8). Ketua Divisi Riset & Teknologi BEM Fakultas. Pemenang Hackathon Nasional." 
-       data-en="Graduated Cum Laude (GPA 3.8). Head of Research & Technology Division of Faculty Student Council. National Hackathon Winner.">
-       Lulus Cum Laude (IPK 3.8). Ketua Divisi Riset & Teknologi BEM Fakultas. Pemenang Hackathon Nasional.
-    </p>
+    <p class="edu-desc lang-target" data-in="..." data-en="...">...</p>
   </div>
 </div>
+</div>
     </div>
-  </div>
 </section>
 <!-- ══ SKILLS ══ -->
 <section id="skills" class="section" style="padding-top:100px;">
