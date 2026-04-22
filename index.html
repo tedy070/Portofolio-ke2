@@ -372,38 +372,69 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 .stack-chip svg{width:14px;height:14px;}
 
 /* ── EDUCATION ── */
-#edukasi{background:var(--bg);}
-.edu-cards{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:20px;margin-top:48px;
-  align-items:start;
+#edukasi {
+  background: transparent !important; /* Menjamin background hero terlihat */
+  position: relative;
+  overflow: hidden;
 }
-.edu-card{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:var(--r2);padding:28px;
-  position:relative;overflow:hidden;
-  transition:all .3s;
-}
-.edu-card:hover{border-color:rgba(124,58,237,.4);transform:translateY(-4px);}
-.edu-card:nth-child(2){margin-top:40px;}
-.edu-card:nth-child(3){margin-top:20px;}
-.edu-period{
-  display:inline-flex;align-items:center;
-  padding:4px 14px;border-radius:30px;
-  background:rgba(124,58,237,.15);
-  border:1px solid rgba(124,58,237,.3);
-  font-size:11px;font-weight:700;color:var(--purple2);
-  margin-bottom:20px;font-family:var(--mono);
-}
-.edu-icon{
-  position:absolute;top:20px;right:20px;
-  font-size:48px;opacity:.12;
-}
-.edu-role{font-size:20px;font-weight:800;letter-spacing:-0.5px;color:var(--text);margin-bottom:4px;}
-.edu-place{font-size:13px;color:var(--purple2);font-weight:600;margin-bottom:18px;}
-.edu-divider{height:1px;background:var(--border);margin-bottom:18px;}
-.edu-desc{font-size:13px;color:var(--text2);line-height:1.7;border-left:2px solid var(--purple);padding-left:14px;}
 
+/* Memastikan kartu muncul jika JS reveal belum aktif */
+.reveal-left, .reveal, .reveal-right {
+  opacity: 0;
+  transform: translateY(30px); /* Standar awal */
+  transition: all 0.8s ease-out;
+}
+
+/* Kelas yang akan ditambahkan oleh JS atau bisa Anda tambahkan manual untuk testing */
+.reveal-left.visible, .reveal.visible, .reveal-right.visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Animasi khusus arah samping */
+.reveal-left { transform: translateX(-50px); }
+.reveal-right { transform: translateX(50px); }
+
+.edu-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+  align-items: start;
+  position: relative;
+  z-index: 5;
+}
+
+.edu-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px); /* Efek kaca tipis */
+}
+
+/* Hover effect */
+.edu-card:hover {
+  border-color: rgba(124, 58, 237, 0.5);
+  transform: translateY(-8px) !important; /* Force move up saat hover */
+}
+
+/* Pengaturan Staggered (Tangga) */
+.edu-card:nth-child(2) { margin-top: 40px; }
+.edu-card:nth-child(3) { margin-top: 20px; }
+
+/* Responsive untuk HP agar tidak hilang ke samping */
+@media (max-width: 992px) {
+  .edu-cards {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .edu-card:nth-child(n) { margin-top: 0; }
+  .reveal-left, .reveal-right { transform: translateY(30px); }
+}
 /* ── SKILLS ── */
 #skills{background:var(--bg1);padding:clamp(60px,8vw,100px) clamp(20px,5%,80px);}
 .skills-header{text-align:center;margin-bottom:56px;}
@@ -914,39 +945,42 @@ section:nth-child(even) .hero-glow-1 {
   </div>
 </section>
 
-<!-- ══ EDUKASI ══ -->
-<section id="edukasi" class="section" style="padding-top:100px;">
+<section id="edukasi" class="section" style="padding: 120px 5% 80px;">
   <div class="hero-glow hero-glow-1"></div>
   <div class="hero-glow hero-glow-2"></div>
+
   <div class="hero-content">
-  <p class="section-label reveal">TIMELINE</p>
-  <h2 class="section-title reveal">Edukasi & Pengalaman</h2>
-  <div class="edu-cards">
-    <div class="edu-card reveal-left" style="transition-delay:.0s">
-      <div class="edu-period">2023 – Now</div>
-      <div class="edu-icon">⚙️</div>
-      <div class="edu-role">Senior Frontend Dev</div>
-      <div class="edu-place">Tech Startup Unicorn</div>
-      <div class="edu-divider"></div>
-      <p class="edu-desc">Memimpin tim 5 orang developer. Implementasi arsitektur Micro-frontend dan optimasi performa web hingga 40%.</p>
+    <p class="section-label reveal visible">TIMELINE</p>
+    <h2 class="section-title reveal visible">Edukasi & <span>Pengalaman</span></h2>
+    
+    <div class="edu-cards">
+      <div class="edu-card reveal-left visible" style="transition-delay:.0s">
+        <div class="edu-period">2023 – Now</div>
+        <div class="edu-icon">⚙️</div>
+        <div class="edu-role">Senior Frontend Dev</div>
+        <div class="edu-place">Tech Startup Unicorn</div>
+        <div class="edu-divider"></div>
+        <p class="edu-desc">Memimpin tim 5 orang developer. Implementasi arsitektur Micro-frontend dan optimasi performa web.</p>
+      </div>
+
+      <div class="edu-card reveal visible" style="transition-delay:.1s">
+        <div class="edu-period">2020 – 2023</div>
+        <div class="edu-icon" style="color:var(--purple);">&lt; &gt;</div>
+        <div class="edu-role">Web Developer</div>
+        <div class="edu-place">Freelance Professional</div>
+        <div class="edu-divider"></div>
+        <p class="edu-desc">Menyelesaikan 30+ proyek website internasional. Spesialisasi dalam pembuatan landing page konversi tinggi.</p>
+      </div>
+
+      <div class="edu-card reveal-right visible" style="transition-delay:.2s">
+        <div class="edu-period">2016 – 2020</div>
+        <div class="edu-icon">🎓</div>
+        <div class="edu-role">Sarjana Komputer</div>
+        <div class="edu-place">Universitas Teknologi</div>
+        <div class="edu-divider"></div>
+        <p class="edu-desc">Lulus Cum Laude (IPK 3.8). Ketua Divisi Riset & Teknologi BEM Fakultas. Pemenang Hackathon Nasional.</p>
+      </div>
     </div>
-    <div class="edu-card reveal" style="transition-delay:.1s">
-      <div class="edu-period">2020 – 2023</div>
-      <div class="edu-icon" style="color:var(--purple);">&lt; &gt;</div>
-      <div class="edu-role">Web Developer</div>
-      <div class="edu-place">Freelance Professional</div>
-      <div class="edu-divider"></div>
-      <p class="edu-desc">Menyelesaikan 30+ proyek website internasional. Spesialisasi dalam pembuatan toko online dan landing page konversi tinggi.</p>
-    </div>
-    <div class="edu-card reveal-right" style="transition-delay:.2s">
-      <div class="edu-period">2016 – 2020</div>
-      <div class="edu-icon">🎓</div>
-      <div class="edu-role">Sarjana Komputer</div>
-      <div class="edu-place">Universitas Teknologi</div>
-      <div class="edu-divider"></div>
-      <p class="edu-desc">Lulus Cum Laude (IPK 3.8). Ketua Divisi Riset & Teknologi BEM Fakultas. Pemenang Hackathon Nasional 2019.</p>
-    </div>
-  </div>
   </div>
 </section>
 <!-- ══ SKILLS ══ -->
