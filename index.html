@@ -394,22 +394,20 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   border-radius:50%;background:#10b981;
   box-shadow:0 0 8px #10b981;
 }
-  * Opsi Serif: Cormorant Garamond (Elegan & Mewah) */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,700&display=swap');
+/* Opsi Serif Premium */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@500&display=swap');
+
 .hero-h1 {
-  /* Menggunakan Cormorant Garamond untuk kesan High-End */
-  font-family: 'Cormorant Garamond', 'Fraunces', serif;
+  /* Nama diperbesar secara signifikan */
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 8vw, 95px); /* Ukuran lebih masif dan berani */
+  font-weight: 700;
+  line-height: 0.95; /* Line height diperapat agar terlihat menyatu */
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
   
-  font-size: clamp(45px, 6vw, 80px); /* Serif terlihat bagus sedikit lebih besar */
-  font-weight: 700; 
-  line-height: 1;
-  
-  /* Letter spacing untuk serif sebaiknya tidak terlalu rapat agar elegan */
-  letter-spacing: -0.01em; 
-  margin-bottom: 8px;
-  
-  /* Efek Gradasi tetap dipertahankan untuk sentuhan modern */
-  background: linear-gradient(135deg, var(--text) 65%, var(--accent) 100%);
+  /* Gradasi halus untuk kesan mewah */
+  background: linear-gradient(to right, var(--text) 70%, var(--accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   
@@ -417,21 +415,28 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 }
 
 .hero-h1 span {
-  /* Nama belakang dengan gaya Italic (Miring) - Sangat khas desain Serif premium */
-  font-style: italic;
+  font-style: italic; /* Gaya Editorial klasik */
+  font-weight: 400;   /* Sedikit lebih tipis agar tidak terlalu berat */
   color: var(--accent);
   -webkit-text-fill-color: var(--accent);
 }
-.hero-h1-grad{
-  font-size:clamp(42px,5.5vw,72px);
-  font-weight:700;line-height:1.1;
-  letter-spacing:-2px;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  margin-bottom:24px;
-  animation:fadeInUp .6s .3s both;
+
+.hero-h1-grad {
+  /* Baris kedua dibuat lebih kecil dari nama untuk keseimbangan */
+  font-family: 'Plus Jakarta Sans', sans-serif; /* Kontras Serif & Sans-serif */
+  font-size: clamp(24px, 3.5vw, 38px); 
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  
+  /* Warna aksen yang konsisten */
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  margin-top: -5px; /* Menarik baris ini sedikit lebih dekat ke nama */
+  margin-bottom: 32px;
+  animation: fadeInUp 0.8s 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 .hero-typed-wrap{
   font-size:18px;color:var(--text2);
