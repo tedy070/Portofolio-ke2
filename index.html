@@ -489,34 +489,53 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 .stat-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:1.5px;}
 
 /* ── HERO VISUAL ── */
-.hero-visual{
-  flex:0 0 480px;
-  position:relative;z-index:2;
-  animation:fadeInRight .8s .3s both;
+.hero-photo {
+  position: relative;
+  width: 100%;
+  max-width: 450px; /* Batasi lebar maksimal foto */
+  height: 500px;
+  border-radius: 24px; /* Sudut melengkung yang modern */
+  overflow: hidden;
+  z-index: 1;
 }
-.hero-photo{
-  width:100%;
-  border-radius:20px;
-  overflow:hidden;
-  position:relative;
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Kunci agar foto tidak gepeng/distorsi */
+  object-position: center; /* Fokus pada tengah foto */
+  
+  /* Sentuhan Profesional: Sedikit desaturasi agar warna kulit menyatu dengan tema dark mode */
+  filter: saturate(1.1) brightness(0.9); 
+  transition: transform 0.5s ease;
 }
-.hero-photo img{
-  width:100%;height:500px;
-  object-fit:cover;
-  filter:grayscale(100%) contrast(1.1);
-  display:block;
+
+/* Efek saat kursor menyentuh foto */
+.hero-photo:hover .hero-img {
+  transform: scale(1.05); /* Sedikit zoom saat di-hover */
+  filter: brightness(1);
 }
-.hero-photo::after{
-  content:'';
-  position:absolute;inset:0;
-  background:linear-gradient(135deg,color-mix(in srgb,var(--c-hero) 20%,transparent),color-mix(in srgb,var(--c-edukasi) 10%,transparent));
-  mix-blend-mode:overlay;
+
+/* Glow di belakang foto untuk kedalaman visual */
+.hero-photo-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
+  z-index: -1;
+  filter: blur(40px);
 }
-.hero-photo-border{
-  position:absolute;inset:-1px;
-  border-radius:20px;
-  border:1px solid color-mix(in srgb,var(--c-hero) 35%,transparent);
-  pointer-events:none;
+
+.hero-photo-border {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  pointer-events: none;
+  z-index: 2;
 }
 .hero-code{
   position:absolute;
@@ -1221,7 +1240,7 @@ body::before{
   
   <div class="hero-content">
     <div class="hero-badge lang-target" data-in="Tersedia untuk Bekerja 2026" data-en="Open to Work 2026">Tersedia untuk Bekerja 2026</div>
-    <h1 class="hero-h1">Tedi Zakaria<span>Perdana</span></h1>
+    <h1 class="hero-h1">Tedi Zakaria<span> Perdana</span></h1>
     <h1 class="hero-h1-grad lang-target" data-in="Dunia Digital" data-en="Digital World">Dunia Digital</h1>
     
     <p class="hero-typed-wrap">
@@ -1258,11 +1277,13 @@ body::before{
 
   <div class="hero-visual">
     <div class="hero-photo">
-      <div style="width:100%;height:500px;background:linear-gradient(160deg,#1a1f2e,#0d1117);display:flex;align-items:center;justify-content:center;">
-        <div style="font-size:80px;opacity:.3;">👨‍💻</div>
-      </div>
+      <img src="foto-profil.jpg" alt="Tedi Zakaria" class="hero-img">
+      
       <div class="hero-photo-border"></div>
+      
+      <div class="hero-photo-glow"></div>
     </div>
+</div>
     
     <div class="hero-code">
       <div class="code-bar">
