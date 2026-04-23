@@ -394,12 +394,29 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   border-radius:50%;background:#10b981;
   box-shadow:0 0 8px #10b981;
 }
-.hero-h1{
-  font-size:clamp(42px,5.5vw,72px);
-  font-weight:700;line-height:1.1;
-  letter-spacing:-2px;
-  margin-bottom:4px;
-  animation:fadeInUp .6s .2s both;
+  /* Opsi A: Syne & Inter (Sangat Modern & Berani - Trend 2026) */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;700&display=swap');
+.hero-h1 {
+  /* Menggunakan Syne untuk nama agar terlihat seperti brand profesional */
+  font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
+  
+  font-size: clamp(42px, 5.5vw, 72px);
+  font-weight: 800; /* Dibuat lebih tebal agar impresif */
+  line-height: 1.05;
+  letter-spacing: -0.04em; /* Letter spacing negatif yang presisi */
+  margin-bottom: 8px;
+  
+  /* Efek Gradasi (Opsional: Hapus jika ingin warna solid) */
+  background: linear-gradient(135deg, var(--text) 60%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+  .hero-h1 span {
+  /* Memberikan efek outline atau warna aksen pada nama belakang */
+  color: var(--accent);
+  -webkit-text-fill-color: var(--accent); /* Jika pakai gradient di atas */
 }
 .hero-h1-grad{
   font-size:clamp(42px,5.5vw,72px);
@@ -1195,7 +1212,7 @@ body::before{
   
   <div class="hero-content">
     <div class="hero-badge lang-target" data-in="Tersedia untuk Bekerja 2026" data-en="Open to Work 2026">Tersedia untuk Bekerja 2026</div>
-    <h1 class="hero-h1">Tedi Zakaria Perdana</h1>
+    <h1 class="hero-h1">Tedi Zakaria<span>Perdana</span></h1>
     <h1 class="hero-h1-grad lang-target" data-in="Dunia Digital" data-en="Digital World">Dunia Digital</h1>
     
     <p class="hero-typed-wrap">
@@ -1638,9 +1655,9 @@ body::before{
           </div>
           <div>
             <div class="ccard-label lang-target" data-in="Surel" data-en="Email">Surel</div>
-            <div class="ccard-val">hizkia@dev.id</div>
+            <div class="ccard-val">tedyborez@gmail.com</div>
           </div>
-          <div class="ccard-copy" onclick="copyText('hizkia@dev.id')">
+          <div class="ccard-copy" onclick="copyText('tedyborez@gmail.com')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           </div>
         </div>
@@ -1651,9 +1668,9 @@ body::before{
           </div>
           <div>
             <div class="ccard-label">WhatsApp</div>
-            <div class="ccard-val">+62 812-3456-7890</div>
+            <div class="ccard-val">+62 857-7705-4607</div>
           </div>
-          <div class="ccard-copy" onclick="copyText('+62 812-3456-7890')">
+          <div class="ccard-copy" onclick="copyText('+62 857-7705-4607')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           </div>
         </div>
@@ -1664,13 +1681,13 @@ body::before{
           </div>
           <div>
             <div class="ccard-label lang-target" data-in="Lokasi" data-en="Location">Lokasi</div>
-            <div class="ccard-val lang-target" data-in="Medan, Indonesia (Bisa Remote)" data-en="Medan, Indonesia (Remote OK)">Medan, Indonesia (Bisa Remote)</div>
+            <div class="ccard-val lang-target" data-in="Brebes, Indonesia" data-en="Brebes, Indonesia">Brebes, Indonesia</div>
           </div>
         </div>
 
         <div class="social-icons-wrap reveal" style="transition-delay:.2s">
           <!-- LinkedIn -->
-          <a href="#" class="soc-btn soc-linkedin" data-label="LinkedIn" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/tedi-zakaria-perdana-4586b3245?utm_source=share_via&utm_content=profile&utm_medium=member_ios" class="soc-btn soc-linkedin" data-label="LinkedIn" aria-label="LinkedIn">
             <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           </a>
           <!-- GitHub -->
@@ -1678,7 +1695,7 @@ body::before{
             <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
           </a>
           <!-- WhatsApp -->
-          <a href="#" class="soc-btn soc-wa" data-label="WhatsApp" aria-label="WhatsApp">
+          <a href="https://wa.me/6285777054607" class="soc-btn soc-wa" data-label="WhatsApp" aria-label="WhatsApp">
             <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.849L0 24l6.263-1.643A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.941 9.941 0 0 1-5.07-1.383l-.363-.215-3.764.987 1.004-3.668-.236-.377A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
           </a>
           <!-- Twitter / X -->
@@ -1686,7 +1703,7 @@ body::before{
             <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.257 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
           </a>
           <!-- Instagram -->
-          <a href="#" class="soc-btn soc-instagram" data-label="Instagram" aria-label="Instagram">
+          <a href="https://www.instagram.com/zakaria.tedi?igsh=MWIxbTV4c2MwM3A0eQ%3D%3D&utm_source=qr" class="soc-btn soc-instagram" data-label="Instagram" aria-label="Instagram">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="22" height="22"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
         </div>
@@ -1726,7 +1743,7 @@ body::before{
     <div class="footer-eyebrow lang-target" data-in="Siap Berkolaborasi?" data-en="Ready to Collaborate?">Siap Berkolaborasi?</div>
     <div class="footer-big lang-target" data-in="Mari Bangun" data-en="Let's Build">Mari Bangun</div>
     <div class="footer-big-em lang-target" data-in="Sesuatu yang Hebat" data-en="Something Great">Sesuatu yang Hebat</div>
-    <a href="mailto:hizkia@dev.id" class="footer-email">
+    <a href="mailto:tedyborez@gmail.com" class="footer-email">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       Tedi Zakaria Perdana
     </a>
@@ -1737,21 +1754,6 @@ body::before{
          data-in="© 2026 Tedi Zakaria Perdana. Semua hak cipta dilindungi." 
          data-en="© 2026 Tedi Zakaria Perdana. All rights reserved.">
          © 2026 Tedi Zakaria Perdana. Semua hak cipta dilindungi.
-    </div>
-    
-    <div class="footer-links">
-      <a href="#beranda" class="lang-target" data-in="Beranda" data-en="Home">Beranda</a>
-      <a href="#proyek" class="lang-target" data-in="Proyek" data-en="Projects">Proyek</a>
-      <a href="#kontak" class="lang-target" data-in="Kontak" data-en="Contact">Kontak</a>
-    </div>
-    
-    <div class="footer-socials">
-      <a href="#" class="footer-social" title="GitHub">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-      </a>
-      <a href="#" class="footer-social" title="LinkedIn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-      </a>
     </div>
     
     <div class="footer-status">
@@ -1956,12 +1958,36 @@ function copyText(t) {
   });
 }
 
-// ── SEND MESSAGE ──
-function sendMessage(btn) {
-  const orig = btn.innerHTML;
-  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:14px;height:14px"><polyline points="20 6 9 17 4 12"/></svg> Terkirim!';
-  btn.style.opacity = '.75';
-  setTimeout(() => { btn.innerHTML = orig; btn.style.opacity = '1'; }, 2500);
+function sendMessage() {
+    // Ganti dengan nomor WhatsApp Anda (Gunakan kode negara, tanpa tanda + atau 0 di depan)
+    const phoneNumber = "6285777054607"; 
+
+    // Ambil data dari form
+    const name = document.getElementById('c-nama').value;
+    const email = document.getElementById('c-email').value;
+    const topic = document.getElementById('c-topic').value;
+    const message = document.getElementById('c-msg').value;
+
+    // Validasi sederhana: Pastikan field tidak kosong
+    if (!name || !topic || !message) {
+        alert(currentLang === 'IN' ? 'Mohon lengkapi semua data!' : 'Please fill all fields!');
+        return;
+    }
+
+    // Susun pesan untuk WhatsApp
+    // Gunakan encodeURIComponent agar karakter khusus (spasi, enter) terbaca oleh URL
+    const text = `*Halo Tedi!*%0A` +
+                 `Ada pesan baru dari website portofolio:%0A%0A` +
+                 `*Nama:* ${name}%0A` +
+                 `*Email:* ${email}%0A` +
+                 `*Topik:* ${topic}%0A` +
+                 `*Pesan:* ${message}`;
+
+    // Buat URL WhatsApp
+    const waUrl = `https://wa.me/${6285777054607}?text=${text}`;
+
+    // Buka di tab baru
+    window.open(waUrl, '_blank');
 }
 
 // ── LOCAL TIME ──
