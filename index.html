@@ -562,38 +562,69 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   );
 }
 
-/* ── FLOATING CODE BLOCK (Optimized) ── */
+/* ── CODE BLOCK CONTAINER ── */
 .hero-code {
-  position: absolute;
-  /* Posisikan melayang menabrak batas kiri bawah */
-  bottom: 30px;
-  left: -40px; /* Menjorok keluar dari card */
-  width: 280px;
-  background: rgba(26, 31, 46, 0.85); /* Dibuat semi-transparan untuk blur */
-  border: 1px solid rgba(124, 58, 237, 0.4);
-  border-radius: 14px;
+  background: #1a1f2e; /* Warna dasar terminal */
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
-  z-index: 20; /* Harus di atas .hero-card-img-wrapper */
-  backdrop-filter: blur(12px);
-  animation: floatCode 4s ease-in-out infinite;
-  pointer-events: none; /* Agar tidak mengganggu hover 3D card */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  width: 100%;
+  max-width: 300px;
 }
 
-/* Animasi mengambang yang lebih smooth */
-@keyframes floatCode {
-  0%, 100% { transform: translateY(0) rotate(-1deg); }
-  50% { transform: translateY(-15px) rotate(1deg); }
+/* Header Bar Terminal */
+.code-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #151b2d;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Responsif Mobile */
-@media (max-width: 992px) {
-  .hero-code {
-    width: 240px;
-    left: -10px;
-    bottom: -20px;
-    transform: scale(0.9);
-  }
+.code-dot { width: 11px; height: 11px; border-radius: 50%; }
+.code-dot.r { background: #ff5f56; }
+.code-dot.y { background: #ffbd2e; }
+.code-dot.g { background: #27c93f; }
+
+.code-bar-title {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-left: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* Body Terminal */
+.code-body {
+  padding: 20px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #e2e8f0;
+}
+
+/* Syntax Coloring */
+.c-const { color: #c792ea; } /* Purple */
+.c-var   { color: #82aaff; } /* Blue */
+.c-eq    { color: #89ddff; } /* Cyan */
+.c-key   { color: #f07178; } /* Pink/Red */
+.c-val   { color: #c3e88d; } /* Green */
+.c-brace { color: #ffcb6b; } /* Yellow */
+
+/* Cursor Animation */
+.c-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background: #7c3aed; /* Warna aksen ungu */
+  margin-left: 4px;
+  animation: blink 0.8s step-end infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
 }
 
 /* ── SECTION COMMON ── */
@@ -1354,19 +1385,34 @@ body::before{
     </div>
 
       <div class="hero-code">
-    <div class="code-bar">
-      <div class="code-dot r"></div>
-      <div class="code-dot y"></div>
-      <div class="code-dot g"></div>
-      <span class="code-bar-title">>_ app.js</span>
-    </div>
-    <div class="code-body">
-      <div><span class="c-const">const</span> <span class="c-var">identity</span> <span class="c-eq">= {</span></div>
-      <div>&nbsp;&nbsp;<span class="c-key">name:</span> <span class="c-val">"Tedi."</span><span class="c-eq">,</span></div>
-      <div id="code-typing">&nbsp;&nbsp;<span class="c-key">role:</span> <span class="c-val" id="code-role"></span></div>
-      <div style="color:var(--text3);margin-top:8px">_&nbsp;<span class="c-cursor"></span></div>
-    </div>
+  <div class="code-bar">
+    <div class="code-dot r"></div>
+    <div class="code-dot y"></div>
+    <div class="code-dot g"></div>
+    <span class="code-bar-title">>_ app.js</span>
+  </div>
+
+  <div class="code-body">
+    <div>
+      <span class="c-const">const</span> 
+      <span class="c-var">identity</span> 
+      <span class="c-eq">=</span> 
+      <span class="c-brace">{</span>
     </div>
+    
+    <div style="padding-left: 20px;">
+      <span class="c-key">name:</span> 
+      <span class="c-val">"Tedi."</span><span class="c-eq">,</span>
+    </div>
+    
+    <div id="code-typing" style="padding-left: 20px;">
+      <span class="c-key">role:</span> 
+      <span class="c-val" id="code-role"></span>
+    </div>
+    
+    <div><span class="c-brace">}</span><span class="c-cursor"></span></div>
+  </div>
+</div>
   </div>
   </div>
 </section>
