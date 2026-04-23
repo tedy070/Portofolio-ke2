@@ -567,7 +567,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   position: absolute;
   /* Posisikan melayang menabrak batas kiri bawah */
   bottom: 30px;
-  left: -140px; /* Menjorok keluar dari card */
+  left: -210px; /* Menjorok keluar dari card */
   width: 280px;
   background: rgba(26, 31, 46, 0.85); /* Dibuat semi-transparan untuk blur */
   border: 1px solid rgba(124, 58, 237, 0.4);
@@ -621,7 +621,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 /* Body Terminal */
 .code-body {
   padding: 20px;
-  font-size: 13px;
+  font-size: 18px;
   line-height: 1.6;
   color: #e2e8f0;
 }
@@ -2199,6 +2199,29 @@ langBtn.addEventListener('click', () => {
         if (ph) el.placeholder = ph;
     });
 });
+
+  // ══ CURSOR GLOW EFFECT pada hero card ══
+(function(){
+  const card = document.getElementById('hero-photo-card');
+  if(!card) return;
+
+  function onMouseMove(e){
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1) + '%';
+    const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1) + '%';
+    card.style.setProperty('--mouse-x', x);
+    card.style.setProperty('--mouse-y', y);
+  }
+
+  function onMouseLeave(){
+    // Reset perlahan ke center saat kursor keluar
+    card.style.setProperty('--mouse-x', '50%');
+    card.style.setProperty('--mouse-y', '50%');
+  }
+
+  card.addEventListener('mousemove', onMouseMove, {passive:true});
+  card.addEventListener('mouseleave', onMouseLeave);
+})();
 </script>
 </body>
 </html>
