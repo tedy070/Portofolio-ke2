@@ -527,18 +527,53 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   transition: transform 0.5s ease;
 }
 
+  /* Layer glow mengikuti kursor */
+.card-cursor-glow{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  border-radius:20px;
+  opacity:0;
+  transition:opacity .4s ease;
+  /* Gradient radial yang posisinya dikontrol JS */
+  background:radial-gradient(
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(79,195,161,0.18) 0%,
+    rgba(124,106,247,0.10) 35%,
+    transparent 60%
+  );
+}
+.hero-card:hover .card-cursor-glow{
+  opacity:1;
+}
+/* Border shimmer mengikuti kursor */
+.hero-card::before{
+  content:'';
+  position:absolute;inset:0;z-index:3;
+  border-radius:20px;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .4s;
+  background:radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255,255,255,0.08) 0%,
+    transparent 60%
+  );
+}
+
 /* ── FLOATING CODE BLOCK (Optimized) ── */
 .hero-code {
   position: absolute;
   /* Posisikan melayang menabrak batas kiri bawah */
-  bottom: 30px;
-  left: -40px; /* Menjorok keluar dari card */
+  bottom: 20px;
+  left: -20px; /* Menjorok keluar dari card */
   width: 280px;
   background: rgba(26, 31, 46, 0.85); /* Dibuat semi-transparan untuk blur */
-  border: 1px solid rgba(124, 58, 237, 0.4);
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
   z-index: 20; /* Harus di atas .hero-card-img-wrapper */
   backdrop-filter: blur(12px);
   animation: floatCode 4s ease-in-out infinite;
