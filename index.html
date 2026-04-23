@@ -494,73 +494,67 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 40px; /* Ditambah agar elemen floating tidak terpotong layar */
+  padding: 60px 20px; /* Padding ditingkatkan agar elemen floating aman */
   z-index: 10;
+  width: 100%;
 }
 
-* ── PHOTO CONTAINER ── */
+/* ── PHOTO CONTAINER ── */
 .hero-photo {
   position: relative;
-  width: 100%;
-  max-width: 420px;
-  aspect-ratio: 4/5;
-  border-radius: 32px;
-  overflow: hidden; /* Tetap hidden agar foto tidak keluar border */
-  z-index: 2; /* Di bawah hero-code */
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
+  /* Kunci lebar di sini agar tidak membesar mengikuti kolom */
+  width: 320px; 
+  height: 400px; /* Tentukan tinggi tetap atau gunakan aspect-ratio */
+  /* aspect-ratio: 4/5; */ /* Gunakan ini jika ingin otomatis berdasarkan lebar */
   
+  border-radius: 32px;
+  overflow: hidden;
+  z-index: 2;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  
+  /* Tambahkan margin auto agar tetap di tengah jika kolom parent lebar */
+  margin: 0 auto; 
+}
+
 .hero-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* Foto tetap proporsional di dalam bingkai */
   object-position: center;
-  filter: saturate(1.05) brightness(0.9); /* Saturasi sedikit dikurangi agar elegan */
+  filter: saturate(1.05) brightness(0.9);
   transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.6s ease;
 }
 
-/* Hover Effect */
-.hero-photo:hover .hero-img {
-  transform: scale(1.08);
-  filter: saturate(1.2) brightness(1);
-}
-
-/* Glow Efek (Berada di Luar .hero-photo agar tidak terpotong overflow) */
+/* Glow Efek (Berada di Luar .hero-photo) */
 .hero-photo-glow {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 140%;
-  height: 140%;
+  width: 450px; /* Gunakan nilai absolut agar pendaran cahaya konsisten */
+  height: 450px;
   background: radial-gradient(
     circle, 
-    rgba(124, 58, 237, 0.2) 0%, 
-    rgba(124, 58, 237, 0.05) 30%, 
+    rgba(124, 58, 237, 0.15) 0%, 
+    rgba(124, 58, 237, 0.02) 40%, 
     transparent 70%
   );
-  z-index: 1; /* Di bawah foto */
-  filter: blur(60px);
+  z-index: 1;
+  filter: blur(50px);
   pointer-events: none;
-}
-
-/* Garis Border Tipis (Overlay) */
-.hero-photo-border {
-  position: absolute;
-  inset: 0;
-  border: 1.5px solid rgba(255, 255, 255, 0.08);
-  border-radius: inherit;
-  z-index: 3; /* Di atas gambar */
-  pointer-events: none;
-  /* Membuat border hanya terlihat mengkilap di bagian atas */
-  background: linear-gradient(to bottom, rgba(255,255,255,0.05), transparent);
 }
 
 /* Responsif untuk Mobile */
 @media (max-width: 768px) {
   .hero-photo {
-    max-width: 320px;
+    width: 260px; /* Lebih kecil di HP */
+    height: 325px;
     border-radius: 24px;
+  }
+  
+  .hero-photo-glow {
+    width: 300px;
+    height: 300px;
   }
 }
 /* ── FLOATING CODE BLOCK ── */
@@ -888,11 +882,32 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 .pcard:hover .pcard-img-src {
   transform: scale(1.1);
 }
+  .pcard-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  text-decoration: none;
+  color: var(--accent);
+}
 
-/* ELEMEN IKON (Tetap di tengah jika diinginkan) */
+/* Mengunci ukuran SVG agar tidak membesar */
+.pcard-link svg {
+  width: 14px !important;
+  height: 14px !important;
+  flex-shrink: 0; /* Mencegah ikon gepeng atau melar */
+  stroke-width: 2px;
+}
+
+.pcard-link:hover {
+  gap: 8px; /* Efek interaktif saat hover */
+}
+
+/* Mengunci ukuran container ikon */
 .pcard-img-icon {
-  width: 52px;
-  height: 52px;
+  width: 14px;  /* Ukuran lingkaran luar */
+  height: 14px;
+  min-width: 14px; /* Mencegah penciutan pada flexbox */
   border-radius: 14px;
   background: rgba(13, 17, 23, 0.6);
   backdrop-filter: blur(8px);
@@ -901,16 +916,24 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   align-items: center;
   justify-content: center;
   z-index: 3;
+  overflow: hidden;
 }
 
-/* Penyesuaian untuk Ikon berupa IMG */
+/* Mengunci ukuran SVG di dalam agar tidak meluap */
+.pcard-img-icon svg {
+  width: 14px !important;  /* Ukuran ikon SVG yang ideal */
+  height: 14px !important;
+  color: var(--accent2);
+  display: block; /* Menghilangkan whitespace di bawah svg */
+  flex-shrink: 0; /* Memastikan SVG tidak gepeng */
+}
+
+/* Jika Anda menggunakan IMG sebagai ikon */
 .pcard-icon-file {
-  width: 60%;
-  height: 60%;
+  width: 14px;
+  height: 14px;
   object-fit: contain;
 }
-
-/* (Sisa kode .pcard-body, .pcard-tags, dll tetap sama dengan kode Anda) */
   
 /* ── TESTIMONIALS ── */
 #testimonial{background:var(--bg1);overflow:hidden;}
