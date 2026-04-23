@@ -527,39 +527,59 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   transition: transform 0.5s ease;
 }
 
-  /* Layer glow mengikuti kursor */
-.card-cursor-glow{
-  position:absolute;
-  inset:0;
-  z-index:2;
-  pointer-events:none;
-  border-radius:20px;
-  opacity:0;
-  transition:opacity .4s ease;
-  /* Gradient radial yang posisinya dikontrol JS */
-  background:radial-gradient(
-    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(79,195,161,0.18) 0%,
-    rgba(124,106,247,0.10) 35%,
-    transparent 60%
-  );
+ /* Layer glow mengikuti kursor */
+.card-cursor-glow {
+  position: absolute;
+  inset: -1px; /* Sedikit keluar agar menutupi tepi border */
+  z-index: 1;  /* Di bawah konten/teks tapi di atas background */
+  pointer-events: none;
+  border-radius: inherit; /* Mengikuti radius parent (20px) */
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Gradient yang lebih halus dengan multi-stop */
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(79, 195, 161, 0.15) 0%,
+    rgba(124, 106, 247, 0.08) 25%,
+    rgba(124, 106, 247, 0.02) 50%,
+    transparent 80%
+  );
+  will-change: background; /* Optimasi performa untuk animasi kursor */
 }
-.hero-card:hover .card-cursor-glow{
-  opacity:1;
+
+.hero-card:hover .card-cursor-glow {
+  opacity: 1;
 }
-/* Border shimmer mengikuti kursor */
-.hero-card::before{
-  content:'';
-  position:absolute;inset:0;z-index:3;
-  border-radius:20px;
-  pointer-events:none;
-  opacity:0;
-  transition:opacity .4s;
-  background:radial-gradient(
-    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(255,255,255,0.08) 0%,
-    transparent 60%
-  );
+
+/* Border shimmer mengikuti kursor menggunakan mask */
+.hero-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3; /* Paling atas untuk efek kilap pada border */
+  border-radius: inherit;
+  padding: 1.5px; /* Ketebalan border shimmer */
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+
+  /* Teknik Masking untuk Shimmer Border */
+  background: radial-gradient(
+    300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.1) 40%,
+    transparent 100%
+  );
+  -webkit-mask: 
+     linear-gradient(#fff 0 0) content-box, 
+     linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.hero-card:hover::before {
+  opacity: 1;
 }
 
 /* ── FLOATING CODE BLOCK (Optimized) ── */
@@ -621,7 +641,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 /* Body Terminal */
 .code-body {
   padding: 20px;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1.6;
   color: #e2e8f0;
 }
@@ -2201,25 +2221,47 @@ langBtn.addEventListener('click', () => {
 });
 
   // ══ CURSOR GLOW EFFECT pada hero card ══
-(function(){
+(function() {
   const card = document.getElementById('hero-photo-card');
-  if(!card) return;
+  if (!card) return;
 
-  function onMouseMove(e){
+  let ticking = false;
+
+  function updateGlow(e) {
     const rect = card.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1) + '%';
-    const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1) + '%';
+    
+    // Menghitung posisi kursor dalam persentase
+    const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(2) + '%';
+    const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(2) + '%';
+
     card.style.setProperty('--mouse-x', x);
     card.style.setProperty('--mouse-y', y);
+    
+    ticking = false;
   }
 
-  function onMouseLeave(){
-    // Reset perlahan ke center saat kursor keluar
+  function onMouseMove(e) {
+    if (!ticking) {
+      // Menggunakan requestAnimationFrame agar kalkulasi sinkron dengan refresh rate layar
+      window.requestAnimationFrame(() => updateGlow(e));
+      ticking = true;
+    }
+  }
+
+  function onMouseLeave() {
+    // Memberikan durasi transisi saat kursor keluar agar tidak "lompat" mendadak ke tengah
+    card.style.transition = "border-color 0.3s, box-shadow 0.3s, --mouse-x 0.5s ease, --mouse-y 0.5s ease";
+    
     card.style.setProperty('--mouse-x', '50%');
     card.style.setProperty('--mouse-y', '50%');
+
+    // Hapus transisi setelah animasi selesai agar tidak bentrok dengan mousemove
+    setTimeout(() => {
+      card.style.transition = "";
+    }, 500);
   }
 
-  card.addEventListener('mousemove', onMouseMove, {passive:true});
+  card.addEventListener('mousemove', onMouseMove, { passive: true });
   card.addEventListener('mouseleave', onMouseLeave);
 })();
 </script>
