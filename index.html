@@ -394,29 +394,33 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   border-radius:50%;background:#10b981;
   box-shadow:0 0 8px #10b981;
 }
-  /* Opsi A: Syne & Inter (Sangat Modern & Berani - Trend 2026) */
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;700&display=swap');
+  * Opsi Serif: Cormorant Garamond (Elegan & Mewah) */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,700&display=swap');
 .hero-h1 {
-  /* Menggunakan Syne untuk nama agar terlihat seperti brand profesional */
-  font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
+  /* Menggunakan Cormorant Garamond untuk kesan High-End */
+  font-family: 'Cormorant Garamond', 'Fraunces', serif;
   
-  font-size: clamp(42px, 5.5vw, 72px);
-  font-weight: 800; /* Dibuat lebih tebal agar impresif */
-  line-height: 1.05;
-  letter-spacing: -0.04em; /* Letter spacing negatif yang presisi */
+  font-size: clamp(45px, 6vw, 80px); /* Serif terlihat bagus sedikit lebih besar */
+  font-weight: 700; 
+  line-height: 1;
+  
+  /* Letter spacing untuk serif sebaiknya tidak terlalu rapat agar elegan */
+  letter-spacing: -0.01em; 
   margin-bottom: 8px;
   
-  /* Efek Gradasi (Opsional: Hapus jika ingin warna solid) */
-  background: linear-gradient(135deg, var(--text) 60%, var(--accent) 100%);
+  /* Efek Gradasi tetap dipertahankan untuk sentuhan modern */
+  background: linear-gradient(135deg, var(--text) 65%, var(--accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   
   animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
-  .hero-h1 span {
-  /* Memberikan efek outline atau warna aksen pada nama belakang */
+
+.hero-h1 span {
+  /* Nama belakang dengan gaya Italic (Miring) - Sangat khas desain Serif premium */
+  font-style: italic;
   color: var(--accent);
-  -webkit-text-fill-color: var(--accent); /* Jika pakai gradient di atas */
+  -webkit-text-fill-color: var(--accent);
 }
 .hero-h1-grad{
   font-size:clamp(42px,5.5vw,72px);
