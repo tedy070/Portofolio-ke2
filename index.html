@@ -566,14 +566,14 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 .hero-code {
   position: absolute;
   /* Posisikan melayang menabrak batas kiri bawah */
-  bottom: 20px;
-  left: -20px; /* Menjorok keluar dari card */
+  bottom: 30px;
+  left: -40px; /* Menjorok keluar dari card */
   width: 280px;
   background: rgba(26, 31, 46, 0.85); /* Dibuat semi-transparan untuk blur */
-  border: 1px solid rgba(124, 58, 237, 0.3);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(124, 58, 237, 0.4);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
   z-index: 20; /* Harus di atas .hero-card-img-wrapper */
   backdrop-filter: blur(12px);
   animation: floatCode 4s ease-in-out infinite;
@@ -1348,7 +1348,7 @@ body::before{
   <div class="hero-card" id="hero-photo-card">
     
     <div class="card-cursor-glow" id="card-glow"></div>
-
+    
     <div class="hero-card-img-wrapper" style="position: relative; border-radius: 20px; overflow: hidden;">
       <img src="Foto_Tedi.jpeg" alt="Tedi Zakaria" class="hero-card-img">
     </div>
@@ -1360,15 +1360,23 @@ body::before{
         <div class="code-dot g"></div>
         <span class="code-bar-title">>_ app.js</span>
       </div>
-      <div class="code-body">
-        <div><span class="c-const">const</span> <span class="c-var">identity</span> <span class="c-eq">= {</span></div>
-        <div>&nbsp;&nbsp;<span class="c-key">name:</span> <span class="c-val">"Tedi."</span><span class="c-eq">,</span></div>
-        <div id="code-typing">&nbsp;&nbsp;<span class="c-key">role:</span> <span class="c-val" id="code-role"></span></div>
-        <div style="color:var(--text3);margin-top:8px">_&nbsp;<span class="c-cursor"></span></div>
-      </div>
+      <div class="hero-code">
+    <div class="code-bar">
+      <div class="code-dot r"></div>
+      <div class="code-dot y"></div>
+      <div class="code-dot g"></div>
+      <span class="code-bar-title">>_ app.js</span>
+    </div>
+    <div class="code-body">
+      <div><span class="c-const">const</span> <span class="c-var">identity</span> <span class="c-eq">= {</span></div>
+      <div>&nbsp;&nbsp;<span class="c-key">name:</span> <span class="c-val">"Tedi."</span><span class="c-eq">,</span></div>
+      <div id="code-typing">&nbsp;&nbsp;<span class="c-key">role:</span> <span class="c-val" id="code-role"></span></div>
+      <div style="color:var(--text3);margin-top:8px">_&nbsp;<span class="c-cursor"></span></div>
+    </div>
     </div>
   </div>
-</div>
+  </div>
+  </div>
 </section>
 
 <!-- ══ TENTANG ══ -->
