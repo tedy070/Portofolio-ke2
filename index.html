@@ -1022,6 +1022,28 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   align-items: start; 
 }
 
+  .proj-header {
+  display: flex;
+  justify-content: space-between; /* Mendorong elemen ke ujung kiri & kanan */
+  align-items: flex-end;        /* Menyejajarkan bagian bawah teks & tombol */
+  margin-bottom: 30px;           /* Jarak ke grid proyek di bawahnya */
+  width: 100%;
+}
+
+/* Penyesuaian untuk Mobile agar tidak berantakan jika layar terlalu sempit */
+@media (max-width: 480px) {
+  .proj-header {
+    flex-direction: row;        /* Tetap sejajar kiri-kanan */
+    align-items: flex-end;
+    gap: 10px;
+  }
+  
+  .proj-see-all {
+    font-size: 0.9rem;          /* Perkecil sedikit ukuran tombol di HP */
+    white-space: nowrap;        /* Mencegah teks tombol terpotong ke bawah */
+  }
+}
+
 /* KARTU UTAMA */
 .pcard-big {
   grid-row: span 2;
@@ -1988,14 +2010,17 @@ body::before{
   <div class="hero-glow hero-glow-2 js-reveal-glow"></div>
 
   <div class="proj-header reveal">
-    <div>
-      <div class="section-eyebrow lang-target" data-in="Portofolio" data-en="Portfolio">Portofolio</div>
-      <h2 class="section-h2 lang-target" style="margin-bottom:0" data-in="Karya Terpilih" data-en="Selected Works">Karya <em>Terpilih</em></h2>
-    <a href="#" class="proj-see-all lang-target" data-in="Lihat Semua" data-en="See All">
-      Lihat Semua
-    </a>
+  <div class="proj-header-title">
+    <div class="section-eyebrow lang-target" data-in="Portofolio" data-en="Portfolio">Portofolio</div>
+    <h2 class="section-h2 lang-target" style="margin-bottom:0" data-in="Karya Terpilih" data-en="Selected Works">
+      Karya <em>Terpilih</em>
+    </h2>
   </div>
-  </div>
+
+  <a href="#" class="proj-see-all lang-target" data-in="Lihat Semua" data-en="See All">
+    Lihat Semua
+  </a>
+</div>
 
   <div class="proj-grid">
     
