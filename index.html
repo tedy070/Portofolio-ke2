@@ -694,16 +694,16 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 }
 
 @media (max-width: 768px) {
-  /* 1. Targetkan Induk Utama (Beranda) */
+  /* 1. Targetkan Induk Utama (Beranda) agar menumpuk ke bawah */
   #beranda {
     display: flex !important;
-    flex-direction: column !important; /* Foto pindah ke bawah teks */
+    flex-direction: column !important; 
     align-items: center !important;
     justify-content: flex-start !important;
     padding-top: 100px !important; 
     height: auto !important;
     min-height: 100vh;
-    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   /* 2. Atur Bagian Teks */
@@ -721,7 +721,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   /* 3. Membuat Tombol Sejajar Menyamping */
   .hero-btns {
     display: flex !important;
-    flex-direction: row !important; /* Tombol menyamping */
+    flex-direction: row !important; 
     justify-content: center !important;
     gap: 12px;
     width: 100%;
@@ -729,15 +729,15 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   }
 
   .hero-btns a {
-    flex: 1; /* Lebar tombol sama rata */
-    max-width: 160px; /* Batasi agar tidak terlalu lebar */
+    flex: 1; 
+    max-width: 160px; 
     padding: 12px 8px;
     font-size: 0.8rem;
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px; /* Sesuaikan dengan style Anda */
+    border-radius: 12px;
   }
 
   /* 4. Atur Bagian Foto (Muncul di Bawah) */
@@ -746,27 +746,32 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
     display: flex !important;
     justify-content: center !important;
     margin-top: 20px;
-    padding-bottom: 40px;
+    padding-bottom: 80px; /* Ruang extra agar tidak tertutup nav-center */
+    position: relative;
   }
-}
 
-  /* Sesuaikan ukuran kartu foto agar tidak terlalu lebar di HP */
+  /* 5. Ukuran Kartu Foto di HP */
   .hero-card {
     width: 280px !important;
     margin: 0 auto;
+    position: relative;
   }
 
   .hero-card-img-wrapper {
     height: 350px !important;
+    width: 100%;
   }
 
-  /* Sembunyikan atau sesuaikan elemen melayang (hero-code) jika menutupi wajah di HP */
+  /* 6. Elemen Melayang (hero-code) */
   .hero-code {
-    scale: 0.8;
-    bottom: -60px !important;
+    display: block !important; /* Pastikan muncul */
+    scale: 0.75;
+    position: absolute !important;
+    bottom: -30px !important; /* Posisi relatif terhadap hero-card */
     right: -10px !important;
+    z-index: 10;
   }
-}
+} /* Penutup Media Query yang benar */
 /* ── FLOATING CODE BLOCK (Optimized) ── */
 .hero-code {
   position: absolute;
