@@ -1011,74 +1011,51 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
     z-index: 5;
   }
 }
-/* ── PROJECTS GRID ── */
-#proyek { background: var(--bg); padding: 80px 0; position: relative; }
-
-.proj-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 24px;
-  /* Menjaga agar kartu tidak dipaksa memanjang secara vertikal */
-  align-items: start; 
+/* ── PROJECTS SECTION ── */
+#proyek { 
+  background: var(--bg); 
+  padding: 80px 0; 
+  position: relative; 
 }
 
-  .proj-header {
+/* GRID SYSTEM */
+.proj-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr; /* Layout desktop */
+  gap: 24px;
+  align-items: start;
+}
+
+/* HEADER & TOMBOL ORANGE */
+.proj-header {
   display: flex;
-  justify-content: space-between; /* Mendorong elemen ke ujung kiri & kanan */
-  align-items: flex-end;        /* Menyejajarkan bagian bawah teks & tombol */
-  margin-bottom: 30px;           /* Jarak ke grid proyek di bawahnya */
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 30px;
   width: 100%;
 }
 
-/* Penyesuaian untuk Mobile agar tidak berantakan jika layar terlalu sempit */
-@media (max-width: 480px) {
-  .proj-header {
-    flex-direction: row;        /* Tetap sejajar kiri-kanan */
-    align-items: flex-end;
-    gap: 10px;
-  }
-  
-  .proj-see-all {
+.proj-see-all {
   display: inline-flex;
   align-items: center;
   padding: 10px 24px;
-  background-color: #ff9800; /* Warna Oranye Utama */
-  color: #ffffff !important;   /* Teks Putih */
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  color: #ffffff !important;
   text-decoration: none;
-  border-radius: 50px;       /* Membuat bentuk pill/kapsul */
+  border-radius: 50px;
   font-weight: 600;
   font-size: 0.9rem;
   transition: all 0.3s ease;
-  border: 2px solid transparent;
-  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3); /* Bayangan oranye lembut */
+  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
 }
 
-/* Efek saat Kursor Diarahkan (Hover) */
 .proj-see-all:hover {
-  background-color: #f57c00; /* Oranye sedikit lebih gelap */
-  transform: translateY(-3px); /* Tombol sedikit naik */
+  transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(255, 152, 0, 0.5);
-  color: #fff;
+  filter: brightness(1.1);
 }
 
-/* Efek saat tombol diklik */
-.proj-see-all:active {
-  transform: translateY(-1px);
-}
-
-/* Penyesuaian untuk Mobile agar tombol tidak terlalu besar */
-@media (max-width: 768px) {
-  .proj-see-all {
-    padding: 8px 18px;
-    font-size: 0.85rem;
-  }
-}
-
-/* KARTU UTAMA */
-.pcard-big {
-  grid-row: span 2;
-}
-
+/* KARTU PROYEK */
 .pcard {
   background: var(--bg2);
   border-radius: 20px;
@@ -1087,41 +1064,72 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease, border-color 0.3s ease;
-  height: fit-content; /* Kartu mengikuti tinggi konten di dalamnya */
+  height: 100%; /* Agar tinggi kartu seimbang dalam grid */
 }
 
-/* MEDIA CONTAINER */
+.pcard-big {
+  grid-row: span 2;
+}
+
+/* MEDIA CONTAINER (Mencegah Halaman Kosong) */
 .pcard-img {
   width: 100%;
   position: relative;
   background: #000;
   overflow: hidden;
-  /* Hapus height statis agar mengikuti tinggi media */
-  height: auto; 
+  /* Kunci: Berikan tinggi minimal agar saat video loading, layout tidak collapse */
+  min-height: 200px; 
 }
 
-/* Hilangkan deklarasi height lama */
-.pcard-big .pcard-img, 
-.pcard .pcard-img { 
-  height: auto; 
+.pcard-big .pcard-img {
+  min-height: 350px;
 }
 
 .pcard-video, .pcard-img-src {
   width: 100%;
-  /* Kunci utama: gunakan height auto agar rasio asli terjaga */
-  height: auto; 
-  display: block; 
-  /* Menggunakan object-fit: contain jika ingin 100% tanpa crop, 
-     atau tetap cover jika ingin memenuhi lebar kartu */
-  object-fit: cover; 
+  height: 100%; 
+  display: block;
+  object-fit: cover; /* Video memenuhi area tanpa merusak rasio */
   transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+/* Hover Effect Media */
 .pcard:hover .pcard-video, 
 .pcard:hover .pcard-img-src {
   transform: scale(1.05);
 }
 
+/* ── RESPONSIVE OPTIMIZATION (MOBILE) ── */
+@media (max-width: 768px) {
+  .proj-grid {
+    grid-template-columns: 1fr; /* Menjadi satu kolom */
+    gap: 32px;
+  }
+
+  .pcard-big {
+    grid-row: auto; /* Matikan span di mobile */
+  }
+
+  .pcard-img, .pcard-big .pcard-img {
+    min-height: 220px; /* Ukuran pas untuk HP */
+    height: 220px;
+  }
+
+  .proj-header {
+    flex-direction: row; /* Tetap menyamping */
+    align-items: center;
+  }
+
+  .proj-see-all {
+    padding: 8px 18px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #proyek { padding: 50px 0; }
+  .proj-header { gap: 10px; }
+}
 /* ── PERBAIKAN IKON & LABEL ── */
 .pcard-img-inner {
   position: absolute;
@@ -2035,74 +2043,51 @@ body::before{
 </section>
 
 <!-- ══ PROYEK ══ -->
-<section id="proyek" class="section" style="position: relative; overflow: hidden; padding: 60px 0;">
-  <div class="hero-glow hero-glow-1 js-reveal-glow"></div>
-  <div class="hero-glow hero-glow-2 js-reveal-glow"></div>
-
-  <div class="container"> <div class="proj-header reveal">
-      <div class="proj-header-title">
-        <div class="section-eyebrow lang-target" data-in="Portofolio" data-en="Portfolio">Portofolio</div>
-        <h2 class="section-h2 lang-target" style="margin-bottom:0" data-in="Karya Terpilih" data-en="Selected Works">
-          Karya <em>Terpilih</em>
-        </h2>
-      </div>
-      <a href="#" class="proj-see-all lang-target" data-in="Lihat Semua" data-en="See All">
-        Lihat Semua
-      </a>
-    </div>
-
-    <div class="proj-grid">
+<section id="proyek" class="section">
+  <div class="proj-grid">
     
     <div class="pcard pcard-big reveal-l">
       <div class="card-cursor-glow"></div> 
-      
       <div class="pcard-img">
         <video class="pcard-video" autoplay muted loop playsinline>
           <source src="maNTapPos_Demo_30s.mp4" type="video/mp4">
         </video>
-        
       </div>
-
       <div class="pcard-body">
         <div class="pcard-cat">Aplikasi Web</div>
         <div class="pcard-name">Finance Dashboard Pro</div>
-        <p class="pcard-desc">Dashboard keuangan real-time dengan visualisasi data interaktif dan integrasi API perbankan.</p>
+        <p class="pcard-desc">Dashboard keuangan real-time dengan visualisasi data interaktif.</p>
         <div class="pcard-footer">
-          <a href="#" class="pcard-link">
-            Demo Langsung 
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </a>
+          <a href="#" class="pcard-link">Demo Langsung <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
         </div>
       </div>
-    </div> <div class="pcard reveal">
+    </div>
+
+    <div class="pcard reveal">
       <div class="card-cursor-glow"></div>
       <div class="pcard-img">
         <video class="pcard-video" autoplay muted loop playsinline>
           <source src="maNTapps_Finance_Demo.mp4" type="video/mp4">
         </video>
-        
       </div>
       <div class="pcard-body">
         <div class="pcard-name">Crypto Tracker</div>
-        <a href="#" class="pcard-link">
-          Lihat Proyek 
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+        <a href="#" class="pcard-link">Lihat Proyek <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </div>
-    </div> <div class="pcard reveal">
+    </div>
+
+    <div class="pcard reveal">
       <div class="card-cursor-glow"></div>
       <div class="pcard-img">
         <img src="Project.jpeg" alt="E-Commerce" class="pcard-img-src">
-        
       </div>
       <div class="pcard-body">
         <div class="pcard-name">ShopFlow E-Commerce</div>
-        <a href="#" class="pcard-link">
-          Lihat Proyek 
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+        <a href="#" class="pcard-link">Lihat Proyek <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </div>
-    </div> </div> </section>
+    </div>
+
+  </div> </section>
 <!-- ══ TESTIMONIAL ══ -->
 <section id="testimonial" class="section" style="padding-top:100px;">
   <div class="hero-glow hero-glow-1 js-reveal-glow"></div>
