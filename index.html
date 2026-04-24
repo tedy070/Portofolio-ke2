@@ -609,49 +609,52 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 }
 
 @media (max-width: 768px) {
-  /* 1. Paksa kontainer paling luar untuk menumpuk secara vertikal */
-  /* Kita gunakan selector yang sangat spesifik agar tidak kalah dengan CSS desktop */
-  section.hero .hero-container, 
-  div.hero-layout, 
-  .hero-container {
+  /* Targetkan Induk Utama */
+  #beranda {
     display: flex !important;
-    flex-direction: column !important; /* Paksa arah ke bawah */
+    flex-direction: column !important; /* Paksa urutan ke bawah */
     align-items: center !important;
-    justify-content: center !important;
-    gap: 40px !important;
-    width: 100% !important;
-    padding-top: 100px; /* Memberi ruang untuk navbar */
+    justify-content: flex-start !important;
+    padding-top: 80px !important; /* Sesuaikan jarak dengan navbar mobile */
+    height: auto !important;
+    min-height: 100vh;
+    overflow-y: auto;
   }
 
-  /* 2. Pastikan box teks mengambil lebar penuh layar */
-  .hero-left {
+  /* Atur bagian teks (Atas) */
+  .hero-content {
     width: 100% !important;
     max-width: 100% !important;
     text-align: center !important;
-    flex: none !important; /* Mematikan kalkulasi flex desktop */
+    margin-bottom: 40px; /* Jarak sebelum foto */
+    padding: 0 20px;
   }
 
-  /* 3. Pastikan box foto muncul di bawah teks */
+  /* Atur bagian foto (Bawah) */
   .hero-right {
     width: 100% !important;
     display: flex !important;
     justify-content: center !important;
-    flex: none !important;
+    position: relative !important;
     margin-top: 20px;
+    padding-bottom: 50px;
   }
 
-  /* 4. Ukuran Kartu Foto */
+  /* Sesuaikan ukuran kartu foto agar tidak terlalu lebar di HP */
   .hero-card {
-    width: 280px !important; /* Ukuran lebar kartu di HP */
-    height: auto !important;
-    margin: 0 auto !important;
+    width: 280px !important;
+    margin: 0 auto;
   }
 
   .hero-card-img-wrapper {
     height: 350px !important;
-    width: 100% !important;
-    border-radius: 20px;
-    overflow: hidden;
+  }
+
+  /* Sembunyikan atau sesuaikan elemen melayang (hero-code) jika menutupi wajah di HP */
+  .hero-code {
+    scale: 0.8;
+    bottom: -20px !important;
+    right: -10px !important;
   }
 }
 /* ── FLOATING CODE BLOCK (Optimized) ── */
