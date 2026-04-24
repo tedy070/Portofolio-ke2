@@ -1039,8 +1039,38 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   }
   
   .proj-see-all {
-    font-size: 0.9rem;          /* Perkecil sedikit ukuran tombol di HP */
-    white-space: nowrap;        /* Mencegah teks tombol terpotong ke bawah */
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 24px;
+  background-color: #ff9800; /* Warna Oranye Utama */
+  color: #ffffff !important;   /* Teks Putih */
+  text-decoration: none;
+  border-radius: 50px;       /* Membuat bentuk pill/kapsul */
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3); /* Bayangan oranye lembut */
+}
+
+/* Efek saat Kursor Diarahkan (Hover) */
+.proj-see-all:hover {
+  background-color: #f57c00; /* Oranye sedikit lebih gelap */
+  transform: translateY(-3px); /* Tombol sedikit naik */
+  box-shadow: 0 6px 20px rgba(255, 152, 0, 0.5);
+  color: #fff;
+}
+
+/* Efek saat tombol diklik */
+.proj-see-all:active {
+  transform: translateY(-1px);
+}
+
+/* Penyesuaian untuk Mobile agar tombol tidak terlalu besar */
+@media (max-width: 768px) {
+  .proj-see-all {
+    padding: 8px 18px;
+    font-size: 0.85rem;
   }
 }
 
@@ -2022,58 +2052,51 @@ body::before{
   </a>
 </div>
 
+  <section id="proyek" class="section">
   <div class="proj-grid">
     
     <div class="pcard pcard-big reveal-l">
       <div class="card-cursor-glow"></div> 
-      
       <div class="pcard-img">
         <video class="pcard-video" autoplay muted loop playsinline>
           <source src="maNTapPos_Demo_30s.mp4" type="video/mp4">
         </video>
-        
       </div>
-
       <div class="pcard-body">
         <div class="pcard-cat">Aplikasi Web</div>
         <div class="pcard-name">Finance Dashboard Pro</div>
-        <p class="pcard-desc">Dashboard keuangan real-time dengan visualisasi data interaktif dan integrasi API perbankan.</p>
+        <p class="pcard-desc">Dashboard keuangan real-time dengan visualisasi data interaktif.</p>
         <div class="pcard-footer">
-          <a href="#" class="pcard-link">
-            Demo Langsung 
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </a>
+          <a href="#" class="pcard-link">Demo Langsung <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
         </div>
       </div>
-    </div> <div class="pcard reveal">
+    </div>
+
+    <div class="pcard reveal">
       <div class="card-cursor-glow"></div>
       <div class="pcard-img">
         <video class="pcard-video" autoplay muted loop playsinline>
           <source src="maNTapps_Finance_Demo.mp4" type="video/mp4">
         </video>
-        
       </div>
       <div class="pcard-body">
         <div class="pcard-name">Crypto Tracker</div>
-        <a href="#" class="pcard-link">
-          Lihat Proyek 
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+        <a href="#" class="pcard-link">Lihat Proyek <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </div>
-    </div> <div class="pcard reveal">
+    </div>
+
+    <div class="pcard reveal">
       <div class="card-cursor-glow"></div>
       <div class="pcard-img">
         <img src="Project.jpeg" alt="E-Commerce" class="pcard-img-src">
-        
       </div>
       <div class="pcard-body">
         <div class="pcard-name">ShopFlow E-Commerce</div>
-        <a href="#" class="pcard-link">
-          Lihat Proyek 
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+        <a href="#" class="pcard-link">Lihat Proyek <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </div>
-    </div> </div> </section>
+    </div>
+
+  </div> </section>
 <!-- ══ TESTIMONIAL ══ -->
 <section id="testimonial" class="section" style="padding-top:100px;">
   <div class="hero-glow hero-glow-1 js-reveal-glow"></div>
