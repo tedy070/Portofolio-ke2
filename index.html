@@ -609,32 +609,51 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 }
 
 @media (max-width: 768px) {
-  /* Pastikan kontainer utama foto (hero-right) muncul */
+  /* 1. Atur Kontainer Induk agar menumpuk ke bawah */
+  .hero-container, .hero-layout { 
+    display: flex !important;
+    flex-direction: column !important; /* Memaksa elemen turun ke bawah */
+    align-items: center;
+    text-align: center; /* Teks rata tengah agar lebih rapi di HP */
+    gap: 40px; /* Memberikan jarak antara teks dan kartu foto */
+  }
+
+  /* 2. Pastikan bagian kiri (teks) mengambil lebar penuh */
+  .hero-left {
+    width: 100%;
+    order: 1; /* Tetap di atas */
+  }
+
+  /* 3. Bagian kanan (foto) muncul di bawah */
   .hero-right {
     display: flex !important;
     justify-content: center;
     width: 100%;
-    margin-top: 20px;
+    order: 2; /* Pindah ke bawah teks */
+    margin-top: 0; 
   }
 
-  /* Atur tinggi wrapper agar tidak memakan seluruh layar HP */
-  .hero-card-img-wrapper {
-    height: 320px !important; /* Sesuaikan tinggi agar pas di layar HP */
-    width: 100%;
-    max-width: 280px; /* Batasi lebar agar tidak terlalu raksasa */
+  /* 4. Ukuran Kartu Foto yang Proporsional */
+  .hero-card {
+    width: 280px !important; /* Ukuran lebar kartu di HP */
     margin: 0 auto;
+  }
+
+  .hero-card-img-wrapper {
+    height: 350px !important; /* Tinggi foto di HP */
+    width: 100%;
     border-radius: 20px;
     overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
   }
 
   .hero-card-img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Agar foto tidak gepeng */
+    object-fit: cover;
     display: block;
   }
 }
-
 /* ── FLOATING CODE BLOCK (Optimized) ── */
 .hero-code {
   position: absolute;
