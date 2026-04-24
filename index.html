@@ -499,17 +499,17 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 /* ── HERO CARD ── */
 .hero-card {
   position: relative;
-  border-radius: 20px;
-  /* JANGAN gunakan overflow: hidden di sini agar .hero-code bisa meluap keluar */
+  border-radius: 24px; /* Sedikit lebih bulat agar lebih modern */
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background: #1a1a20;
+  background: rgba(26, 26, 32, 0.6); /* Glassmorphism effect */
+  backdrop-filter: blur(20px);
   isolation: isolate;
   transform-style: preserve-3d;
-  transition: border-color .3s, box-shadow .3s;
+  transition: border-color .5s, box-shadow .5s;
+  overflow: visible !important; /* Agar elemen meluap keluar */
 }
 
-/* ── WRAPPER UNTUK FOTO (Penting!) ── */
-/* Pindahkan overflow:hidden ke sini agar foto tetap rounded tapi tidak memotong code */
+/* ── WRAPPER FOTO ── */
 .hero-card-img-wrapper {
   position: relative;
   width: 100%;
@@ -517,6 +517,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   border-radius: 20px;
   overflow: hidden;
   z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .hero-card-img {
@@ -524,62 +525,76 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s ease;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
- /* Layer glow mengikuti kursor */
+.hero-card:hover .hero-card-img {
+  transform: scale(1.03); /* Zoom halus saat hover */
+}
+
+/* ── LAYER GLOW (Desktop Cursor & Mobile Scroll) ── */
 .card-cursor-glow {
   position: absolute;
-  inset: -1px; /* Sedikit keluar agar menutupi tepi border */
-  z-index: 1;  /* Di bawah konten/teks tapi di atas background */
+  inset: -1px;
+  z-index: 1;
   pointer-events: none;
-  border-radius: inherit; /* Mengikuti radius parent (20px) */
+  border-radius: inherit;
   opacity: 0;
-  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.5s ease;
   
-  /* Gradient yang lebih halus dengan multi-stop */
+  /* Update Warna: Menggunakan Hijau Window (#4fc3a1) */
   background: radial-gradient(
     600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
     rgba(79, 195, 161, 0.15) 0%,
-    rgba(124, 106, 247, 0.08) 25%,
-    rgba(124, 106, 247, 0.02) 50%,
+    rgba(124, 106, 247, 0.05) 40%,
     transparent 80%
   );
-  will-change: background; /* Optimasi performa untuk animasi kursor */
+  will-change: background;
 }
 
-.hero-card:hover .card-cursor-glow {
-  opacity: 1;
-}
-
-/* Border shimmer mengikuti kursor menggunakan mask */
+/* ── SHIMMER BORDER NEON ── */
 .hero-card::before {
   content: '';
   position: absolute;
-  inset: 0;
-  z-index: 3; /* Paling atas untuk efek kilap pada border */
+  inset: -1.5px;
+  z-index: 3;
   border-radius: inherit;
-  padding: 1.5px; /* Ketebalan border shimmer */
+  padding: 2px;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.5s ease;
 
-  /* Teknik Masking untuk Shimmer Border */
+  /* Gradient Hijau Cyan agar sama dengan window portofolio */
   background: radial-gradient(
     300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(255, 255, 255, 0.3) 0%,
-    rgba(255, 255, 255, 0.1) 40%,
+    rgba(79, 195, 161, 0.8) 0%,
+    rgba(124, 106, 247, 0.4) 50%,
     transparent 100%
   );
-  -webkit-mask: 
-     linear-gradient(#fff 0 0) content-box, 
-     linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
 }
 
-.hero-card:hover::before {
+/* ── STATE: HOVER & MOBILE ACTIVE ── */
+.hero-card:hover .card-cursor-glow,
+.hero-card:hover::before,
+.hero-card.active-glow .card-cursor-glow,
+.hero-card.active-glow::before {
   opacity: 1;
+}
+
+/* Animasi Denyut Neon saat di-scroll (Mobile) */
+.hero-card.active-glow {
+  animation: neonPulse 2s infinite alternate;
+  border-color: rgba(79, 195, 161, 0.3);
+}
+
+/* RESPONSIF MOBILE */
+@media (max-width: 768px) {
+  .hero-card-img-wrapper {
+    height: 380px; /* Lebih pendek di mobile agar tidak makan tempat */
+  }
 }
 
 /* ── FLOATING CODE BLOCK (Optimized) ── */
