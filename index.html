@@ -1350,43 +1350,94 @@ body::before{
 .edu-place{font-size:13px;color:var(--accent);font-weight:600;margin-bottom:14px;}
 .edu-divider{height:1px;background:var(--border);margin-bottom:14px;}
 
- /* Efek Cahaya Kartu - Base State */
-.card-cursor-glow {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0;
-    z-index: 5; /* Pastikan di atas video/img */
-    transition: opacity 1s ease-in-out;
+ /* ── KEYFRAME ANIMATION (PULSING GLOW) ── */
+@keyframes neonPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(79, 195, 161, 0.3), 
+                0 0 5px rgba(124, 106, 247, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(79, 195, 161, 0.6), 
+                0 0 10px rgba(124, 106, 247, 0.4);
+  }
 }
 
-/* ── MOBILE OPTIMIZATION (max-width: 768px) ── */
+/* ── PCARD STYLE (MOBILE OPTIMIZED) ── */
 @media (max-width: 768px) {
-    /* Paksa cahaya muncul saat class active-glow ada */
-    .pcard.active-glow .card-cursor-glow {
-        opacity: 1 !important;
-        background: radial-gradient(
-            300px circle at 50% 50%,
-            rgba(79, 195, 161, 0.2) 0%,
-            rgba(124, 106, 247, 0.1) 50%,
-            transparent 100%
-        ) !important;
-    }
+  /* Hilangkan layout grid kaku, gunakan flex tumpuk */
+  .proj-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 0 20px;
+  }
 
-    /* Paksa Shimmer Border muncul */
-    .pcard.active-glow::before {
-        opacity: 1 !important;
-    }
+  .pcard {
+    position: relative;
+    /* 1. Kunci Transparansi Total (Melayang) */
+    background: rgba(255, 255, 255, 0.02) !important;
+    
+    /* 2. Kunci Efek Kaca (Membiarkan background tembus) */
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    
+    /* 3. Border Tipis Transparan (Wadah Shimmer) */
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px !important;
+    
+    overflow: visible !important; /* Agar glow tidak terpotong */
+    transition: all 0.5s ease-in-out;
+    opacity: 0.6; /* Sedikit redup saat tidak aktif */
+    
+    /* Hardware acceleration agar smooth di HP */
+    will-change: transform, opacity, box-shadow;
+  }
 
-    /* Latar Belakang Glow */
-    .js-reveal-glow {
-        opacity: 0;
-        transition: opacity 2s ease;
-    }
+  /* ── 4. STATE AKTIF (Saat di-scroll melewati kartu) ── */
+  .pcard.active-glow {
+    opacity: 1; /* Menjadi terang benderang */
+    transform: translateY(-5px); /* Sedikit terangkat */
+    border-color: rgba(79, 195, 161, 0.3) !important; /* Border menyala hijau */
+    
+    /* 5. Kunci Efek Neon Pendar (Glow Luar) */
+    animation: neonPulse 2s infinite alternate;
+  }
 
-    .js-reveal-glow.is-visible {
-        opacity: 0.15 !important;
-    }
+  /* ── 6. SHIMMER BORDER (Neon Dalam) ── */
+  /* Matikan card-cursor-glow yang lama (statis/tengah) */
+  .card-cursor-glow {
+    display: none !important;
+  }
+
+  /* Gunakan ::before untuk membuat garis neon dalam yang mengikuti scroll */
+  .pcard::before {
+    content: '';
+    position: absolute;
+    inset: -1.5px; /* Sedikit keluar agar menempel di border */
+    border-radius: inherit;
+    padding: 2px; /* Ketebalan garis neon */
+    background: radial-gradient(
+      200px circle at 80% var(--mouse-y, 0%), /* Posisi Y mengikuti scroll */
+      rgba(79, 195, 161, 0.8) 0%, /* Warna Neon Utama */
+      transparent 80%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 2;
+  }
+
+  /* Aktifkan garis neon saat active-glow */
+  .pcard.active-glow::before {
+    opacity: 1;
+  }
+
+  /* Matikan shimmer desktop yang mengganggu di mobile */
+  .hero-card::before {
+    display: none !important;
+  }
 }
 </style>
 </head>
@@ -2275,16 +2326,12 @@ langBtn.addEventListener('click', () => {
   card.addEventListener('mouseleave', onMouseLeave);
 })();
 
-    (function() {
+   // ══ MOBILE SCROLL GABUNGAN: PCARD & HERO GLOW & POSISI Y ══
+(function() {
   const elements = document.querySelectorAll('.pcard, .js-reveal-glow');
   if (!elements.length || !('IntersectionObserver' in window)) return;
 
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px', 
-    threshold: 0.2 // Lebih sensitif (20% terlihat langsung nyala)
-  };
-
+  // 1. Observer untuk menghidupkan class aktif (active-glow / is-visible)
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const target = entry.target;
@@ -2297,9 +2344,33 @@ langBtn.addEventListener('click', () => {
         target.classList.remove(activeClass);
       }
     });
-  }, observerOptions);
+  }, { 
+    // rootMargin membantu memicu efek sedikit lebih awal sebelum kartu benar-benar di tengah
+    rootMargin: '-5% 0px -5% 0px',
+    threshold: 0.1 
+  });
 
+  // 2. Fungsi untuk menghitung posisi Y relatif terhadap kartu (untuk garis neon dalam)
+  function handleScroll() {
+    const activeCards = document.querySelectorAll('.pcard.active-glow');
+    activeCards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Menghitung seberapa jauh kartu telah melewati area aktif layar (0 sampai 100)
+      const scrollPercent = ((windowHeight - rect.top) / (windowHeight + rect.height)) * 100;
+      
+      // Kirim variabel CSS --mouse-y ke masing-masing kartu aktif
+      // Kita kunci --mouse-x ke samping (misal 80%) agar neon dominan di sisi kanan/atas
+      card.style.setProperty('--mouse-y', `${scrollPercent.toFixed(1)}%`);
+    });
+  }
+
+  // Mulai mengobservasi elemen
   elements.forEach(el => observer.observe(el));
+  
+  // Dengarkan event scroll untuk update posisi garis neon dalam
+  window.addEventListener('scroll', handleScroll, { passive: true });
 })();
 </script>
 </body>
