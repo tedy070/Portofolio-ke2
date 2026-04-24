@@ -326,69 +326,68 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 }
 
   @media (max-width: 768px) {
-  /* 1. Pastikan Navbar utama tetap di atas untuk Logo & Theme Switcher */
+  /* 1. Navbar Utama (Logo & Theme) - Dibuat FIXED agar tetap di atas saat scroll */
   #navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    position: absolute; /* Tetap di atas */
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 10px 20px !important;
+    position: fixed !important; /* KUNCI: Nav atas tidak hilang saat scroll */
     top: 0;
+    left: 0;
     width: 100%;
+    background: rgba(10, 10, 12, 0.8); /* Tambah background agar teks di bawahnya tidak tembus */
+    backdrop-filter: blur(10px);
     z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
-  /* 2. Nav-Center: Dibuat melayang di bawah agar tidak menimpa logo */
+  /* 2. Nav-Center (Menu Melayang) - Lebih ke bawah */
   .nav-center {
     display: flex !important;
-    position: fixed; /* Melayang bebas */
-    bottom: 25px;    /* Letakkan di dekat jempol user */
+    position: fixed !important; /* Tetap melayang saat scroll */
+    bottom: 15px;    /* NILAI LEBIH KECIL = LEBIH KE BAWAH (dekat pinggir layar) */
     left: 50%;
     transform: translateX(-50%);
     
     /* Styling Visual */
-    background: rgba(20, 20, 25, 0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 8px 15px;
+    background: rgba(20, 20, 25, 0.9);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 6px 12px;
     border-radius: 100px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     
-    /* Scrolling horizontal jika menu terlalu panjang */
-    width: 90%;
+    /* Navigasi */
+    width: 92%;
     max-width: fit-content;
     overflow-x: auto;
     white-space: nowrap;
-    gap: 12px;
-    z-index: 9999; /* Paling depan */
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    gap: 8px;
+    z-index: 9999; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    
+    /* Menghilangkan scrollbar agar bersih */
+    scrollbar-width: none; 
   }
 
-  /* Hilangkan scrollbar manual agar estetik */
   .nav-center::-webkit-scrollbar {
     display: none;
   }
 
-  /* Ukuran Link Navigasi Mobile */
+  /* Link Navigasi Mobile */
   .nav-center .nav-link {
-    font-size: 12px;
-    padding: 8px 12px;
+    font-size: 11px; /* Sedikit lebih kecil agar muat banyak menu */
+    padding: 10px 14px;
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
-    transition: 0.3s;
+    display: inline-block;
   }
 
-  .nav-center .nav-link:hover, 
-  .nav-center .nav-link.active {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50px;
-  }
-
-  /* 3. Atur Nav-End (Theme & Lang) agar tetap rapi di pojok kanan atas */
+  /* 3. Nav-End (Theme & Lang) */
   .nav-end {
-    display: flex;
-    gap: 10px;
+    display: flex !important;
+    gap: 12px;
   }
 }
 /* Styling Tombol Bahasa */
