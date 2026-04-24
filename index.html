@@ -346,7 +346,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   .nav-center {
     display: flex !important;
     position: fixed !important; /* Tetap melayang saat scroll */
-    bottom: 15px;    /* NILAI LEBIH KECIL = LEBIH KE BAWAH (dekat pinggir layar) */
+    bottom: -20px;    /* NILAI LEBIH KECIL = LEBIH KE BAWAH (dekat pinggir layar) */
     left: 50%;
     transform: translateX(-50%);
     
@@ -663,16 +663,16 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   }
 
   /* 2. Atur Bagian Teks */
-  .hero-content {
-    width: 100% !important;
-    max-width: 100% !important;
-    text-align: center !important;
-    margin-bottom: 40px; 
-    padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.hero-content {
+  width: 100% !important;
+  max-width: 100% !important;
+  text-align: left !important;    /* KUNCI: Mengubah arah teks ke kiri */
+  margin-bottom: 40px; 
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;        /* KUNCI: Menyusun elemen (badge, judul, tombol) ke kiri */
+}
 
   /* 3. Membuat Tombol Sejajar Menyamping */
   .hero-btns {
