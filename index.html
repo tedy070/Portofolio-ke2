@@ -1349,6 +1349,76 @@ body::before{
 }
 .edu-place{font-size:13px;color:var(--accent);font-weight:600;margin-bottom:14px;}
 .edu-divider{height:1px;background:var(--border);margin-bottom:14px;}
+
+ /* ── MOBILE OPTIMIZATION (max-width: 768px) ── */
+@media (max-width: 768px) {
+  /* 1. Layout Grid Menjadi Single Column */
+  .proj-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 0 20px;
+  }
+
+  /* 2. Reset Tinggi Media agar Proporsional */
+  .pcard-big .pcard-img, 
+  .pcard .pcard-img {
+    height: auto !important;
+    min-height: 200px; /* Mencegah collapse jika aset lambat dimuat */
+  }
+
+  /* 3. Efek Cahaya Kartu (.pcard) saat Aktif */
+  .pcard .card-cursor-glow {
+    opacity: 0;
+    transition: opacity 1s ease; /* Transisi halus saat muncul */
+    background: radial-gradient(
+      300px circle at 50% 50%,
+      rgba(79, 195, 161, 0.12) 0%,
+      rgba(124, 106, 247, 0.08) 50%,
+      transparent 100%
+    );
+  }
+
+  .pcard.active-glow .card-cursor-glow {
+    opacity: 1;
+  }
+
+  /* Shimmer Border Otomatis */
+  .pcard::before {
+    transition: opacity 1s ease;
+  }
+
+  .pcard.active-glow::before {
+    opacity: 1;
+  }
+
+  /* 4. Efek Cahaya Latar Belakang (.hero-glow) saat Aktif */
+  .js-reveal-glow {
+    opacity: 0;
+    transform: scale(0.8); /* Sedikit mengecil saat tidak aktif */
+    transition: opacity 2s ease, transform 2s ease;
+  }
+
+  .js-reveal-glow.is-visible {
+    opacity: 0.15; /* Intensitas cahaya latar */
+    transform: scale(1.1); /* Mengembang perlahan saat aktif */
+  }
+}
+
+  .hero-glow {
+  position: absolute;
+  /* ... kode posisi Anda sebelumnya ... */
+  opacity: 0; /* Awalnya mati/redup */
+  transition: opacity 1.5s ease, transform 2s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Class ini akan ditambahkan oleh JavaScript saat user scroll */
+.hero-glow.is-visible {
+  opacity: 0.2; /* Menjadi terang */
+  transform: scale(1.2); /* Sedikit membesar saat muncul */
+}
 </style>
 </head>
 <body>
@@ -1433,8 +1503,7 @@ body::before{
 
   <div class="hero-right fade-in fade-in-delay-2">
   <div class="hero-card" id="hero-photo-card">
-    
-    <div class="card-cursor-glow" id="card-glow"></div>
+    <div class="card-cursor-glow"></div> <div class="pcard-img"></div>
     
     <div class="hero-card-img-wrapper" style="position: relative; border-radius: 20px; overflow: hidden;">
       <img src="Foto_Tedi.jpeg" alt="Tedi Zakaria" class="hero-card-img">
@@ -1475,8 +1544,8 @@ body::before{
 
 <!-- ══ TENTANG ══ -->
 <section id="tentang" class="section" style="padding-top:100px;">
-  <div class="hero-glow hero-glow-1"></div>
-  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-glow hero-glow-1 js-reveal-glow"></div>
+<div class="hero-glow hero-glow-2 js-reveal-glow"></div>
   <div class="hero-content">
     <div class="section-eyebrow reveal lang-target" data-in="Ringkasan" data-en="Overview">Ringkasan</div>
     
@@ -1547,8 +1616,8 @@ body::before{
 </section>
 
 <section id="edukasi" class="section" style="padding: 120px 5% 80px;">
-  <div class="hero-glow hero-glow-1"></div>
-  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-glow hero-glow-1 js-reveal-glow"></div>
+<div class="hero-glow hero-glow-2 js-reveal-glow"></div>
 
   <div class="hero-content">
     <p class="section-label reveal visible lang-target" data-in="LINI MASA" data-en="TIMELINE">LINI MASA</p>
@@ -1602,8 +1671,8 @@ body::before{
 </section>
 <!-- ══ SKILLS ══ -->
 <section id="skills" class="section" style="padding-top:100px;">
-  <div class="hero-glow hero-glow-1"></div>
-  <div class="hero-glow hero-glow-2"></div>
+ <div class="hero-glow hero-glow-1 js-reveal-glow"></div>
+<div class="hero-glow hero-glow-2 js-reveal-glow"></div>
   <div class="hero-content">
     
     <div class="skills-header">
@@ -1674,7 +1743,7 @@ body::before{
   <div class="proj-grid">
     
     <div class="pcard pcard-big reveal-l">
-      <div class="pcard-img">
+     <div class="card-cursor-glow"></div> <div class="pcard-img"></div>
         <video class="pcard-video" autoplay muted loop playsinline>
           <source src="maNTapPos_Demo_30s.mp4" type="video/mp4">
         </video>
@@ -1691,7 +1760,7 @@ body::before{
     </div>
 
     <div class="pcard reveal">
-      <div class="pcard-img">
+     <div class="card-cursor-glow"></div> <div class="pcard-img"></div>
         <video class="pcard-video" autoplay muted loop playsinline>
           <source src="maNTapps_Finance_Demo.mp4" type="video/mp4">
         </video>
@@ -1703,7 +1772,7 @@ body::before{
     </div>
 
     <div class="pcard reveal">
-      <div class="pcard-img">
+     <div class="card-cursor-glow"></div> <div class="pcard-img"></div>
         <img src="Project.jpeg" alt="E-Commerce" class="pcard-img-src">
         <div class="pcard-img-inner">
         </div>
@@ -1719,8 +1788,8 @@ body::before{
 
 <!-- ══ TESTIMONIAL ══ -->
 <section id="testimonial" class="section" style="padding-top:100px;">
-  <div class="hero-glow hero-glow-1"></div>
-  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-glow hero-glow-1 js-reveal-glow"></div>
+<div class="hero-glow hero-glow-2 js-reveal-glow"></div>
   
   <div class="hero-content">
     <div class="section-eyebrow reveal lang-target" data-in="Ulasan" data-en="Reviews">Ulasan</div>
@@ -1795,8 +1864,8 @@ body::before{
 
 <!-- ══ KONTAK ══ -->
 <section id="kontak" class="section" style="padding-top:100px;">
-  <div class="hero-glow hero-glow-1"></div>
-  <div class="hero-glow hero-glow-2"></div>
+ <div class="hero-glow hero-glow-1 js-reveal-glow"></div>
+<div class="hero-glow hero-glow-2 js-reveal-glow"></div>
   <div class="hero-content">
     <div class="section-eyebrow reveal lang-target" data-in="Kontak" data-en="Contact">Kontak</div>
     <h2 class="section-h2 reveal lang-target" data-in="Mari Berkolaborasi" data-en="Let's Collaborate">Mari <em>Berkolaborasi</em></h2>
@@ -2226,6 +2295,38 @@ langBtn.addEventListener('click', () => {
 
   card.addEventListener('mousemove', onMouseMove, { passive: true });
   card.addEventListener('mouseleave', onMouseLeave);
+})();
+
+    // ══ MOBILE SCROLL GABUNGAN: PCARD & HERO GLOW ══
+(function() {
+  // Ambil semua kartu proyek dan elemen background glow
+  const elements = document.querySelectorAll('.pcard, .js-reveal-glow');
+  
+  if (!('IntersectionObserver' in window)) return;
+
+  const observerOptions = {
+    root: null,
+    // Gunakan threshold menengah agar transisi tetap halus
+    threshold: 0.3 
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      // Tentukan class yang akan ditambahkan berdasarkan class aslinya
+      const targetClass = entry.target.classList.contains('pcard') 
+                          ? 'active-glow' 
+                          : 'is-visible';
+
+      if (entry.isIntersecting) {
+        entry.target.classList.add(targetClass);
+      } else {
+        // Optional: Hapus jika ingin efek muncul berulang saat scroll balik
+        entry.target.classList.remove(targetClass);
+      }
+    });
+  }, observerOptions);
+
+  elements.forEach(el => observer.observe(el));
 })();
 </script>
 </body>
