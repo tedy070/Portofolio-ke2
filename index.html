@@ -1759,6 +1759,165 @@ body::before{
     display: none !important;
   }
 }
+
+  
+  /* --- RESPONSIVE DESIGN FOR MOBILE --- */
+@media screen and (max-width: 768px) {
+  
+  /* 1. Atur Layout Utama menjadi Vertikal */
+  .hero-section {
+    flex-direction: column;
+    height: auto; /* Biar bisa di-scroll ke bawah */
+    padding: 100px 20px 50px 20px;
+    text-align: center;
+  }
+
+  /* 2. Sesuaikan Ukuran Teks Background "Portfolio" */
+  .bg-text {
+    font-size: 80px; /* Diperkecil agar tidak menutupi seluruh layar */
+    top: 15%;
+    opacity: 0.1; /* Lebih transparan agar tidak mengganggu fokus */
+  }
+
+  /* 3. Atur Posisi Foto agar di Tengah */
+  .hero-right {
+    order: 1; /* Foto naik ke atas */
+    margin-bottom: 30px;
+    width: 100%;
+  }
+
+  .info-left {
+    order: 2; /* Nama muncul setelah foto */
+  }
+
+    /* 5. Navigasi */
+  nav {
+    padding: 15px;
+    gap: 10px;
+    flex-wrap: wrap; /* Supaya menu tidak terpotong ke samping */
+  }
+}
+
+  .proj-card.big {
+  overflow: hidden;
+  border-radius: 20px; /* Samakan dengan hero-card Anda */
+}
+
+.proj-img-wrapper img {
+  transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.proj-card:hover .proj-img-wrapper img {
+  transform: scale(1.05); /* Foto membesar sedikit saat hover */
+}
+
+  /* Saat tombol ditekan */
+.proj-link:active ~ .proj-img-wrapper img, 
+.proj-link:focus ~ .proj-img-wrapper img {
+  transform: scale(1.2);
+}
+
+#stats-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  background: #f9f9f9;
+  border: 1px solid #e8e8e8;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  color: #888;
+}
+
+#view-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding-right: 12px;
+}
+
+.divider {
+  width: 1px;
+  height: 14px;
+  background: #e0e0e0;
+  margin: 0 12px;
+}
+
+#like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.82rem;
+  color: #888;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+#like-btn:hover {
+  color: #f87171;
+}
+
+#like-btn.liked {
+  color: #f87171;
+}
+
+#like-btn.liked svg {
+  fill: #f87171;
+  stroke: #f87171;
+}
+
+  .about-stats {
+  display: flex;
+  justify-content: space-between; /* Menjaga jarak antar elemen secara merata */
+  align-items: flex-start;
+  gap: 10px; /* Jarak antar kolom lebih kecil agar muat di HP */
+  margin-top: 30px;
+  width: 100%;
+  flex-wrap: nowrap; /* PAKSA tetap menyamping, jangan biarkan turun */
+}
+
+.about-stat {
+  flex: 1; /* Memberikan porsi lebar yang sama rata untuk setiap angka */
+  text-align: center;
+  padding: 10px 5px; /* Padding lebih ramping */
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  min-width: 0; /* Penting agar elemen bisa mengecil di bawah ukuran kontennya */
+}
+
+.about-stat-num {
+  /* Menggunakan clamp agar ukuran font menyesuaikan lebar layar secara otomatis */
+  /* Di HP terkecil sekitar 18px, di desktop hingga 32px */
+  font-size: clamp(18px, 4.5vw, 32px); 
+  font-weight: 800;
+  color: var(--teal);
+  margin-bottom: 4px;
+  white-space: nowrap; /* Angka tidak akan terpotong ke baris baru */
+}
+
+.about-stat-label {
+  /* Font label mengecil di HP agar tidak memenuhi ruang */
+  font-size: clamp(9px, 2.5vw, 12px);
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  word-wrap: break-word; /* Label teks panjang akan turun ke bawah jika perlu */
+}
+
+/* Penyesuaian khusus layar sangat kecil (iPhone SE / Fold) */
+@media (max-width: 360px) {
+  .about-stats {
+    gap: 5px;
+  }
+  .about-stat {
+    padding: 8px 2px;
+  }
+}
 </style>
 </head>
 <body>
