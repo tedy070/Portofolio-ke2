@@ -326,21 +326,25 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 }
 
   @media (max-width: 768px) {
-  /* 1. Navbar Utama (Logo & Theme) - Dibuat FIXED agar tetap di atas saat scroll */
   #navbar {
     display: flex !important;
     justify-content: space-between !important;
     align-items: flex-start !important;
-    padding: 10px 20px 110px 20px; (Atas, Kanan, Bawah, Kiri).
-    position: fixed !important; /* KUNCI: Nav atas tidak hilang saat scroll */
+    padding: 10px 20px 110px 20px !important; 
+    position: fixed !important;
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(10, 10, 12, 0.8); /* Tambah background agar teks di bawahnya tidak tembus */
-    backdrop-filter: blur(10px);
     z-index: 1000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: background 0.3s ease, border 0.3s ease;
+
+    /* Gunakan variabel warna di sini */
+    background: var(--nav-bg, rgba(10, 10, 12, 0.8)); 
+    border-bottom: 1px solid var(--nav-border, rgba(255, 255, 255, 0.05));
   }
+}
 
   /* 2. Nav-Center (Menu Melayang) - Lebih ke bawah */
   .nav-center {
@@ -650,17 +654,21 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 }
 
 @media (max-width: 768px) {
-  /* 1. Targetkan Induk Utama (Beranda) agar menumpuk ke bawah */
+  /* 1. Targetkan Induk Utama (Beranda) */
   #beranda {
     display: flex !important;
     flex-direction: column !important; 
     align-items: center !important;
     justify-content: flex-start !important;
-    padding-top: 100px !important; 
+    
+    /* Gunakan 140px (110px tinggi nav + 30px ruang napas) */
+    padding-top: 140px !important; 
+    
     height: auto !important;
     min-height: 100vh;
     overflow-x: hidden;
   }
+}
 
   /* 2. Atur Bagian Teks */
 .hero-content {
