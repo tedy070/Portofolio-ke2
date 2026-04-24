@@ -326,49 +326,6 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 }
 
   @media (max-width: 768px) {
-  /* Ganti dari .nav-menu ke .nav-center sesuai HTML Anda */
-  .nav-center {
-    display: flex !important; /* Paksa muncul */
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(15, 15, 15, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 10px 20px;
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    z-index: 9999;
-    
-    /* Agar menu bisa digeser jika terlalu banyak */
-    width: 90%; 
-    max-width: max-content;
-    overflow-x: auto; 
-    gap: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  }
-
-  /* Menghilangkan scrollbar agar tetap rapi */
-  .nav-center::-webkit-scrollbar {
-    display: none;
-  }
-
-  .nav-center .nav-link {
-    font-size: 13px;
-    color: #fff !important;
-    white-space: nowrap; /* Teks tidak turun ke bawah */
-    padding: 5px 2px;
-    opacity: 0.8;
-  }
-
-  /* Sembunyikan elemen navbar desktop lainnya agar tidak berantakan */
-  .nav-brand, .nav-end {
-    /* Opsional: Jika ingin logo tetap ada di atas, jangan sembunyikan .nav-brand */
-  }
-}
-
-  @media (max-width: 768px) {
   /* 1. Pastikan Navbar utama tetap di atas untuk Logo & Theme Switcher */
   #navbar {
     display: flex;
@@ -765,9 +722,9 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   /* 6. Elemen Melayang (hero-code) */
   .hero-code {
     display: block !important; /* Pastikan muncul */
-    scale: 0.75;
+    scale: 0.85;
     position: absolute !important;
-    bottom: -30px !important; /* Posisi relatif terhadap hero-card */
+    bottom: -60px !important; /* Posisi relatif terhadap hero-card */
     right: -10px !important;
     z-index: 10;
   }
