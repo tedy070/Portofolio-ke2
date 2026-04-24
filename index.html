@@ -367,7 +367,73 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
     /* Opsional: Jika ingin logo tetap ada di atas, jangan sembunyikan .nav-brand */
   }
 }
-  
+
+  @media (max-width: 768px) {
+  /* 1. Pastikan Navbar utama tetap di atas untuk Logo & Theme Switcher */
+  #navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: absolute; /* Tetap di atas */
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  /* 2. Nav-Center: Dibuat melayang di bawah agar tidak menimpa logo */
+  .nav-center {
+    display: flex !important;
+    position: fixed; /* Melayang bebas */
+    bottom: 25px;    /* Letakkan di dekat jempol user */
+    left: 50%;
+    transform: translateX(-50%);
+    
+    /* Styling Visual */
+    background: rgba(20, 20, 25, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 8px 15px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* Scrolling horizontal jika menu terlalu panjang */
+    width: 90%;
+    max-width: fit-content;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 12px;
+    z-index: 9999; /* Paling depan */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Hilangkan scrollbar manual agar estetik */
+  .nav-center::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Ukuran Link Navigasi Mobile */
+  .nav-center .nav-link {
+    font-size: 12px;
+    padding: 8px 12px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .nav-center .nav-link:hover, 
+  .nav-center .nav-link.active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+  }
+
+  /* 3. Atur Nav-End (Theme & Lang) agar tetap rapi di pojok kanan atas */
+  .nav-end {
+    display: flex;
+    gap: 10px;
+  }
+}
 /* Styling Tombol Bahasa */
 .btn-lang {
   padding: 8px 16px;
@@ -683,15 +749,6 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
     padding-bottom: 40px;
   }
 }
-  /* Atur bagian foto (Bawah) */
-  .hero-right {
-    width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-    position: relative !important;
-    margin-top: 20px;
-    padding-bottom: 50px;
-  }
 
   /* Sesuaikan ukuran kartu foto agar tidak terlalu lebar di HP */
   .hero-card {
@@ -706,7 +763,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   /* Sembunyikan atau sesuaikan elemen melayang (hero-code) jika menutupi wajah di HP */
   .hero-code {
     scale: 0.8;
-    bottom: -20px !important;
+    bottom: -60px !important;
     right: -10px !important;
   }
 }
