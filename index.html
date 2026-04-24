@@ -497,35 +497,29 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 }
 
 /* ── HERO CARD ── */
+/* Pastikan Card tidak memiliki padding agar foto bisa mepet ke pinggir */
 .hero-card {
-  position: relative;
-  border-radius: 24px; /* Sedikit lebih bulat agar lebih modern */
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(26, 26, 32, 0.6); /* Glassmorphism effect */
-  backdrop-filter: blur(20px);
-  isolation: isolate;
-  transform-style: preserve-3d;
-  transition: border-color .5s, box-shadow .5s;
-  overflow: visible !important; /* Agar elemen meluap keluar */
+  padding: 0 !important; 
+  overflow: visible !important; /* Biarkan code/glow meluap keluar */
 }
 
-/* ── WRAPPER FOTO ── */
+/* Wrapper harus mengunci area foto */
 .hero-card-img-wrapper {
   position: relative;
   width: 100%;
-  height: 460px;
-  border-radius: 20px;
-  overflow: hidden;
+  height: 460px; /* Sesuaikan tinggi yang Anda inginkan */
+  border-radius: 20px; /* Harus sama dengan border-radius .hero-card */
+  overflow: hidden;    /* Ini yang memotong foto agar mengikuti lengkungan */
   z-index: 1;
-  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* Gambar harus mengisi penuh wrapper */
 .hero-card-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;   /* KUNCI: Foto akan di-crop otomatis agar pas tanpa gepeng */
+  object-position: center; /* Memastikan wajah tetap di tengah */
   display: block;
-  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .hero-card:hover .hero-card-img {
@@ -1785,10 +1779,11 @@ body::before{
   </div>
 
   <div class="hero-right fade-in fade-in-delay-2">
-  <div class="hero-card" id="hero-photo-card">
-    <div class="card-cursor-glow"></div> <div class="pcard-img"></div>
+  <div class="hero-card pcard" id="hero-photo-card">
     
-    <div class="hero-card-img-wrapper" style="position: relative; border-radius: 20px; overflow: hidden;">
+    <div class="card-cursor-glow"></div> 
+
+    <div class="hero-card-img-wrapper">
       <img src="Foto_Tedi.jpeg" alt="Tedi Zakaria" class="hero-card-img">
     </div>
 
@@ -1820,7 +1815,7 @@ body::before{
     
     <div><span class="c-brace">}</span><span class="c-cursor"></span></div>
   </div>
-</div>
+      </div>
   </div>
   </div>
 </section>
