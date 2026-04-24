@@ -1350,74 +1350,43 @@ body::before{
 .edu-place{font-size:13px;color:var(--accent);font-weight:600;margin-bottom:14px;}
 .edu-divider{height:1px;background:var(--border);margin-bottom:14px;}
 
- /* ── MOBILE OPTIMIZATION (max-width: 768px) ── */
+ /* Efek Cahaya Kartu - Base State */
+.card-cursor-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 5; /* Pastikan di atas video/img */
+    transition: opacity 1s ease-in-out;
+}
+
+/* ── MOBILE OPTIMIZATION (max-width: 768px) ── */
 @media (max-width: 768px) {
-  /* 1. Layout Grid Menjadi Single Column */
-  .proj-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    padding: 0 20px;
-  }
+    /* Paksa cahaya muncul saat class active-glow ada */
+    .pcard.active-glow .card-cursor-glow {
+        opacity: 1 !important;
+        background: radial-gradient(
+            300px circle at 50% 50%,
+            rgba(79, 195, 161, 0.2) 0%,
+            rgba(124, 106, 247, 0.1) 50%,
+            transparent 100%
+        ) !important;
+    }
 
-  /* 2. Reset Tinggi Media agar Proporsional */
-  .pcard-big .pcard-img, 
-  .pcard .pcard-img {
-    height: auto !important;
-    min-height: 200px; /* Mencegah collapse jika aset lambat dimuat */
-  }
+    /* Paksa Shimmer Border muncul */
+    .pcard.active-glow::before {
+        opacity: 1 !important;
+    }
 
-  /* 3. Efek Cahaya Kartu (.pcard) saat Aktif */
-  .pcard .card-cursor-glow {
-    opacity: 0;
-    transition: opacity 1s ease; /* Transisi halus saat muncul */
-    background: radial-gradient(
-      300px circle at 50% 50%,
-      rgba(79, 195, 161, 0.12) 0%,
-      rgba(124, 106, 247, 0.08) 50%,
-      transparent 100%
-    );
-  }
+    /* Latar Belakang Glow */
+    .js-reveal-glow {
+        opacity: 0;
+        transition: opacity 2s ease;
+    }
 
-  .pcard.active-glow .card-cursor-glow {
-    opacity: 1;
-  }
-
-  /* Shimmer Border Otomatis */
-  .pcard::before {
-    transition: opacity 1s ease;
-  }
-
-  .pcard.active-glow::before {
-    opacity: 1;
-  }
-
-  /* 4. Efek Cahaya Latar Belakang (.hero-glow) saat Aktif */
-  .js-reveal-glow {
-    opacity: 0;
-    transform: scale(0.8); /* Sedikit mengecil saat tidak aktif */
-    transition: opacity 2s ease, transform 2s ease;
-  }
-
-  .js-reveal-glow.is-visible {
-    opacity: 0.15; /* Intensitas cahaya latar */
-    transform: scale(1.1); /* Mengembang perlahan saat aktif */
-  }
-}
-
-  .hero-glow {
-  position: absolute;
-  /* ... kode posisi Anda sebelumnya ... */
-  opacity: 0; /* Awalnya mati/redup */
-  transition: opacity 1.5s ease, transform 2s ease;
-  pointer-events: none;
-  z-index: -1;
-}
-
-/* Class ini akan ditambahkan oleh JavaScript saat user scroll */
-.hero-glow.is-visible {
-  opacity: 0.2; /* Menjadi terang */
-  transform: scale(1.2); /* Sedikit membesar saat muncul */
+    .js-reveal-glow.is-visible {
+        opacity: 0.15 !important;
+    }
 }
 </style>
 </head>
@@ -1752,9 +1721,7 @@ body::before{
         <video class="pcard-video" autoplay muted loop playsinline>
           <source src="maNTapPos_Demo_30s.mp4" type="video/mp4">
         </video>
-        <div class="pcard-img-inner">
-          <div class="pcard-img-label">maNTapPos</div>
-        </div>
+        
       </div>
 
       <div class="pcard-body">
@@ -1774,9 +1741,7 @@ body::before{
         <video class="pcard-video" autoplay muted loop playsinline>
           <source src="maNTapps_Finance_Demo.mp4" type="video/mp4">
         </video>
-        <div class="pcard-img-inner">
-          <div class="pcard-img-label">Crypto Hunter</div>
-        </div>
+        
       </div>
       <div class="pcard-body">
         <div class="pcard-name">Crypto Tracker</div>
@@ -1787,14 +1752,12 @@ body::before{
       </div>
     </div> <div class="pcard reveal">
       <div class="card-cursor-glow"></div>
-      <div class="pcard-img">
-        <img src="Project.jpeg" alt="E-Commerce" class="pcard-img-src">
+      
         <div class="pcard-img-inner">
           <div class="pcard-img-icon">
             <img src="ecommerce-icon.png" alt="Icon">
           </div>
         </div>
-      </div>
       <div class="pcard-body">
         <div class="pcard-name">ShopFlow E-Commerce</div>
         <a href="#" class="pcard-link">
@@ -2314,31 +2277,26 @@ langBtn.addEventListener('click', () => {
   card.addEventListener('mouseleave', onMouseLeave);
 })();
 
-    // ══ MOBILE SCROLL GABUNGAN: PCARD & HERO GLOW ══
-(function() {
-  // Ambil semua kartu proyek dan elemen background glow
+    (function() {
   const elements = document.querySelectorAll('.pcard, .js-reveal-glow');
-  
-  if (!('IntersectionObserver' in window)) return;
+  if (!elements.length || !('IntersectionObserver' in window)) return;
 
   const observerOptions = {
     root: null,
-    // Gunakan threshold menengah agar transisi tetap halus
-    threshold: 0.3 
+    rootMargin: '0px', 
+    threshold: 0.2 // Lebih sensitif (20% terlihat langsung nyala)
   };
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      // Tentukan class yang akan ditambahkan berdasarkan class aslinya
-      const targetClass = entry.target.classList.contains('pcard') 
-                          ? 'active-glow' 
-                          : 'is-visible';
+      const target = entry.target;
+      const isCard = target.classList.contains('pcard');
+      const activeClass = isCard ? 'active-glow' : 'is-visible';
 
       if (entry.isIntersecting) {
-        entry.target.classList.add(targetClass);
+        target.classList.add(activeClass);
       } else {
-        // Optional: Hapus jika ingin efek muncul berulang saat scroll balik
-        entry.target.classList.remove(targetClass);
+        target.classList.remove(activeClass);
       }
     });
   }, observerOptions);
