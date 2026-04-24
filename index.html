@@ -609,49 +609,49 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 }
 
 @media (max-width: 768px) {
-  /* 1. Atur Kontainer Induk agar menumpuk ke bawah */
-  .hero-container, .hero-layout { 
+  /* 1. Paksa kontainer paling luar untuk menumpuk secara vertikal */
+  /* Kita gunakan selector yang sangat spesifik agar tidak kalah dengan CSS desktop */
+  section.hero .hero-container, 
+  div.hero-layout, 
+  .hero-container {
     display: flex !important;
-    flex-direction: column !important; /* Memaksa elemen turun ke bawah */
-    align-items: center;
-    text-align: center; /* Teks rata tengah agar lebih rapi di HP */
-    gap: 40px; /* Memberikan jarak antara teks dan kartu foto */
+    flex-direction: column !important; /* Paksa arah ke bawah */
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 40px !important;
+    width: 100% !important;
+    padding-top: 100px; /* Memberi ruang untuk navbar */
   }
 
-  /* 2. Pastikan bagian kiri (teks) mengambil lebar penuh */
+  /* 2. Pastikan box teks mengambil lebar penuh layar */
   .hero-left {
-    width: 100%;
-    order: 1; /* Tetap di atas */
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    flex: none !important; /* Mematikan kalkulasi flex desktop */
   }
 
-  /* 3. Bagian kanan (foto) muncul di bawah */
+  /* 3. Pastikan box foto muncul di bawah teks */
   .hero-right {
+    width: 100% !important;
     display: flex !important;
-    justify-content: center;
-    width: 100%;
-    order: 2; /* Pindah ke bawah teks */
-    margin-top: 0; 
+    justify-content: center !important;
+    flex: none !important;
+    margin-top: 20px;
   }
 
-  /* 4. Ukuran Kartu Foto yang Proporsional */
+  /* 4. Ukuran Kartu Foto */
   .hero-card {
     width: 280px !important; /* Ukuran lebar kartu di HP */
-    margin: 0 auto;
+    height: auto !important;
+    margin: 0 auto !important;
   }
 
   .hero-card-img-wrapper {
-    height: 350px !important; /* Tinggi foto di HP */
-    width: 100%;
+    height: 350px !important;
+    width: 100% !important;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-  }
-
-  .hero-card-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
   }
 }
 /* ── FLOATING CODE BLOCK (Optimized) ── */
