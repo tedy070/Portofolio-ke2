@@ -1167,23 +1167,19 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 /* ── PROJECTS SECTION ── */
 #proyek { 
   background: var(--bg); 
-  padding: 80px 5%; 
+  padding: 80px 0; 
   position: relative; 
-  max-width: 1400px;
-  margin: 0 auto;
-  box-sizing: border-box; 
 }
 
-/* GRID SYSTEM - Perbaikan agar kartu sejajar tinggi (Stretch) */
+/* GRID SYSTEM */
 .proj-grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1.2fr 0.8fr; /* Layout desktop */
   gap: 24px;
-  /* KUNCI: Memastikan semua kartu dalam satu baris punya tinggi yang sama */
-  align-items: stretch; 
+  align-items: start;
 }
 
-/* HEADER tetap sama */
+/* HEADER & TOMBOL ORANGE */
 .proj-header {
   display: flex;
   justify-content: space-between;
@@ -1192,7 +1188,27 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   width: 100%;
 }
 
-/* KARTU PROYEK - Perbaikan struktur internal */
+.proj-see-all {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  color: #ffffff !important;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+}
+
+.proj-see-all:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 152, 0, 0.5);
+  filter: brightness(1.1);
+}
+
+/* KARTU PROYEK */
 .pcard {
   background: var(--bg2);
   border-radius: 20px;
@@ -1201,58 +1217,71 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease, border-color 0.3s ease;
-  height: 100%; 
-  position: relative;
-}
-
-/* Mencegah gambar merusak layout */
-.pcard-img {
-  width: 100%;
-  position: relative;
-  background: #000;
-  overflow: hidden;
-  /* Gunakan aspect-ratio agar semua kartu punya tinggi gambar yang konsisten */
-  aspect-ratio: 16 / 10; 
-  flex-shrink: 0; /* Gambar tidak akan mengecil jika teks terlalu panjang */
-}
-
-.pcard-big .pcard-img {
-  /* Khusus kartu besar, biarkan lebih tinggi atau gunakan rasio berbeda */
-  aspect-ratio: 16 / 13; 
-}
-
-/* Tambahkan pembungkus konten teks jika ada */
-.pcard-content {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1; /* Mengisi sisa ruang agar footer kartu sejajar di bawah */
+  height: 100%; /* Agar tinggi kartu seimbang dalam grid */
 }
 
 .pcard-big {
   grid-row: span 2;
 }
 
-/* ── RESPONSIVE OPTIMIZATION ── */
-@media (max-width: 768px) {
-  #proyek {
-    padding: 60px 20px; 
-  }
+/* MEDIA CONTAINER (Mencegah Halaman Kosong) */
+.pcard-img {
+  width: 100%;
+  position: relative;
+  background: #000;
+  overflow: hidden;
+  /* Kunci: Berikan tinggi minimal agar saat video loading, layout tidak collapse */
+  min-height: 200px; 
+}
 
+.pcard-big .pcard-img {
+  min-height: 350px;
+}
+
+.pcard-video, .pcard-img-src {
+  width: 100%;
+  height: 100%; 
+  display: block;
+  object-fit: cover; /* Video memenuhi area tanpa merusak rasio */
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Hover Effect Media */
+.pcard:hover .pcard-video, 
+.pcard:hover .pcard-img-src {
+  transform: scale(1.05);
+}
+
+/* ── RESPONSIVE OPTIMIZATION (MOBILE) ── */
+@media (max-width: 768px) {
   .proj-grid {
-    grid-template-columns: 1fr; /* Kartu jadi tumpuk, tidak berantakan lagi */
-    gap: 24px;
+    grid-template-columns: 1fr; /* Menjadi satu kolom */
+    gap: 32px;
   }
 
   .pcard-big {
-    grid-row: auto;
+    grid-row: auto; /* Matikan span di mobile */
   }
 
   .pcard-img, .pcard-big .pcard-img {
-    aspect-ratio: 16 / 9;
-    height: auto;
-    min-height: unset; /* Hapus min-height statis agar fleksibel */
+    min-height: 220px; /* Ukuran pas untuk HP */
+    height: 220px;
   }
+
+  .proj-header {
+    flex-direction: row; /* Tetap menyamping */
+    align-items: center;
+  }
+
+  .proj-see-all {
+    padding: 8px 18px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #proyek { padding: 50px 0; }
+  .proj-header { gap: 10px; }
 }
   
 /* ── PERBAIKAN IKON & LABEL ── */
