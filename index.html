@@ -331,18 +331,36 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
     display: flex !important;
     justify-content: space-between !important;
     align-items: flex-start !important;
-    padding: 10px 20px 100px 20px !important; /* PERBAIKAN: Menghapus teks keterangan yang merusak kode */
+    padding: 10px 20px 10px 20px !important; /* Disesuaikan agar simetris */
+    
+    /* POSISI & MARGIN: Memberi jarak agar lengkungan terlihat */
     position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100%;
-     background: color-mix(in srgb, var(--accent) 10%, transparent);
+    top: 10px;
+    left: 20px;
+    right: 20px;
+    width: auto !important;
+    
+    /* PERSIS seperti instruksi Anda: atas 10, kiri-kanan 20, bawah 100 */
+    padding: 10px 20px 100px 20px !important; 
+    
+    /* Hapus 'height' agar navbar bisa memanjang mengikuti padding bawah */
+    height: auto !important;
+    
+    /* EFEK MELENGKUNG */
+    border-radius: 20px; /* Atur tingkat kelengkungan di sini */
+    
+    /* VISUAL */
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* Tambahan untuk dukungan Safari */
+    -webkit-backdrop-filter: blur(10px);
     z-index: 1000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    box-sizing: border-box; /* Mencegah lebar navbar meluap */
+    
+    /* BORDER & BAYANGAN */
+    border: 1px solid var(--border); /* Menggunakan variabel agar dinamis */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
   }
+}
 
   /* 2. Nav-Center (Menu Melayang) */
   .nav-center {
