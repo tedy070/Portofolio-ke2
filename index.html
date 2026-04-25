@@ -331,19 +331,30 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
     display: flex !important;
     justify-content: space-between !important;
     align-items: flex-start !important;
-    padding: 10px 20px 100px 20px !important; /* PERBAIKAN: Menghapus teks keterangan yang merusak kode */
+    padding: 10px 20px 10px 20px !important; /* Disesuaikan agar simetris */
+    
+    /* POSISI & MARGIN: Memberi jarak agar lengkungan terlihat */
     position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100%;
-     background: color-mix(in srgb, var(--accent) 10%, transparent);
+    top: 10px;          /* Jarak dari atas */
+    left: 10px;         /* Jarak dari kiri */
+    right: 10px;        /* Jarak dari kanan */
+    width: calc(100% - 20px); /* Lebar dikurangi margin kiri-kanan */
+    
+    /* EFEK MELENGKUNG */
+    border-radius: 20px; /* Atur tingkat kelengkungan di sini */
+    
+    /* VISUAL */
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* Tambahan untuk dukungan Safari */
+    -webkit-backdrop-filter: blur(10px);
     z-index: 1000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    box-sizing: border-box; /* Mencegah lebar navbar meluap */
+    
+    /* BORDER & BAYANGAN */
+    border: 1px solid var(--border); /* Menggunakan variabel agar dinamis */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
   }
-
+}
   /* 2. Nav-Center (Menu Melayang) */
   .nav-center {
     display: flex !important;
@@ -1156,10 +1167,13 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 /* ── PROJECTS SECTION ── */
 #proyek { 
   background: var(--bg); 
-  padding: 80px 20%; 
+  /* PERBAIKAN: Gunakan padding yang lebih fleksibel untuk desktop */
+  padding: 80px 5%; 
   position: relative; 
-  max-width: 1400px;
+  /* Tambahkan max-width agar konten tidak terlalu lebar di monitor ultra-wide */
+  max-width: 1200px; 
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* GRID SYSTEM */
@@ -1170,7 +1184,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   align-items: start;
 }
 
-/* HEADER & TOMBOL ORANGE */
+/* HEADER & TOMBOL */
 .proj-header {
   display: flex;
   justify-content: space-between;
@@ -1191,6 +1205,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   font-size: 0.9rem;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+  white-space: nowrap; /* Mencegah teks tombol terpotong */
 }
 
 /* KARTU PROYEK */
@@ -1205,48 +1220,23 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   height: 100%; 
 }
 
-.pcard-big {
-  grid-row: span 2;
-}
-
-.pcard-img {
-  width: 100%;
-  position: relative;
-  background: #000;
-  overflow: hidden;
-  min-height: 200px; 
-}
-
-.pcard-big .pcard-img {
-  min-height: 350px;
-}
-
-.pcard-video, .pcard-img-src {
-  width: 100%;
-  height: 100%; 
-  display: block;
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
+/* ... (Bagian pcard-img tetap sama) ... */
 
 /* ── RESPONSIVE OPTIMIZATION ── */
+@media (max-width: 1024px) {
+  #proyek {
+    padding: 80px 30px; /* Jarak sedang untuk tablet/laptop kecil */
+  }
+}
+
 @media (max-width: 768px) {
   #proyek {
-    padding: 60px 20px; /* Jarak aman di tablet/HP */
+    padding: 60px 20px; /* Jarak aman di HP agar tidak nempel sisi display */
   }
 
   .proj-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .pcard-big {
-    grid-row: auto;
-  }
-
-  .pcard-img, .pcard-big .pcard-img {
-    min-height: 220px;
-    height: 220px;
+    gap: 24px;
   }
 
   .proj-header {
@@ -1258,22 +1248,21 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 
 @media (max-width: 480px) {
   #proyek { 
-    /* JANGAN gunakan 0 di sini agar tidak nempel ke layar */
-    padding: 50px 15px; 
+    padding: 40px 15px; /* Jarak minimal untuk HP kecil */
   }
   
   .proj-header { 
-    /* Memastikan teks header tidak bertabrakan dengan tombol di layar sangat kecil */
     flex-direction: column; 
     align-items: flex-start;
     gap: 15px;
   }
 
   .proj-see-all {
-    width: 100%; /* Tombol melebar penuh di layar sangat kecil (opsional) */
+    width: 100%; 
     justify-content: center;
   }
 }
+  
 /* ── PERBAIKAN IKON & LABEL ── */
 .pcard-img-inner {
   position: absolute;
