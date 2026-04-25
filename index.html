@@ -1167,25 +1167,23 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 /* ── PROJECTS SECTION ── */
 #proyek { 
   background: var(--bg); 
-  /* PERBAIKAN: Gunakan padding yang fleksibel (bukan 20% yang terlalu sempit di desktop) */
   padding: 80px 5%; 
   position: relative; 
-  /* Jaga agar konten tetap di tengah pada monitor besar */
   max-width: 1400px;
   margin: 0 auto;
-  /* KUNCI: Mencegah elemen meluber akibat padding */
   box-sizing: border-box; 
 }
 
-/* GRID SYSTEM */
+/* GRID SYSTEM - Perbaikan agar kartu sejajar tinggi (Stretch) */
 .proj-grid {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: 24px;
-  align-items: start;
+  /* KUNCI: Memastikan semua kartu dalam satu baris punya tinggi yang sama */
+  align-items: stretch; 
 }
 
-/* HEADER & TOMBOL ORANGE */
+/* HEADER tetap sama */
 .proj-header {
   display: flex;
   justify-content: space-between;
@@ -1194,23 +1192,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   width: 100%;
 }
 
-.proj-see-all {
-  display: inline-flex;
-  align-items: center;
-  padding: 10px 24px;
-  background: linear-gradient(135deg, #ff9800, #f57c00);
-  color: #ffffff !important;
-  text-decoration: none;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
-  /* Tambahan: Mencegah tombol gepeng saat layar menyempit */
-  white-space: nowrap;
-}
-
-/* KARTU PROYEK */
+/* KARTU PROYEK - Perbaikan struktur internal */
 .pcard {
   background: var(--bg2);
   border-radius: 20px;
@@ -1220,20 +1202,46 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   flex-direction: column;
   transition: transform 0.3s ease, border-color 0.3s ease;
   height: 100%; 
+  position: relative;
 }
 
-/* ... (Style Media Container & Video Tetap Sama) ... */
+/* Mencegah gambar merusak layout */
+.pcard-img {
+  width: 100%;
+  position: relative;
+  background: #000;
+  overflow: hidden;
+  /* Gunakan aspect-ratio agar semua kartu punya tinggi gambar yang konsisten */
+  aspect-ratio: 16 / 10; 
+  flex-shrink: 0; /* Gambar tidak akan mengecil jika teks terlalu panjang */
+}
+
+.pcard-big .pcard-img {
+  /* Khusus kartu besar, biarkan lebih tinggi atau gunakan rasio berbeda */
+  aspect-ratio: 16 / 13; 
+}
+
+/* Tambahkan pembungkus konten teks jika ada */
+.pcard-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Mengisi sisa ruang agar footer kartu sejajar di bawah */
+}
+
+.pcard-big {
+  grid-row: span 2;
+}
 
 /* ── RESPONSIVE OPTIMIZATION ── */
 @media (max-width: 768px) {
   #proyek {
-    /* Konsisten memberikan jarak dari tepi layar HP */
     padding: 60px 20px; 
   }
 
   .proj-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
+    grid-template-columns: 1fr; /* Kartu jadi tumpuk, tidak berantakan lagi */
+    gap: 24px;
   }
 
   .pcard-big {
@@ -1241,32 +1249,9 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   }
 
   .pcard-img, .pcard-big .pcard-img {
-    min-height: 220px;
-    height: 220px;
-  }
-
-  .proj-header {
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  #proyek { 
-    /* Jarak minimal 15px agar tidak nempel bezel display */
-    padding: 50px 15px; 
-  }
-  
-  .proj-header { 
-    flex-direction: column; 
-    align-items: flex-start;
-    gap: 15px;
-  }
-
-  .proj-see-all {
-    width: 100%; 
-    justify-content: center;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    min-height: unset; /* Hapus min-height statis agar fleksibel */
   }
 }
   
