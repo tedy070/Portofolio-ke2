@@ -1167,13 +1167,14 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 /* ── PROJECTS SECTION ── */
 #proyek { 
   background: var(--bg); 
-  /* PERBAIKAN: Gunakan padding yang lebih fleksibel untuk desktop */
+  /* PERBAIKAN: Gunakan padding yang fleksibel (bukan 20% yang terlalu sempit di desktop) */
   padding: 80px 5%; 
   position: relative; 
-  /* Tambahkan max-width agar konten tidak terlalu lebar di monitor ultra-wide */
-  max-width: 1200px; 
+  /* Jaga agar konten tetap di tengah pada monitor besar */
+  max-width: 1400px;
   margin: 0 auto;
-  box-sizing: border-box;
+  /* KUNCI: Mencegah elemen meluber akibat padding */
+  box-sizing: border-box; 
 }
 
 /* GRID SYSTEM */
@@ -1184,7 +1185,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   align-items: start;
 }
 
-/* HEADER & TOMBOL */
+/* HEADER & TOMBOL ORANGE */
 .proj-header {
   display: flex;
   justify-content: space-between;
@@ -1205,7 +1206,8 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   font-size: 0.9rem;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
-  white-space: nowrap; /* Mencegah teks tombol terpotong */
+  /* Tambahan: Mencegah tombol gepeng saat layar menyempit */
+  white-space: nowrap;
 }
 
 /* KARTU PROYEK */
@@ -1220,23 +1222,27 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   height: 100%; 
 }
 
-/* ... (Bagian pcard-img tetap sama) ... */
+/* ... (Style Media Container & Video Tetap Sama) ... */
 
 /* ── RESPONSIVE OPTIMIZATION ── */
-@media (max-width: 1024px) {
-  #proyek {
-    padding: 80px 30px; /* Jarak sedang untuk tablet/laptop kecil */
-  }
-}
-
 @media (max-width: 768px) {
   #proyek {
-    padding: 60px 20px; /* Jarak aman di HP agar tidak nempel sisi display */
+    /* Konsisten memberikan jarak dari tepi layar HP */
+    padding: 60px 20px; 
   }
 
   .proj-grid {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 32px;
+  }
+
+  .pcard-big {
+    grid-row: auto;
+  }
+
+  .pcard-img, .pcard-big .pcard-img {
+    min-height: 220px;
+    height: 220px;
   }
 
   .proj-header {
@@ -1248,7 +1254,8 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 
 @media (max-width: 480px) {
   #proyek { 
-    padding: 40px 15px; /* Jarak minimal untuk HP kecil */
+    /* Jarak minimal 15px agar tidak nempel bezel display */
+    padding: 50px 15px; 
   }
   
   .proj-header { 
