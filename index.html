@@ -522,10 +522,14 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   margin-bottom:36px;
   animation:fadeInUp .6s .4s both;
 }
-.hero-btns{
-  display:flex;align-items:center;gap:16px;
-  margin-bottom:56px;
-  animation:fadeInUp .6s .45s both;
+.hero-btns {
+  display: flex;
+  align-items: center;        /* Menjaga tombol tetap sejajar secara vertikal */
+  justify-content: flex-start; /* KUNCI: Memaksa semua elemen berderet ke kiri */
+  gap: 16px;
+  margin-bottom: 56px;
+  animation: fadeInUp .6s .45s both;
+  width: 100%;                /* Memastikan container mengambil ruang penuh */
 }
 .btn-primary{
   padding:13px 28px;border-radius:10px;
@@ -806,7 +810,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
     scale: 0.85;
     position: absolute !important;
     bottom: -60px !important; /* Posisi relatif terhadap hero-card */
-    right: -10px !important;
+    right: 60px !important;
     z-index: 10;
   }
 } /* Penutup Media Query yang benar */
@@ -1435,67 +1439,91 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 .btn-submit:hover{transform:translateY(-1px);box-shadow:0 8px 24px color-mix(in srgb,var(--accent) 35%,transparent);}
 .btn-submit svg{width:14px;height:14px;}
 
-/* ── CONTACT (DESKTOP OPTIMIZED) ── */
+/* ── CONTACT ── */
 #kontak {
   background: var(--bg);
-  /* Gunakan padding yang konsisten dan pastikan section memenuhi lebar */
+  /* Menghapus padding samping agar margin auto bekerja sempurna menengahkan konten */
   padding: clamp(60px, 8vw, 120px) 0; 
   display: flex;
-  justify-content: center;
+  justify-content: center; 
   width: 100%;
 }
 
 .contact-layout {
   display: grid;
-  /* KUNCI: Gunakan 1fr agar kolom membagi sisa ruang secara adil */
-  grid-template-columns: 1fr 1.2fr; 
-  gap: 48px;
-  /* KUNCI: Atur lebar maksimal kontainer agar rapi di monitor besar */
-  width: 90%;
-  max-width: 1200px; 
-  margin: 0 auto;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 36px;
+  margin-top: 48px;
   align-items: start;
+
+  /* --- PERBAIKAN POSISI --- */
+  width: 90%;             /* Mengambil lebar 90% dari layar */
+  max-width: 1100px;      /* Batas maksimal agar tidak terlalu lebar di monitor besar */
+  margin-left: auto;      /* Otomatis menyeimbangkan jarak kiri */
+  margin-right: auto;     /* Otomatis menyeimbangkan jarak kanan */
 }
 
 .contact-left {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
+  display: flex; 
+  flex-direction: column; 
+  gap: 12px;
+  width: 100%; /* Memastikan kolom kiri mengisi ruang grid */
 }
 
 .ccard {
   background: var(--bg2);
   border: 1px solid var(--border);
   border-radius: var(--r2);
-  padding: 20px 24px;
+  padding: 18px 20px;
   display: flex;
   align-items: center;
   gap: 14px;
-  width: 100%; /* Pastikan kartu memenuhi kolom kiri */
-  box-sizing: border-box;
-  transition: all .3s ease;
+  transition: border-color .3s;
+  width: 100%;            /* Agar kartu memenuhi lebar kolom */
+  box-sizing: border-box; /* Mencegah kartu 'meledak' keluar kolom karena padding */
 }
 
-/* Sisi Kanan: Formulir */
+/* Sisa kode di bawah ini tetap sama seperti milik Anda */
+.ccard-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: color-mix(in srgb, var(--c-kontak) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--c-kontak) 18%, transparent);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.ccard-icon svg { width: 18px; height: 18px; color: var(--c-kontak); }
+.ccard-label { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px; }
+.ccard-val { font-size: 14px; font-weight: 500; color: var(--text); }
+.ccard-copy {
+  margin-left: auto; width: 30px; height: 30px; border-radius: 7px;
+  background: var(--bg3); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all .2s; flex-shrink: 0;
+}
+.ccard-copy:hover { border-color: var(--accent); color: var(--accent); }
+.ccard-copy svg { width: 13px; height: 13px; color: var(--text2); }
+
 .contact-form {
   background: var(--bg2);
   border: 1px solid var(--border);
   border-radius: var(--r3);
-  padding: 40px; /* Padding lebih luas untuk desktop */
-  width: 100%;
-  box-sizing: border-box;
+  padding: 28px;
   position: relative;
   overflow: hidden;
-}
-
-/* Tambahan: Pastikan input dan textarea juga penuh */
-.contact-form input, 
-.contact-form textarea, 
-.fselect {
-  width: 100%;
+  width: 100%;            /* Agar form memenuhi lebar kolom */
   box-sizing: border-box;
 }
+.contact-form::before { content: ''; position: absolute; top: 0; right: 0; width: 180px; height: 180px; background: radial-gradient(circle, color-mix(in srgb, var(--c-kontak) 7%, transparent), transparent 70%); pointer-events: none; }
+.form-title { font-family: var(--serif); font-size: 22px; color: var(--text); margin-bottom: 4px; }
+.form-sub { font-size: 13px; color: var(--text2); margin-bottom: 22px; }
+.fselect {
+  width: 100%; padding: 10px 12px;
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: var(--r); color: var(--text);
+  font-family: var(--sans); font-size: 13px;
+  outline: none; cursor: pointer; appearance: none;
+  transition: border-color .2s; margin-bottom: 10px;
+}
+.fselect:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 12%, transparent); }
 
   @media (max-width: 768px) {
   /* 1. Ubah Layout menjadi satu kolom */
