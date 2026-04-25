@@ -263,510 +263,382 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 .grain{position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 
 /* ══════════════════════════
-    NAV — Stabil & Profesional
+   NAV — Stabil & Profesional
 ══════════════════════════ */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
-  height: 60px;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 clamp(20px, 5%, 80px);
-  background: rgba(6, 8, 15, .85);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border-bottom: 1px solid var(--border);
-  transition: background .3s, box-shadow .3s;
-  will-change: transform;
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,5%,80px);
+  background:rgba(6,8,15,.85);
+  backdrop-filter:blur(16px) saturate(180%);
+  -webkit-backdrop-filter:blur(16px) saturate(180%);
+  border-bottom:1px solid var(--border);
+  transition:background .3s,box-shadow .3s;
+  will-change:transform;
 }
+nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 
-nav.scrolled { background: rgba(6, 8, 15, .95); box-shadow: 0 1px 40px rgba(0,0,0,.5); }
-
-.nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-.nav-brand-mark {
-  width: 34px; height: 34px; border-radius: 9px;
-  background: linear-gradient(135deg, var(--c-hero), var(--c-edukasi));
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+.nav-brand-mark{
+  width:34px;height:34px;border-radius:9px;
+  background:linear-gradient(135deg,var(--c-hero),var(--c-edukasi));
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
 }
-.nav-brand-mark svg { width: 18px; height: 18px; color: #fff; }
-.nav-brand-text { font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -.3px; }
-.nav-brand-text span { color: var(--c-hero); }
+.nav-brand-mark svg{width:18px;height:18px;color:#fff;}
+.nav-brand-text{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--text);letter-spacing:-.3px;}
+.nav-brand-text span{color:var(--c-hero);}
 
-.nav-center {
-  display: flex; align-items: center; gap: 2px;
-  position: absolute; left: 50%; transform: translateX(-50%);
+.nav-center{
+  display:flex;align-items:center;gap:2px;
+  position:absolute;left:50%;transform:translateX(-50%);
 }
-
-.nav-link {
-  padding: 6px 14px; border-radius: 30px;
-  font-size: 13px; font-weight: 500; color: var(--text2);
-  text-decoration: none; cursor: pointer;
-  transition: color .2s, background .2s;
-  border: 1px solid transparent;
-  white-space: nowrap;
+.nav-link{
+  padding:6px 14px;border-radius:30px;
+  font-size:13px;font-weight:500;color:var(--text2);
+  text-decoration:none;cursor:pointer;
+  transition:color .2s,background .2s;
+  border:1px solid transparent;
+  white-space:nowrap;
 }
+.nav-link:hover{color:var(--text);background:rgba(255,255,255,.05);}
+.nav-link.active{color:var(--c-hero);background:color-mix(in srgb,var(--c-hero) 10%,transparent);border-color:color-mix(in srgb,var(--c-hero) 25%,transparent);}
 
-.nav-link:hover { color: var(--text); background: rgba(255, 255, 255, .05); }
-.nav-link.active { color: var(--c-hero); background: color-mix(in srgb, var(--c-hero) 10%, transparent); border-color: color-mix(in srgb, var(--c-hero) 25%, transparent); }
-
-.nav-end { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-
-.nav-icon-btn {
-  width: 36px; height: 36px; border-radius: 8px;
-  background: var(--bg3); border: 1px solid var(--border2);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: border-color .2s, background .2s;
-  color: var(--text2);
+.nav-end{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.nav-icon-btn{
+  width:36px;height:36px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:border-color .2s,background .2s;
+  color:var(--text2);
 }
-
-.nav-icon-btn:hover { border-color: var(--border3); background: var(--bg4); color: var(--text); }
-.nav-icon-btn svg { width: 16px; height: 16px; }
-
-.btn-hire {
-  padding: 8px 18px; border-radius: 8px;
-  background: linear-gradient(135deg, var(--c-hero), var(--c-edukasi)); color: var(--bg);
-  font-family: var(--sans); font-size: 13px; font-weight: 600;
-  border: none; cursor: pointer; text-decoration: none;
-  transition: background .2s, transform .2s, box-shadow .2s;
-  display: flex; align-items: center; gap: 6px;
-  white-space: nowrap;
+.nav-icon-btn:hover{border-color:var(--border3);background:var(--bg4);color:var(--text);}
+.nav-icon-btn svg{width:16px;height:16px;}
+.btn-hire{
+  padding:8px 18px;border-radius:8px;
+  background:linear-gradient(135deg,var(--c-hero),var(--c-edukasi));color:var(--bg);
+  font-family:var(--sans);font-size:13px;font-weight:600;
+  border:none;cursor:pointer;text-decoration:none;
+  transition:background .2s,transform .2s,box-shadow .2s;
+  display:flex;align-items:center;gap:6px;
+  white-space:nowrap;
 }
-
-/* ── RESPONSIVE OPTIMIZATION ── */
-@media (max-width: 768px) {
-  /* 1. Navbar Utama Atas */
-  #navbar {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: flex-start !important;
-    position: fixed !important;
-    top: 5px; left: 5px; right: 5px;
-    width: auto !important;
-    padding: 10px 20px 80px 20px !important; 
-    height: auto !important;
-    border-radius: 20px;
-    background: color-mix(in srgb, var(--accent) 15%, transparent);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    z-index: 1000;
-    border: 1px solid var(--border);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-  }
-
-  /* 2. Nav-Center (Menu Kapsul Bawah) */
-  .nav-center {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    position: fixed !important;
-    bottom: 20px; 
-    left: 50%;
-    transform: translateX(-50%);
-    top: auto !important; /* Mencegah kebocoran posisi absolute desktop */
-    
-    background: rgba(15, 15, 20, 0.8) !important;
-    backdrop-filter: blur(20px) saturate(150%);
-    -webkit-backdrop-filter: blur(20px) saturate(150%);
-    padding: 6px 10px;
-    border-radius: 100px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    
-    width: auto;
-    min-width: 280px;
-    max-width: 90%;
-    gap: 4px;
-    z-index: 9999; 
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-
-  .nav-center::-webkit-scrollbar { display: none; }
-
-  .nav-center .nav-link {
-    font-size: 11px;
-    padding: 10px 14px;
-    color: rgba(255, 255, 255, 0.7);
-    text-decoration: none;
-    display: inline-block;
-  }
-
-  /* 3. Nav-End Mobile */
-  .nav-end {
-    display: flex !important;
-    gap: 12px;
-    position: relative;
-    z-index: 1001;
-  }
-} /* Tutup Media Query yang Benar */
-
+  
 /* Styling Tombol Bahasa */
 .btn-lang {
-  padding: 8px 16px; border-radius: 30px;
-  background: var(--bg3); border: 1px solid var(--border2);
-  color: var(--text); font-family: var(--sans); font-size: 13px; font-weight: 600;
-  cursor: pointer; display: flex; align-items: center; gap: 8px;
-  transition: all .25s; min-width: 80px; justify-content: center;
-}
-
-.btn-lang:hover { background: var(--bg4); border-color: var(--accent); transform: translateY(-1px); }
-.btn-lang svg { width: 16px; height: 16px; color: var(--accent); }
-.lang-text { letter-spacing: 1px; color: var(--text); text-transform: uppercase; }
-  
-/* ── HERO ── */
-#beranda {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 100px 5% 60px;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-glow {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  filter: blur(120px);
-  pointer-events: none;
-}
-
-.hero-glow-1 { top: -100px; left: -100px; background: radial-gradient(circle, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%); }
-.hero-glow-2 { bottom: -100px; right: 10%; background: radial-gradient(circle, color-mix(in srgb, var(--accent2) 16%, transparent), transparent 70%); }
-
-.hero-content {
-  flex: 1;
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 16px;
+  padding: 8px 16px;
   border-radius: 30px;
-  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-  background: color-mix(in srgb, var(--accent) 10%, transparent);
-  font-size: 12px;
-  color: var(--text2);
-  margin-bottom: 28px;
-  animation: fadeInUp .6s .1s both;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Jarak antara icon globe dan teks */
+  transition: all .25s;
+  min-width: 80px; /* Menjaga lebar tombol tetap konsisten saat teks berubah */
+  justify-content: center;
 }
 
-.hero-badge::before {
-  content: '';
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #10b981;
-  box-shadow: 0 0 8px #10b981;
+.btn-lang:hover {
+  background: var(--bg4);
+  border-color: var(--accent);
+  transform: translateY(-1px);
 }
+
+.btn-lang svg {
+  width: 16px;
+  height: 16px;
+  color: var(--accent);
+}
+
+/* Lang text sekarang hanya berisi satu label */
+.lang-text {
+  letter-spacing: 1px;
+  color: var(--text); /* Langsung gunakan warna teks utama */
+  text-transform: uppercase;
+}
+
+/* ── HERO ── */
+#beranda{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+  padding:100px 5% 60px;
+  position:relative;overflow:hidden;
+}
+.hero-glow{
+  position:absolute;
+  width:600px;height:600px;
+  border-radius:50%;
+  filter:blur(120px);
+  pointer-events:none;
+}
+.hero-glow-1{top:-100px;left:-100px;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 70%);}
+.hero-glow-2{bottom:-100px;right:10%;background:radial-gradient(circle,color-mix(in srgb,var(--accent2) 16%,transparent),transparent 70%);}
+.hero-content{flex:1;position:relative;z-index:2;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 16px;border-radius:30px;
+  border:1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  background:color-mix(in srgb, var(--accent) 10%, transparent);
+  font-size:12px;color:var(--text2);
+  margin-bottom:28px;
+  animation:fadeInUp .6s .1s both;
+}
+.hero-badge::before{
+  content:'';width:7px;height:7px;
+  border-radius:50%;background:#10b981;
+  box-shadow:0 0 8px #10b981;
+}
+/* Opsi Serif Premium */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@500&display=swap');
 
 .hero-h1 {
+  /* Nama diperbesar secara signifikan */
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(40px, 6vw, 72px);
+  font-size: clamp(40px, 6vw, 72px); /* Ukuran lebih masif dan berani */
   font-weight: 700;
-  line-height: 0.95;
+  line-height: 0.95; /* Line height diperapat agar terlihat menyatu */
   letter-spacing: -0.02em;
   margin-bottom: 12px;
+  
+  /* Gradasi halus untuk kesan mewah */
   background: linear-gradient(to right, var(--text) 70%, var(--accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  
   animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .hero-h1 span {
-  font-style: italic;
-  font-weight: 400;
+  font-style: italic; /* Gaya Editorial klasik */
+  font-weight: 400;   /* Sedikit lebih tipis agar tidak terlalu berat */
   color: var(--accent);
   -webkit-text-fill-color: var(--accent);
 }
 
 .hero-h1-grad {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  /* Baris kedua dibuat lebih kecil dari nama untuk keseimbangan */
+  font-family: 'Plus Jakarta Sans', sans-serif; /* Kontras Serif & Sans-serif */
   font-size: clamp(24px, 3.5vw, 38px); 
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.5px;
+  
+  /* Warna aksen yang konsisten */
   background: linear-gradient(135deg, var(--accent), var(--accent2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-top: -5px;
+  
+  margin-top: -5px; /* Menarik baris ini sedikit lebih dekat ke nama */
   margin-bottom: 32px;
   animation: fadeInUp 0.8s 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
-
-.hero-typed-wrap {
-  font-size: 18px;
-  color: var(--text2);
-  margin-bottom: 16px;
-  animation: fadeInUp .6s .35s both;
+.hero-typed-wrap{
+  font-size:18px;color:var(--text2);
+  margin-bottom:16px;
+  animation:fadeInUp .6s .35s both;
 }
-
-.hero-typed-wrap strong { color: var(--text); font-weight: 600; }
-
-.hero-typed {
-  color: var(--accent);
-  font-weight: 700;
-  border-right: 2px solid var(--accent);
-  padding-right: 3px;
-  animation: blink .7s step-end infinite;
+.hero-typed-wrap strong{color:var(--text);font-weight:600;}
+.hero-typed{
+  color:var(--accent);font-weight:700;
+  border-right:2px solid var(--accent);
+  padding-right:3px;
+  animation:blink .7s step-end infinite;
 }
-
-@keyframes blink { 0%, 100% { border-color: var(--accent); } 50% { border-color: transparent; } }
-
-.hero-desc {
-  font-size: 15px;
-  color: var(--text2);
-  line-height: 1.7;
-  max-width: 480px;
-  margin-bottom: 36px;
-  margin-left: 0;
-  animation: fadeInUp .6s .4s both;
+@keyframes blink{0%,100%{border-color:var(--accent);}50%{border-color:transparent;}}
+.hero-desc{
+  font-size:15px;color:var(--text2);
+  line-height:1.7;max-width:480px;
+  margin-bottom:36px;
+  animation:fadeInUp .6s .4s both;
 }
-
-.hero-btns {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 16px;
-  margin-bottom: 56px;
-  animation: fadeInUp .6s .45s both;
-  width: 100%;
+.hero-btns{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:56px;
+  animation:fadeInUp .6s .45s both;
 }
-
-.btn-primary {
-  padding: 13px 28px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  color: var(--bg);
-  font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all .25s;
-  text-decoration: none;
+.btn-primary{
+  padding:13px 28px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--bg);
+  font-family:var(--sans);font-size:14px;font-weight:700;
+  border:none;cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:all .25s;text-decoration:none;
 }
-
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px color-mix(in srgb, var(--accent) 40%, transparent);
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 32px color-mix(in srgb,var(--accent) 40%,transparent);}
+.btn-secondary{
+  padding:13px 24px;border-radius:10px;
+  background:transparent;color:var(--text);
+  font-family:var(--sans);font-size:14px;font-weight:600;
+  border:1px solid var(--border2);cursor:none;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:all .25s;text-decoration:none;
 }
-
-.btn-secondary {
-  padding: 13px 24px;
-  border-radius: 10px;
-  background: transparent;
-  color: var(--text);
-  font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 600;
-  border: 1px solid var(--border2);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all .25s;
-  text-decoration: none;
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);}
+.hero-stats{
+  display:flex;gap:40px;
+  animation:fadeInUp .6s .5s both;
 }
+.stat-item{display:flex;flex-direction:column;gap:2px;}
+.stat-num{font-size:32px;font-weight:800;color:var(--text);letter-spacing:-1px;}
+.stat-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:1.5px;}
 
-.btn-secondary:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.hero-stats {
-  display: flex;
-  justify-content: flex-start;
-  gap: 40px;
-  animation: fadeInUp .6s .5s both;
-}
-
-/* ── HERO CARD ── */
-.hero-card {
+/* ── HERO VISUAL (CONTAINER UTAMA) ── */
+.hero-visual {
+  /* Posisi relatif agar child absolute bisa anchor ke sini */
   position: relative;
-  padding: 0 !important; 
-  overflow: visible !important;
+  /* Lebar tetap agar kolom kanan konsisten */
+  width: 380px;
+  flex-shrink: 0;
+  /* Beri ruang cukup di kiri bawah untuk code card yang melayang keluar */
+  padding: 0 0 80px 60px;
+  z-index: 10;
+  /* Jangan flex — biarkan hero-photo & hero-code diatur manual */
 }
 
-.hero-card-img-wrapper {
+/* ── PHOTO CONTAINER ── */
+.hero-photo {
   position: relative;
   width: 100%;
   height: 460px;
-  border-radius: 20px;
+  border-radius: 24px;
   overflow: hidden;
-  z-index: 1;
+  box-shadow:
+    0 0 0 1px var(--border2),
+    0 32px 64px rgba(0,0,0,.55),
+    0 0 80px color-mix(in srgb, var(--accent) 18%, transparent);
+  z-index: 2;
 }
 
-.hero-card-img {
+.hero-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
+  filter: saturate(1.05) brightness(0.92);
+  transition: transform 0.6s cubic-bezier(0.2,0.8,0.2,1), filter 0.6s ease;
   display: block;
-  transition: transform 0.5s ease;
 }
 
-.hero-card:hover .hero-card-img {
-  transform: scale(1.03);
+.hero-photo:hover .hero-img {
+  transform: scale(1.04);
+  filter: saturate(1.1) brightness(0.95);
 }
 
-/* ── SHIMMER & GLOW ── */
-.card-cursor-glow {
+/* Border glow tipis di atas foto */
+.hero-photo-border {
   position: absolute;
-  inset: -1px;
+  inset: 0;
+  border-radius: 24px;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Glow ambient di belakang foto */
+.hero-photo-glow {
+  position: absolute;
+  /* Di belakang foto, sedikit lebih besar */
+  top: -30px;
+  left: -10px;
+  right: -10px;
+  bottom: -30px;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    color-mix(in srgb, var(--accent) 20%, transparent) 0%,
+    transparent 70%
+  );
+  filter: blur(40px);
   z-index: 1;
   pointer-events: none;
-  border-radius: inherit;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  background: radial-gradient(
-    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(79, 195, 161, 0.15) 0%,
-    rgba(124, 106, 247, 0.05) 40%,
-    transparent 80%
-  );
 }
 
-.hero-card::before {
-  content: '';
-  position: absolute;
-  inset: -1.5px;
-  z-index: 3;
-  border-radius: inherit;
-  padding: 2px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  background: radial-gradient(
-    300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(79, 195, 161, 0.8) 0%,
-    rgba(124, 106, 247, 0.4) 50%,
-    transparent 100%
-  );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-}
-
-.hero-card:hover .card-cursor-glow,
-.hero-card:hover::before,
-.hero-card.active-glow .card-cursor-glow,
-.hero-card.active-glow::before {
-  opacity: 1;
-}
-
-/* ── FLOATING CODE BLOCK (Desktop) ── */
+/* ── FLOATING CODE BLOCK ── */
 .hero-code {
   position: absolute;
-  bottom: 30px;
-  left: -210px;
-  width: 280px;
-  background: rgba(26, 31, 46, 0.85);
-  border: 1px solid rgba(124, 58, 237, 0.4);
+  /* Kiri bawah foto — keluar sedikit ke kiri */
+  bottom: 20px;
+  left: -10px;
+  width: 268px;
+  background: rgba(15, 20, 35, 0.92);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
-  z-index: 20;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  animation: floatCode 4s ease-in-out infinite;
-  pointer-events: none;
-  transform-origin: center; 
+  box-shadow:
+    0 20px 48px rgba(0,0,0,.65),
+    0 0 0 1px rgba(255,255,255,.05),
+    0 0 24px color-mix(in srgb, var(--accent) 12%, transparent);
+  z-index: 10;
+  backdrop-filter: blur(16px);
+  animation: floatCode 4.5s ease-in-out infinite;
 }
 
 @keyframes floatCode {
-  0%, 100% { transform: translateY(0) rotate(-1deg); }
-  50% { transform: translateY(-15px) rotate(1deg); }
+  0%, 100% { transform: translateY(0) rotate(-0.8deg); }
+  50%       { transform: translateY(-10px) rotate(0.8deg); }
 }
 
-/* Terminal Styling */
-.code-bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: #151b2d; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-.code-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
-.code-dot.r { background: #ff5f56; }
-.code-dot.y { background: #ffbd2e; }
-.code-dot.g { background: #27c93f; }
-.code-bar-title { font-size: 11px; color: #94a3b8; margin-left: 4px; letter-spacing: 0.5px; }
-.code-body { padding: 18px; font-size: 13px; line-height: 1.6; color: #e2e8f0; font-family: 'Fira Code', monospace; }
-.c-const { color: #c792ea; } .c-var { color: #82aaff; } .c-eq { color: #89ddff; }
-.c-key { color: #f07178; } .c-val { color: #c3e88d; } .c-brace { color: #ffcb6b; }
-.c-cursor { display: inline-block; width: 6px; height: 15px; background: #7c3aed; margin-left: 4px; animation: blink 0.8s step-end infinite; vertical-align: middle; }
+/* Responsif */
+@media (max-width: 992px) {
+  .hero-visual {
+    width: 320px;
+    padding: 0 0 70px 40px;
+  }
+  .hero-photo { height: 380px; }
+  .hero-code  { width: 230px; left: -6px; bottom: 12px; }
+}
 
-/* ── MEDIA QUERIES (Mobile) ── */
 @media (max-width: 768px) {
-  #beranda {
-    display: flex !important;
-    flex-direction: column !important; 
-    align-items: center !important;
-    padding-top: 150px !important; 
-    height: auto !important;
-  }
-
-  .hero-content {
-    width: 100% !important;
-    align-items: flex-start !important;
-    text-align: left !important;
-    padding: 0 20px;
-  }
-
-  .hero-btns {
-    justify-content: flex-start !important;
-    flex-direction: row !important;
-    margin-top: 20px;
-  }
-
-  .hero-btns a {
-    flex: 0 1 auto;
-    min-width: 140px; 
-    font-size: 0.8rem;
-  }
-
-  .hero-right {
-    width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-    margin-top: 40px;
-    padding-bottom: 100px;
-    position: relative;
-  }
-
-  .hero-card {
-    width: 280px !important;
+  .hero-visual {
+    width: 100%;
+    max-width: 340px;
+    padding: 0 0 80px 0;
     margin: 0 auto;
   }
-
-  .hero-card-img-wrapper { height: 350px !important; }
-
-  .hero-code {
-    display: block !important;
-    position: absolute !important;
-    left: 50% !important;
-    right: auto !important;
-    bottom: -50px !important; 
-    animation: floatCodeMobile 4s ease-in-out infinite !important;
-    z-index: 10;
-  }
-} /* <--- PENUTUP MEDIA QUERY DISINI (SUDAH DIPERBAIKI) */
-
-/* ── KEYFRAMES (DI LUAR MEDIA QUERY AGAR TIDAK BOCOR) ── */
-@keyframes floatCodeMobile {
-  0%, 100% { 
-    transform: translateX(-50%) scale(0.85) translateY(0) rotate(-1deg); 
-  }
-  50% { 
-    transform: translateX(-50%) scale(0.85) translateY(-10px) rotate(1deg); 
-  }
+  .hero-photo { height: 360px; }
+  .hero-code  { width: 220px; left: -8px; bottom: 10px; font-size: 11px; }
 }
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+.code-bar{
+  display:flex;align-items:center;gap:6px;
+  padding:10px 14px;
+  background:#151b2d;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.code-dot{width:10px;height:10px;border-radius:50%;}
+.code-dot.r{background:#ff5f56;}
+.code-dot.y{background:#ffbd2e;}
+.code-dot.g{background:#27c93f;}
+.code-bar-title{font-size:11px;color:var(--text3);margin-left:6px;font-family:var(--mono);}
+.code-body{
+  padding:16px;
+  font-family:var(--mono);font-size:12px;
+  line-height:1.8;
+}
+.c-const{color:#c792ea;}
+.c-var{color:#82aaff;}
+.c-eq{color:var(--text2);}
+.c-brace{color:var(--text);}
+.c-key{color:#f07178;}
+.c-val{color:#c3e88d;}
+.c-cursor{
+  display:inline-block;width:8px;height:14px;
+  background:var(--accent);
+  animation:blink .7s step-end infinite;
+  vertical-align:middle;
+}
+
 /* ── SECTION COMMON ── */
 .section{
   padding:100px 5%;
@@ -820,61 +692,6 @@ nav.scrolled { background: rgba(6, 8, 15, .95); box-shadow: 0 1px 40px rgba(0,0,
 }
 .stack-chip svg{width:14px;height:14px;}
 
-  @media (max-width: 768px) {
-  /* Pastikan acard memiliki sifat yang sama dengan pcard neon */
-  .acard.pcard {
-    position: relative;
-    background: rgba(15, 15, 15, 0.4) !important;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    border-radius: 20px;
-    overflow: visible !important; 
-    padding: 24px;
-    transition: transform 0.3s ease, border-color 0.5s ease;
-    /* Optimasi performa animasi di HP */
-    will-change: transform, border-color;
-  }
-
-  /* Efek Glow saat Aktif */
-  .acard.pcard.active-glow {
-    border-color: rgba(79, 195, 161, 0.4) !important;
-    box-shadow: 0 0 20px rgba(79, 195, 161, 0.15); /* Tambahkan pendaran halus ke luar */
-    animation: neonPulse 2s infinite alternate ease-in-out;
-  }
-
-  /* Efek Shimmer Garis Neon Dalam */
-  .acard.pcard::before {
-    content: '';
-    position: absolute;
-    inset: -1.2px;
-    border-radius: inherit;
-    padding: 1.5px;
-    /* Tips: Gunakan 50% jika tidak memakai JavaScript agar cahaya ada di tengah */
-    background: radial-gradient(
-      180px circle at 85% var(--mouse-y, 50%), 
-      rgba(79, 195, 161, 0.9) 0%, 
-      transparent 100%
-    );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    z-index: 2;
-    transition: opacity 0.5s ease;
-  }
-
-  .acard.pcard.active-glow::before {
-    opacity: 1;
-  }
-
-  /* Pastikan Anda sudah mendefinisikan animasi neonPulse */
-  @keyframes neonPulse {
-    from { box-shadow: 0 0 10px rgba(79, 195, 161, 0.1); }
-    to { box-shadow: 0 0 25px rgba(79, 195, 161, 0.3); }
-  }
-}
-  
 /* ── EDUCATION ── */
 #edukasi {
   background: transparent !important; /* Menjamin background hero terlihat */
@@ -998,51 +815,6 @@ nav.scrolled { background: rgba(6, 8, 15, .95); box-shadow: 0 1px 40px rgba(0,0,
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-15px); }
 }
-
-  @media (max-width: 768px) {
-  /* Berikan sifat pcard pada edu-card */
-  .edu-card.pcard {
-    position: relative;
-    background: rgba(15, 15, 15, 0.4) !important;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 20px;
-    overflow: visible !important; /* Agar glow tidak terpotong */
-    padding: 20px;
-    transition: all 0.5s ease;
-  }
-
-  /* Efek Glow Luar saat aktif di-scroll */
-  .edu-card.pcard.active-glow {
-    border-color: rgba(79, 195, 161, 0.4) !important;
-    animation: neonPulse 2s infinite alternate;
-  }
-
-  /* Efek Garis Neon Dalam (Shimmer) */
-  .edu-card.pcard::before {
-    content: '';
-    position: absolute;
-    inset: -1.2px;
-    border-radius: inherit;
-    padding: 1.5px;
-    background: radial-gradient(
-      180px circle at 85% var(--mouse-y, 0%), 
-      rgba(79, 195, 161, 0.8) 0%, 
-      transparent 100%
-    );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    z-index: 2;
-    transition: opacity 0.5s ease;
-  }
-
-  .edu-card.pcard.active-glow::before {
-    opacity: 1;
-  }
-}
   
 /* ── SKILLS ── */
 #skills{background:var(--bg1);padding:clamp(60px,8vw,100px) clamp(20px,5%,80px);}
@@ -1069,258 +841,179 @@ nav.scrolled { background: rgba(6, 8, 15, .95); box-shadow: 0 1px 40px rgba(0,0,
 .skill-bar-wrap{height:2px;background:var(--bg4);border-radius:2px;margin-top:4px;}
 .skill-bar{height:2px;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width 1.2s cubic-bezier(.4,0,.2,1);}
 
-  @media (max-width: 768px) {
-  /* 1. Ubah Grid menjadi 1 atau 2 kolom agar tidak sempit */
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 kolom di HP agar hemat ruang tapi tetap terbaca */
-    gap: 12px;
-    padding: 0 5px;
-  }
+/* ── PROJECTS ── */
+#proyek { background: var(--bg); padding: 100px 5%; }
 
-  /* 2. Sifat neon pada skill-card */
-  .skill-card.pcard {
-    position: relative;
-    background: rgba(15, 15, 15, 0.4) !important;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 16px;
-    overflow: visible !important;
-    padding: 16px; /* Padding lebih kecil agar muat di grid 2 kolom */
-    transition: all 0.5s ease;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  /* 3. Efek Glow Luar saat aktif */
-  .skill-card.pcard.active-glow {
-    border-color: rgba(79, 195, 161, 0.4) !important;
-    box-shadow: 0 0 15px rgba(79, 195, 161, 0.15);
-    animation: neonPulse 2s infinite alternate;
-  }
-
-  /* 4. Garis Neon Dalam (Shimmer) */
-  .skill-card.pcard::before {
-    content: '';
-    position: absolute;
-    inset: -1.2px;
-    border-radius: inherit;
-    padding: 1.2px; /* Sedikit lebih tipis untuk kartu kecil */
-    background: radial-gradient(
-      120px circle at 85% var(--mouse-y, 50%), 
-      rgba(79, 195, 161, 0.8) 0%, 
-      transparent 100%
-    );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    z-index: 2;
-    transition: opacity 0.5s ease;
-  }
-
-  .skill-card.pcard.active-glow::before {
-    opacity: 1;
-  }
-
-  /* 5. Konten tetap di atas */
-  .skill-icon-bg, .skill-name, .skill-desc, .skill-bar-wrap {
-    position: relative;
-    z-index: 5;
-  }
-
-  /* Sesuaikan ukuran icon agar pas di HP */
-  .skill-icon-bg {
-    width: 40px;
-    height: 40px;
-  }
-}
-  
-/* ── PROJECTS SECTION ── */
-#proyek { 
-  background: var(--bg); 
-  padding: 80px 0; 
-  position: relative; 
-}
-
-/* GRID SYSTEM */
-.proj-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr; /* Layout desktop */
-  gap: 24px;
-  align-items: start;
-}
-
-/* HEADER & TOMBOL ORANGE */
+/* Header baris: judul kiri, tombol "lihat semua" kanan */
 .proj-header {
   display: flex;
-  justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 30px;
-  width: 100%;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
 }
-
 .proj-see-all {
   display: inline-flex;
   align-items: center;
-  padding: 10px 24px;
-  background: linear-gradient(135deg, #ff9800, #f57c00);
-  color: #ffffff !important;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text2);
   text-decoration: none;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+  border: 1px solid var(--border2);
+  padding: 7px 14px;
+  border-radius: var(--r);
+  transition: all .2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.proj-see-all:hover { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+.proj-see-all svg { width: 13px; height: 13px; }
+
+/* Grid: kolom kiri (big) + kolom kanan (2 card kecil) */
+.proj-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+  align-items: stretch;
 }
 
-.proj-see-all:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(255, 152, 0, 0.5);
-  filter: brightness(1.1);
+/* Card besar: bentang 2 baris di kolom kiri */
+.pcard-big {
+  grid-column: 1;
+  grid-row: 1 / 3;
 }
 
-/* KARTU PROYEK */
+/* Card dasar */
 .pcard {
   background: var(--bg2);
-  border-radius: 20px;
   border: 1px solid var(--border);
+  border-radius: var(--r3);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, border-color 0.3s ease;
-  height: 100%; /* Agar tinggi kartu seimbang dalam grid */
+  transition: transform .3s, border-color .3s;
+  cursor: pointer;
 }
+.pcard:hover { transform: translateY(-4px); }
 
-.pcard-big {
-  grid-row: span 2;
-}
-
-/* MEDIA CONTAINER (Mencegah Halaman Kosong) */
+/* Media container */
 .pcard-img {
   width: 100%;
   position: relative;
-  background: #000;
+  background: var(--bg3);
   overflow: hidden;
-  /* Kunci: Berikan tinggi minimal agar saat video loading, layout tidak collapse */
-  min-height: 200px; 
+  flex-shrink: 0;
 }
 
-.pcard-big .pcard-img {
-  min-height: 350px;
-}
+/* Tinggi media: big vs small */
+.pcard-big .pcard-img { height: 360px; }
+.pcard:not(.pcard-big) .pcard-img { height: 180px; }
 
-.pcard-video, .pcard-img-src {
+/* Video & img selalu cover */
+.pcard-video,
+.pcard-img-src {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: 100%; 
-  display: block;
-  object-fit: cover; /* Video memenuhi area tanpa merusak rasio */
-  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  transition: transform .5s ease;
 }
+.pcard:hover .pcard-video,
+.pcard:hover .pcard-img-src { transform: scale(1.05); }
 
-/* Hover Effect Media */
-.pcard:hover .pcard-video, 
-.pcard:hover .pcard-img-src {
-  transform: scale(1.05);
-}
-
-/* ── RESPONSIVE OPTIMIZATION (MOBILE) ── */
-@media (max-width: 768px) {
-  .proj-grid {
-    grid-template-columns: 1fr; /* Menjadi satu kolom */
-    gap: 32px;
-  }
-
-  .pcard-big {
-    grid-row: auto; /* Matikan span di mobile */
-  }
-
-  .pcard-img, .pcard-big .pcard-img {
-    min-height: 220px; /* Ukuran pas untuk HP */
-    height: 220px;
-  }
-
-  .proj-header {
-    flex-direction: row; /* Tetap menyamping */
-    align-items: center;
-  }
-
-  .proj-see-all {
-    padding: 8px 18px;
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 480px) {
-  #proyek { padding: 50px 0; }
-  .proj-header { gap: 10px; }
-}
-  
-/* ── PERBAIKAN IKON & LABEL ── */
+/* Label overlay di atas media */
 .pcard-img-inner {
   position: absolute;
   inset: 0;
-  z-index: 5;
+  z-index: 2;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,0.2); /* Gelapkan sedikit media agar label terbaca */
+  align-items: flex-end;
+  padding: 14px;
+  background: linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 50%);
+  pointer-events: none;
 }
-
 .pcard-img-label {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 6px 14px;
-  border-radius: 100px;
   font-size: 12px;
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.1);
+  font-weight: 600;
+  color: rgba(255,255,255,.75);
+  font-family: var(--mono);
+  letter-spacing: .5px;
 }
 
-/* Container Ikon (Sekarang lebih besar agar terlihat) */
+/* Ikon kecil overlay — ukuran benar */
 .pcard-img-icon {
-  width: 44px; 
-  height: 44px;
-  background: rgba(13, 17, 23, 0.7);
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 8px;
+  background: rgba(10,14,24,.7);
   backdrop-filter: blur(8px);
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid var(--border2);
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 3;
+  overflow: hidden;
+  margin-right: 8px;
 }
+.pcard-img-icon svg { width: 16px; height: 16px; color: var(--accent2); flex-shrink: 0; }
+.pcard-icon-file    { width: 16px; height: 16px; object-fit: contain; }
 
-.pcard-img-icon img, 
-.pcard-img-icon svg {
-  width: 22px !important; /* Ukuran ikon di dalam container */
-  height: 22px !important;
-  object-fit: contain;
+/* Body card */
+.pcard-body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
 }
+.pcard-cat  { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); }
+.pcard-name { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -.3px; }
+.pcard-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
+.pcard-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+.pcard-tag  { padding: 3px 9px; border-radius: 6px; background: var(--bg3); border: 1px solid var(--border); font-size: 11px; color: var(--text2); }
 
-/* ── BODY & FOOTER ── */
-.pcard-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
-.pcard-name { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
-.pcard-desc { font-size: 14px; color: var(--text2); line-height: 1.5; margin-bottom: 15px; }
-
-.pcard-link {
+/* Footer card */
+.pcard-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-top: auto;
+  padding-top: 12px;
+}
+.pcard-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-size: 13px;
+  font-weight: 500;
   color: var(--accent);
   text-decoration: none;
-  font-weight: 500;
+  transition: gap .2s;
+}
+.pcard-link:hover { gap: 9px; }
+.pcard-link svg {
+  width: 14px !important;
+  height: 14px !important;
+  flex-shrink: 0;
+  stroke-width: 2px;
 }
 
-.pcard-link svg { width: 16px; height: 16px; transition: transform 0.3s; }
-.pcard-link:hover svg { transform: translateX(3px); }
-
-/* Responsif Mobile */
+/* Responsive */
 @media (max-width: 768px) {
-  .proj-grid { grid-template-columns: 1fr; }
-  .pcard-big .pcard-img { height: 240px; }
+  .proj-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .pcard-big {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .pcard-big .pcard-img { height: 260px; }
 }
   
 /* ── TESTIMONIALS ── */
@@ -1393,170 +1086,53 @@ nav.scrolled { background: rgba(6, 8, 15, .95); box-shadow: 0 1px 40px rgba(0,0,
 .btn-submit svg{width:14px;height:14px;}
 
 /* ── CONTACT ── */
-#kontak {
-  background: var(--bg);
-  /* Menghapus padding samping agar margin auto bekerja sempurna menengahkan konten */
-  padding: clamp(60px, 8vw, 120px) 0; 
-  display: flex;
-  justify-content: center; 
-  width: 100%;
+#kontak{background:var(--bg);padding:clamp(60px,8vw,120px) clamp(20px,5%,80px);}
+.contact-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:36px;margin-top:48px;align-items:start;}
+.contact-left{display:flex;flex-direction:column;gap:12px;}
+.ccard{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r2);padding:18px 20px;
+  display:flex;align-items:center;gap:14px;
+  transition:border-color .3s;
 }
-
-.contact-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 36px;
-  margin-top: 48px;
-  align-items: start;
-
-  /* --- PERBAIKAN POSISI --- */
-  width: 90%;             /* Mengambil lebar 90% dari layar */
-  max-width: 1100px;      /* Batas maksimal agar tidak terlalu lebar di monitor besar */
-  margin-left: auto;      /* Otomatis menyeimbangkan jarak kiri */
-  margin-right: auto;     /* Otomatis menyeimbangkan jarak kanan */
+.ccard:hover{}
+.ccard-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:color-mix(in srgb,var(--c-kontak) 12%,transparent);border:1px solid color-mix(in srgb,var(--c-kontak) 18%,transparent);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
 }
-
-.contact-left {
-  display: flex; 
-  flex-direction: column; 
-  gap: 12px;
-  width: 100%; /* Memastikan kolom kiri mengisi ruang grid */
+.ccard-icon svg{width:18px;height:18px;color:var(--c-kontak);}
+.ccard-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:2px;}
+.ccard-val{font-size:14px;font-weight:500;color:var(--text);}
+.ccard-copy{
+  margin-left:auto;width:30px;height:30px;border-radius:7px;
+  background:var(--bg3);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .2s;flex-shrink:0;
 }
+.ccard-copy:hover{border-color:var(--accent);color:var(--accent);}
+.ccard-copy svg{width:13px;height:13px;color:var(--text2);}
+/* social-btn removed — replaced by .soc-btn */
 
-.ccard {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: var(--r2);
-  padding: 18px 20px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  transition: border-color .3s;
-  width: 100%;            /* Agar kartu memenuhi lebar kolom */
-  box-sizing: border-box; /* Mencegah kartu 'meledak' keluar kolom karena padding */
+.contact-form{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r3);padding:28px;
+  position:relative;overflow:hidden;
 }
-
-/* Sisa kode di bawah ini tetap sama seperti milik Anda */
-.ccard-icon {
-  width: 40px; height: 40px; border-radius: 10px;
-  background: color-mix(in srgb, var(--c-kontak) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--c-kontak) 18%, transparent);
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+.contact-form::before{content:'';position:absolute;top:0;right:0;width:180px;height:180px;background:radial-gradient(circle,color-mix(in srgb,var(--c-kontak) 7%,transparent),transparent 70%);pointer-events:none;}
+.form-title{font-family:var(--serif);font-size:22px;color:var(--text);margin-bottom:4px;}
+.form-sub{font-size:13px;color:var(--text2);margin-bottom:22px;}
+.fselect{
+  width:100%;padding:10px 12px;
+  background:var(--bg3);border:1px solid var(--border2);
+  border-radius:var(--r);color:var(--text);
+  font-family:var(--sans);font-size:13px;
+  outline:none;cursor:pointer;appearance:none;
+  transition:border-color .2s;margin-bottom:10px;
 }
-.ccard-icon svg { width: 18px; height: 18px; color: var(--c-kontak); }
-.ccard-label { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px; }
-.ccard-val { font-size: 14px; font-weight: 500; color: var(--text); }
-.ccard-copy {
-  margin-left: auto; width: 30px; height: 30px; border-radius: 7px;
-  background: var(--bg3); border: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: all .2s; flex-shrink: 0;
-}
-.ccard-copy:hover { border-color: var(--accent); color: var(--accent); }
-.ccard-copy svg { width: 13px; height: 13px; color: var(--text2); }
+.fselect:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 12%,transparent);}
 
-.contact-form {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: var(--r3);
-  padding: 28px;
-  position: relative;
-  overflow: hidden;
-  width: 100%;            /* Agar form memenuhi lebar kolom */
-  box-sizing: border-box;
-}
-.contact-form::before { content: ''; position: absolute; top: 0; right: 0; width: 180px; height: 180px; background: radial-gradient(circle, color-mix(in srgb, var(--c-kontak) 7%, transparent), transparent 70%); pointer-events: none; }
-.form-title { font-family: var(--serif); font-size: 22px; color: var(--text); margin-bottom: 4px; }
-.form-sub { font-size: 13px; color: var(--text2); margin-bottom: 22px; }
-.fselect {
-  width: 100%; padding: 10px 12px;
-  background: var(--bg3); border: 1px solid var(--border2);
-  border-radius: var(--r); color: var(--text);
-  font-family: var(--sans); font-size: 13px;
-  outline: none; cursor: pointer; appearance: none;
-  transition: border-color .2s; margin-bottom: 10px;
-}
-.fselect:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 12%, transparent); }
-
-  @media (max-width: 768px) {
-  /* 1. Ubah Layout menjadi satu kolom */
-  .contact-layout {
-    grid-template-columns: 1fr; /* Form akan pindah ke bawah kartu kontak */
-    gap: 24px;
-    margin-top: 32px;
-  }
-
-  /* 2. Sifat neon pada contact card (ccard) */
-  .ccard.pcard {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    background: rgba(15, 15, 15, 0.4) !important;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 15px;
-    overflow: visible !important;
-    padding: 16px;
-    transition: all 0.5s ease;
-  }
-
-  /* Efek Glow Luar */
-  .ccard.pcard.active-glow {
-    border-color: rgba(79, 195, 161, 0.4) !important;
-    box-shadow: 0 0 15px rgba(79, 195, 161, 0.1);
-    animation: neonPulse 2s infinite alternate;
-  }
-
-  /* Garis Neon Dalam (Shimmer) */
-  .ccard.pcard::before {
-    content: '';
-    position: absolute;
-    inset: -1.2px;
-    border-radius: inherit;
-    padding: 1.5px;
-    background: radial-gradient(
-      150px circle at 85% var(--mouse-y, 50%), 
-      rgba(79, 195, 161, 0.8) 0%, 
-      transparent 100%
-    );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    z-index: 2;
-    transition: opacity 0.5s ease;
-  }
-
-  .ccard.pcard.active-glow::before {
-    opacity: 1;
-  }
-
-  /* 3. Pastikan tombol copy dan konten berada di atas shimmer */
-  .ccard-icon, .ccard-info, .ccard-copy {
-    position: relative;
-    z-index: 5;
-  }
-
-  /* 4. Optimasi Form untuk HP */
-  .contact-form {
-    padding: 20px;
-    border-radius: 20px;
-    background: var(--bg3); border: 1px solid var(--border2);
-  }
-
-  .form-title {
-    font-size: 18px;
-  }
-
-  /* Memperbesar area ketuk (tap target) pada input */
-  .fselect, .contact-form input, .contact-form textarea {
-    font-size: 16px !important; /* Mencegah auto-zoom di iPhone */
-    padding: 12px;
-  }
-}
-  
 /* ── FOOTER ── */
 footer{background:var(--bg2);border-top:1px solid var(--border);padding:clamp(60px,8vw,100px) clamp(20px,5%,80px) 36px;}
 .footer-cta{text-align:center;padding:60px 0;}
@@ -1793,255 +1369,6 @@ body::before{
 }
 .edu-place{font-size:13px;color:var(--accent);font-weight:600;margin-bottom:14px;}
 .edu-divider{height:1px;background:var(--border);margin-bottom:14px;}
-
- /* ── KEYFRAME ANIMATION (PULSING GLOW) ── */
-@keyframes neonPulse {
-  0%, 100% {
-    box-shadow: 0 0 15px rgba(79, 195, 161, 0.3), 
-                0 0 5px rgba(124, 106, 247, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(79, 195, 161, 0.6), 
-                0 0 10px rgba(124, 106, 247, 0.4);
-  }
-}
-
-/* ── PCARD STYLE (MOBILE OPTIMIZED) ── */
-@media (max-width: 768px) {
-  /* Hilangkan layout grid kaku, gunakan flex tumpuk */
-  .proj-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    padding: 0 20px;
-  }
-
-  .pcard {
-    position: relative;
-    /* 1. Kunci Transparansi Total (Melayang) */
-    background: rgba(255, 255, 255, 0.02) !important;
-    
-    /* 2. Kunci Efek Kaca (Membiarkan background tembus) */
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
-    
-    /* 3. Border Tipis Transparan (Wadah Shimmer) */
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    border-radius: 20px !important;
-    
-    overflow: visible !important; /* Agar glow tidak terpotong */
-    transition: all 0.5s ease-in-out;
-    opacity: 0.6; /* Sedikit redup saat tidak aktif */
-    
-    /* Hardware acceleration agar smooth di HP */
-    will-change: transform, opacity, box-shadow;
-  }
-
-  /* ── 4. STATE AKTIF (Saat di-scroll melewati kartu) ── */
-  .pcard.active-glow {
-    opacity: 1; /* Menjadi terang benderang */
-    transform: translateY(-5px); /* Sedikit terangkat */
-    border-color: rgba(79, 195, 161, 0.3) !important; /* Border menyala hijau */
-    
-    /* 5. Kunci Efek Neon Pendar (Glow Luar) */
-    animation: neonPulse 2s infinite alternate;
-  }
-
-  /* ── 6. SHIMMER BORDER (Neon Dalam) ── */
-  /* Matikan card-cursor-glow yang lama (statis/tengah) */
-  .card-cursor-glow {
-    display: none !important;
-  }
-
-  /* Gunakan ::before untuk membuat garis neon dalam yang mengikuti scroll */
-  .pcard::before {
-    content: '';
-    position: absolute;
-    inset: -1.5px; /* Sedikit keluar agar menempel di border */
-    border-radius: inherit;
-    padding: 2px; /* Ketebalan garis neon */
-    background: radial-gradient(
-      200px circle at 80% var(--mouse-y, 0%), /* Posisi Y mengikuti scroll */
-      rgba(79, 195, 161, 0.8) 0%, /* Warna Neon Utama */
-      transparent 80%
-    );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    z-index: 2;
-  }
-
-  /* Aktifkan garis neon saat active-glow */
-  .pcard.active-glow::before {
-    opacity: 1;
-  }
-
-  /* Matikan shimmer desktop yang mengganggu di mobile */
-  .hero-card::before {
-    display: none !important;
-  }
-}
-
-  
-  /* --- RESPONSIVE DESIGN FOR MOBILE --- */
-@media screen and (max-width: 768px) {
-  
-  /* 1. Atur Layout Utama menjadi Vertikal */
-  .hero-section {
-    flex-direction: column;
-    height: auto; /* Biar bisa di-scroll ke bawah */
-    padding: 100px 20px 50px 20px;
-    text-align: center;
-  }
-
-  /* 2. Sesuaikan Ukuran Teks Background "Portfolio" */
-  .bg-text {
-    font-size: 80px; /* Diperkecil agar tidak menutupi seluruh layar */
-    top: 15%;
-    opacity: 0.1; /* Lebih transparan agar tidak mengganggu fokus */
-  }
-
-  /* 3. Atur Posisi Foto agar di Tengah */
-  .hero-right {
-    order: 1; /* Foto naik ke atas */
-    margin-bottom: 30px;
-    width: 100%;
-  }
-
-  .info-left {
-    order: 2; /* Nama muncul setelah foto */
-  }
-
-    /* 5. Navigasi */
-  nav {
-    padding: 15px;
-    gap: 10px;
-    flex-wrap: wrap; /* Supaya menu tidak terpotong ke samping */
-  }
-}
-
-  .proj-card.big {
-  overflow: hidden;
-  border-radius: 20px; /* Samakan dengan hero-card Anda */
-}
-
-.proj-img-wrapper img {
-  transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
-}
-
-.proj-card:hover .proj-img-wrapper img {
-  transform: scale(1.05); /* Foto membesar sedikit saat hover */
-}
-
-  /* Saat tombol ditekan */
-.proj-link:active ~ .proj-img-wrapper img, 
-.proj-link:focus ~ .proj-img-wrapper img {
-  transform: scale(1.2);
-}
-
-#stats-bar {
-  display: inline-flex;
-  align-items: center;
-  gap: 0;
-  background: #f9f9f9;
-  border: 1px solid #e8e8e8;
-  border-radius: 999px;
-  padding: 6px 14px;
-  font-size: 0.82rem;
-  color: #888;
-}
-
-#view-counter {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding-right: 12px;
-}
-
-.divider {
-  width: 1px;
-  height: 14px;
-  background: #e0e0e0;
-  margin: 0 12px;
-}
-
-#like-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 0.82rem;
-  color: #888;
-  padding: 0;
-  transition: color 0.2s;
-}
-
-#like-btn:hover {
-  color: #f87171;
-}
-
-#like-btn.liked {
-  color: #f87171;
-}
-
-#like-btn.liked svg {
-  fill: #f87171;
-  stroke: #f87171;
-}
-
-  .about-stats {
-  display: flex;
-  justify-content: space-between; /* Menjaga jarak antar elemen secara merata */
-  align-items: flex-start;
-  gap: 10px; /* Jarak antar kolom lebih kecil agar muat di HP */
-  margin-top: 30px;
-  width: 100%;
-  flex-wrap: nowrap; /* PAKSA tetap menyamping, jangan biarkan turun */
-}
-
-.about-stat {
-  flex: 1; /* Memberikan porsi lebar yang sama rata untuk setiap angka */
-  text-align: center;
-  padding: 10px 5px; /* Padding lebih ramping */
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  min-width: 0; /* Penting agar elemen bisa mengecil di bawah ukuran kontennya */
-}
-
-.about-stat-num {
-  /* Menggunakan clamp agar ukuran font menyesuaikan lebar layar secara otomatis */
-  /* Di HP terkecil sekitar 18px, di desktop hingga 32px */
-  font-size: clamp(18px, 4.5vw, 32px); 
-  font-weight: 800;
-  color: var(--teal);
-  margin-bottom: 4px;
-  white-space: nowrap; /* Angka tidak akan terpotong ke baris baru */
-}
-
-.about-stat-label {
-  /* Font label mengecil di HP agar tidak memenuhi ruang */
-  font-size: clamp(9px, 2.5vw, 12px);
-  color: var(--text3);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  line-height: 1.2;
-  word-wrap: break-word; /* Label teks panjang akan turun ke bawah jika perlu */
-}
-
-/* Penyesuaian khusus layar sangat kecil (iPhone SE / Fold) */
-@media (max-width: 360px) {
-  .about-stats {
-    gap: 5px;
-  }
-  .about-stat {
-    padding: 8px 2px;
-  }
-}
 </style>
 </head>
 <body>
@@ -2124,52 +1451,38 @@ body::before{
     </div>
   </div>
 
-  <div class="hero-right fade-in fade-in-delay-2">
-  <div class="hero-card pcard" id="hero-photo-card">
-    
-    <div class="card-cursor-glow"></div> 
+  <div class="hero-visual">
+    <!-- Glow ambient di belakang foto -->
+    <div class="hero-photo-glow"></div>
 
-    <div class="hero-card-img-wrapper">
-      <img src="Foto_Tedi.jpeg" alt="Tedi Zakaria" class="hero-card-img">
+    <!-- Foto utama -->
+    <div class="hero-photo">
+      <img src="Foto_Tedi.jpeg" alt="Tedi Zakaria" class="hero-img">
+      <div class="hero-photo-border"></div>
     </div>
 
-      <div class="hero-code">
-  <div class="code-bar">
-    <div class="code-dot r"></div>
-    <div class="code-dot y"></div>
-    <div class="code-dot g"></div>
-    <span class="code-bar-title">>_ app.js</span>
-  </div>
-
-  <div class="code-body">
-    <div>
-      <span class="c-const">const</span> 
-      <span class="c-var">identity</span> 
-      <span class="c-eq">=</span> 
-      <span class="c-brace">{</span>
-    </div>
-    
-    <div style="padding-left: 20px;">
-      <span class="c-key">name:</span> 
-      <span class="c-val">"Tedi."</span><span class="c-eq">,</span>
-    </div>
-    
-    <div id="code-typing" style="padding-left: 20px;">
-      <span class="c-key">role:</span> 
-      <span class="c-val" id="code-role"></span>
-    </div>
-    
-    <div><span class="c-brace">}</span><span class="c-cursor"></span></div>
-  </div>
+    <!-- Code card melayang di kiri bawah -->
+    <div class="hero-code">
+      <div class="code-bar">
+        <div class="code-dot r"></div>
+        <div class="code-dot y"></div>
+        <div class="code-dot g"></div>
+        <span class="code-bar-title">>_ app.js</span>
       </div>
-  </div>
+      <div class="code-body">
+        <div><span class="c-const">const</span> <span class="c-var">identity</span> <span class="c-eq">= {</span></div>
+        <div>&nbsp;&nbsp;<span class="c-key">name:</span> <span class="c-val">"Tedi."</span><span class="c-eq">,</span></div>
+        <div id="code-typing">&nbsp;&nbsp;<span class="c-key">role:</span> <span class="c-val" id="code-role"></span></div>
+        <div style="color:var(--text3);margin-top:8px">_&nbsp;<span class="c-cursor"></span></div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ══ TENTANG ══ -->
 <section id="tentang" class="section" style="padding-top:100px;">
-  <div class="hero-glow hero-glow-1 js-reveal-glow"></div>
-<div class="hero-glow hero-glow-2 js-reveal-glow"></div>
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
   <div class="hero-content">
     <div class="section-eyebrow reveal lang-target" data-in="Ringkasan" data-en="Overview">Ringkasan</div>
     
@@ -2181,9 +1494,6 @@ body::before{
 
     <div class="about-layout" style="margin-top:48px">
       <div class="acard reveal-l" style="grid-row:span 2">
-
-        <div class="card-cursor-glow"></div>
-        
         <div class="acard-title lang-target" data-in="Siapa Saya?" data-en="Who Am I?">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           Siapa Saya?
@@ -2203,9 +1513,6 @@ body::before{
       </div>
 
       <div class="acard reveal" style="transition-delay:.1s">
-
-        <div class="card-cursor-glow"></div>
-        
         <div class="acard-num">5+</div>
         <div class="acard-num-label lang-target" data-in="Tahun Pengalaman" data-en="Years Experience">Tahun Pengalaman</div>
         <div style="height:16px"></div>
@@ -2226,9 +1533,6 @@ body::before{
       </div>
 
       <div class="acard acard-span2 reveal" style="transition-delay:.15s">
-
-        <div class="card-cursor-glow"></div>
-        
         <div class="acard-title lang-target" data-in="Lokasi Utama" data-en="Base Station">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
           Lokasi Utama
@@ -2249,8 +1553,8 @@ body::before{
 </section>
 
 <section id="edukasi" class="section" style="padding: 120px 5% 80px;">
-  <div class="hero-glow hero-glow-1 js-reveal-glow"></div>
-<div class="hero-glow hero-glow-2 js-reveal-glow"></div>
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
 
   <div class="hero-content">
     <p class="section-label reveal visible lang-target" data-in="LINI MASA" data-en="TIMELINE">LINI MASA</p>
@@ -2262,9 +1566,6 @@ body::before{
     
    <div class="edu-cards">
   <div class="edu-card reveal-right visible" style="transition-delay:.0s">
-
-    <div class="card-cursor-glow"></div>
-    
     <div class="edu-period">2023 – <span class="lang-target" data-in="Sekarang" data-en="Now">Sekarang</span></div>
     <div class="edu-icon icon-spin">⚙️</div>
     <div class="edu-role lang-target" data-in="Senior Frontend Dev" data-en="Senior Frontend Dev">Senior Frontend Dev</div>
@@ -2278,9 +1579,6 @@ body::before{
   </div>
 
   <div class="edu-card reveal visible" style="transition-delay:.1s">
-
-    <div class="card-cursor-glow"></div>
-    
     <div class="edu-period">2020 – 2023</div>
     <div class="edu-icon icon-glow" style="color:var(--c-edukasi);">&lt; &gt;</div>
     <div class="edu-role lang-target" data-in="Web Developer" data-en="Web Developer">Web Developer</div>
@@ -2294,9 +1592,6 @@ body::before{
   </div>
 
   <div class="edu-card reveal-right visible" style="transition-delay:.2s">
-
-    <div class="card-cursor-glow"></div>
-    
     <div class="edu-period">2016 – 2020</div>
     <div class="edu-icon icon-bounce">🎓</div>
     <div class="edu-role lang-target" data-in="Sarjana Komputer" data-en="Bachelor of Computer Science">Sarjana Komputer</div>
@@ -2313,8 +1608,8 @@ body::before{
 </section>
 <!-- ══ SKILLS ══ -->
 <section id="skills" class="section" style="padding-top:100px;">
- <div class="hero-glow hero-glow-1 js-reveal-glow"></div>
-<div class="hero-glow hero-glow-2 js-reveal-glow"></div>
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
   <div class="hero-content">
     
     <div class="skills-header">
@@ -2324,9 +1619,6 @@ body::before{
 
     <div class="skills-grid" id="skills-grid">
       <div class="skill-card reveal" style="transition-delay:.05s" data-level="92">
-
-        <div class="card-cursor-glow"></div>
-        
         <div class="skill-icon-bg">
           <svg viewBox="0 0 24 24" fill="none" stroke="#61DAFB" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2a10.45 10.45 0 0 1 9 5.22 10.45 10.45 0 0 1 0 9.56A10.45 10.45 0 0 1 12 22a10.45 10.45 0 0 1-9-5.22 10.45 10.45 0 0 1 0-9.56A10.45 10.45 0 0 1 12 2z"/></svg>
         </div>
@@ -2336,9 +1628,6 @@ body::before{
       </div>
 
       <div class="skill-card reveal" style="transition-delay:.1s" data-level="88">
-
-        <div class="card-cursor-glow"></div>
-        
         <div class="skill-icon-bg">
           <svg viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06z"/><path d="M10 2c1 .5 2 2 2 5"/></svg>
         </div>
@@ -2348,9 +1637,6 @@ body::before{
       </div>
 
       <div class="skill-card reveal" style="transition-delay:.15s" data-level="95">
-
-        <div class="card-cursor-glow"></div>
-        
         <div class="skill-icon-bg">
           <svg viewBox="0 0 24 24" fill="none" stroke="#F7DF1E" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         </div>
@@ -2360,9 +1646,6 @@ body::before{
       </div>
 
       <div class="skill-card reveal" style="transition-delay:.2s" data-level="80">
-
-        <div class="card-cursor-glow"></div>
-        
         <div class="skill-icon-bg">
           <svg viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
         </div>
@@ -2372,9 +1655,6 @@ body::before{
       </div>
 
       <div class="skill-card reveal" style="transition-delay:.25s" data-level="85">
-
-        <div class="card-cursor-glow"></div>
-        
         <div class="skill-icon-bg">
           <svg viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         </div>
@@ -2384,9 +1664,6 @@ body::before{
       </div>
 
       <div class="skill-card reveal" style="transition-delay:.3s" data-level="83">
-
-        <div class="card-cursor-glow"></div>
-        
         <div class="skill-icon-bg">
           <svg viewBox="0 0 24 24" fill="none" stroke="#68D391" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
         </div>
@@ -2399,69 +1676,129 @@ body::before{
 </section>
 
 <!-- ══ PROYEK ══ -->
-<section id="proyek" class="section" style="position: relative; overflow: hidden; padding: 60px 0;">
-  <div class="hero-glow hero-glow-1 js-reveal-glow"></div>
-  <div class="hero-glow hero-glow-2 js-reveal-glow"></div>
-
-  <div class="container"> <div class="proj-header reveal">
-      <div class="proj-header-title">
-        <div class="section-eyebrow lang-target" data-in="Portofolio" data-en="Portfolio">Portofolio</div>
-        <h2 class="section-h2 lang-target" style="margin-bottom:0" data-in="Karya Terpilih" data-en="Selected Works">
-          Karya <em>Terpilih</em>
-        </h2>
-      </div>
-      <a href="#" class="proj-see-all lang-target" data-in="Lihat Semua" data-en="See All">
-        Lihat Semua
-      </a>
+<section id="proyek" class="section" style="padding-top:100px;">
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  
+  <div class="proj-header reveal">
+    <div>
+      <div class="section-eyebrow lang-target" data-in="Portofolio" data-en="Portfolio">Portofolio</div>
+      <h2 class="section-h2 lang-target" style="margin-bottom:0" data-in="Karya Terpilih" data-en="Selected Works">Karya <em>Terpilih</em></h2>
     </div>
+    <a href="#" class="proj-see-all lang-target" data-in="Lihat Semua" data-en="See All">
+      Lihat Semua
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+
   <div class="proj-grid">
-    
-    <div class="pcard pcard-big reveal-l">
-      <div class="card-cursor-glow"></div> 
-      <div class="pcard-img">
-        <video class="pcard-video" autoplay muted loop playsinline>
-          <source src="maNTapPos_Demo_30s.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="pcard-body">
-        <div class="pcard-cat">Aplikasi Web</div>
-        <div class="pcard-name">Finance Dashboard Pro</div>
-        <p class="pcard-desc">Dashboard keuangan real-time dengan visualisasi data interaktif.</p>
-        <div class="pcard-footer">
-          <a href="#" class="pcard-link">Demo Langsung <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+
+  <!-- Card Besar Kiri -->
+  <div class="pcard pcard-big reveal-l" style="transition-delay:.05s">
+    <div class="pcard-img">
+      <video class="pcard-video" autoplay muted loop playsinline poster="fallback-image.jpg">
+        <source src="maNTapPos_Demo_30s.mp4" type="video/mp4">
+      </video>
+      <div class="pcard-img-inner">
+        <div class="pcard-img-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         </div>
+        <div class="pcard-img-label">maNTapPos</div>
       </div>
     </div>
-
-    <div class="pcard reveal">
-      <div class="card-cursor-glow"></div>
-      <div class="pcard-img">
-        <video class="pcard-video" autoplay muted loop playsinline>
-          <source src="maNTapps_Finance_Demo.mp4" type="video/mp4">
-        </video>
+    <div class="pcard-body">
+      <div class="pcard-cat lang-target" data-in="Aplikasi Web" data-en="Web Application">Aplikasi Web</div>
+      <div class="pcard-name">maNTapPos — POS System</div>
+      <p class="pcard-desc lang-target"
+         data-in="Sistem kasir modern berbasis Firebase dengan fitur inventaris, laporan, dan multi-akun."
+         data-en="Modern Firebase-based POS system with inventory, reports, and multi-account features.">
+         Sistem kasir modern berbasis Firebase dengan fitur inventaris, laporan, dan multi-akun.
+      </p>
+      <div class="pcard-tags">
+        <span class="pcard-tag">HTML/JS</span>
+        <span class="pcard-tag">Firebase</span>
+        <span class="pcard-tag">Realtime DB</span>
       </div>
-      <div class="pcard-body">
-        <div class="pcard-name">Crypto Tracker</div>
-        <a href="#" class="pcard-link">Lihat Proyek <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-      </div>
-    </div>
-
-    <div class="pcard reveal">
-      <div class="card-cursor-glow"></div>
-      <div class="pcard-img">
-        <img src="Project.jpeg" alt="E-Commerce" class="pcard-img-src">
-      </div>
-      <div class="pcard-body">
-        <div class="pcard-name">ShopFlow E-Commerce</div>
-        <a href="#" class="pcard-link">Lihat Proyek <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <div class="pcard-footer">
+        <a href="#" class="pcard-link lang-target" data-in="Demo Langsung" data-en="Live Demo">
+          Demo Langsung
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
       </div>
     </div>
+  </div>
 
-  </div> </section>
+  <!-- Card Kanan Atas -->
+  <div class="pcard reveal" style="transition-delay:.1s">
+    <div class="pcard-img">
+      <video class="pcard-video" autoplay muted loop playsinline poster="thumbnail-project.jpg">
+        <source src="maNTapps_Finance_Demo.mp4" type="video/mp4">
+      </video>
+      <div class="pcard-img-inner">
+        <div class="pcard-img-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="pcard-img-label">Finance App</div>
+      </div>
+    </div>
+    <div class="pcard-body">
+      <div class="pcard-cat lang-target" data-in="Aplikasi Keuangan" data-en="Finance App">Aplikasi Keuangan</div>
+      <div class="pcard-name">Crypto Tracker</div>
+      <p class="pcard-desc lang-target"
+         data-in="Pelacak harga kripto real-time dengan notifikasi harga target."
+         data-en="Real-time crypto price tracker with target price notifications.">
+         Pelacak harga kripto real-time dengan notifikasi harga target.
+      </p>
+      <div class="pcard-tags">
+        <span class="pcard-tag">Next.js</span>
+        <span class="pcard-tag">WebSocket</span>
+      </div>
+      <div class="pcard-footer">
+        <a href="#" class="pcard-link lang-target" data-in="Lihat Proyek" data-en="View Project">
+          Lihat Proyek <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card Kanan Bawah -->
+  <div class="pcard reveal" style="transition-delay:.15s">
+    <div class="pcard-img">
+      <img src="Project.jpeg" alt="E-Commerce Project" class="pcard-img-src">
+      <div class="pcard-img-inner">
+        <div class="pcard-img-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <div class="pcard-img-label">E-Commerce</div>
+      </div>
+    </div>
+    <div class="pcard-body">
+      <div class="pcard-cat lang-target" data-in="E-Commerce" data-en="E-Commerce">E-Commerce</div>
+      <div class="pcard-name">ShopFlow</div>
+      <p class="pcard-desc lang-target"
+         data-in="Platform toko online dengan sistem pembayaran terintegrasi."
+         data-en="Online store platform with integrated payment systems.">
+         Platform toko online dengan sistem pembayaran terintegrasi.
+      </p>
+      <div class="pcard-tags">
+        <span class="pcard-tag">React</span>
+        <span class="pcard-tag">Stripe</span>
+      </div>
+      <div class="pcard-footer">
+        <a href="#" class="pcard-link lang-target" data-in="Lihat Proyek" data-en="View Project">
+          Lihat Proyek <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</section>
+
 <!-- ══ TESTIMONIAL ══ -->
 <section id="testimonial" class="section" style="padding-top:100px;">
-  <div class="hero-glow hero-glow-1 js-reveal-glow"></div>
-<div class="hero-glow hero-glow-2 js-reveal-glow"></div>
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
   
   <div class="hero-content">
     <div class="section-eyebrow reveal lang-target" data-in="Ulasan" data-en="Reviews">Ulasan</div>
@@ -2536,8 +1873,8 @@ body::before{
 
 <!-- ══ KONTAK ══ -->
 <section id="kontak" class="section" style="padding-top:100px;">
- <div class="hero-glow hero-glow-1 js-reveal-glow"></div>
-<div class="hero-glow hero-glow-2 js-reveal-glow"></div>
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
   <div class="hero-content">
     <div class="section-eyebrow reveal lang-target" data-in="Kontak" data-en="Contact">Kontak</div>
     <h2 class="section-h2 reveal lang-target" data-in="Mari Berkolaborasi" data-en="Let's Collaborate">Mari <em>Berkolaborasi</em></h2>
@@ -2545,9 +1882,6 @@ body::before{
     <div class="contact-layout">
       <div class="contact-left">
         <div class="ccard reveal" style="transition-delay:.05s">
-
-          <div class="card-cursor-glow"></div>
-          
           <div class="ccard-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
@@ -2561,9 +1895,6 @@ body::before{
         </div>
 
         <div class="ccard reveal" style="transition-delay:.1s">
-
-          <div class="card-cursor-glow"></div>
-          
           <div class="ccard-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.36 13a2 2 0 0 1 2-2.18h3"/></svg>
           </div>
@@ -2577,9 +1908,6 @@ body::before{
         </div>
 
         <div class="ccard reveal" style="transition-delay:.15s">
-
-          <div class="card-cursor-glow"></div>
-          
           <div class="ccard-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
           </div>
@@ -2590,9 +1918,6 @@ body::before{
         </div>
 
         <div class="social-icons-wrap reveal" style="transition-delay:.2s">
-
-          <div class="card-cursor-glow"></div>
-          
           <!-- LinkedIn -->
           <a href="https://www.linkedin.com/in/tedi-zakaria-perdana-4586b3245?utm_source=share_via&utm_content=profile&utm_medium=member_ios" class="soc-btn soc-linkedin" data-label="LinkedIn" aria-label="LinkedIn">
             <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
@@ -2935,98 +2260,6 @@ langBtn.addEventListener('click', () => {
         if (ph) el.placeholder = ph;
     });
 });
-
-  // ══ CURSOR GLOW EFFECT pada hero card ══
-(function() {
-  const card = document.getElementById('hero-photo-card');
-  if (!card) return;
-
-  let ticking = false;
-
-  function updateGlow(e) {
-    const rect = card.getBoundingClientRect();
-    
-    // Menghitung posisi kursor dalam persentase
-    const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(2) + '%';
-    const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(2) + '%';
-
-    card.style.setProperty('--mouse-x', x);
-    card.style.setProperty('--mouse-y', y);
-    
-    ticking = false;
-  }
-
-  function onMouseMove(e) {
-    if (!ticking) {
-      // Menggunakan requestAnimationFrame agar kalkulasi sinkron dengan refresh rate layar
-      window.requestAnimationFrame(() => updateGlow(e));
-      ticking = true;
-    }
-  }
-
-  function onMouseLeave() {
-    // Memberikan durasi transisi saat kursor keluar agar tidak "lompat" mendadak ke tengah
-    card.style.transition = "border-color 0.3s, box-shadow 0.3s, --mouse-x 0.5s ease, --mouse-y 0.5s ease";
-    
-    card.style.setProperty('--mouse-x', '50%');
-    card.style.setProperty('--mouse-y', '50%');
-
-    // Hapus transisi setelah animasi selesai agar tidak bentrok dengan mousemove
-    setTimeout(() => {
-      card.style.transition = "";
-    }, 500);
-  }
-
-  card.addEventListener('mousemove', onMouseMove, { passive: true });
-  card.addEventListener('mouseleave', onMouseLeave);
-})();
-
-   // ══ MOBILE SCROLL GABUNGAN: PCARD & HERO GLOW & POSISI Y ══
-(function() {
-  const elements = document.querySelectorAll('.pcard, .js-reveal-glow');
-  if (!elements.length || !('IntersectionObserver' in window)) return;
-
-  // 1. Observer untuk menghidupkan class aktif (active-glow / is-visible)
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const target = entry.target;
-      const isCard = target.classList.contains('pcard');
-      const activeClass = isCard ? 'active-glow' : 'is-visible';
-
-      if (entry.isIntersecting) {
-        target.classList.add(activeClass);
-      } else {
-        target.classList.remove(activeClass);
-      }
-    });
-  }, { 
-    // rootMargin membantu memicu efek sedikit lebih awal sebelum kartu benar-benar di tengah
-    rootMargin: '-5% 0px -5% 0px',
-    threshold: 0.1 
-  });
-
-  // 2. Fungsi untuk menghitung posisi Y relatif terhadap kartu (untuk garis neon dalam)
-  function handleScroll() {
-    const activeCards = document.querySelectorAll('.pcard.active-glow');
-    activeCards.forEach(card => {
-      const rect = card.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      // Menghitung seberapa jauh kartu telah melewati area aktif layar (0 sampai 100)
-      const scrollPercent = ((windowHeight - rect.top) / (windowHeight + rect.height)) * 100;
-      
-      // Kirim variabel CSS --mouse-y ke masing-masing kartu aktif
-      // Kita kunci --mouse-x ke samping (misal 80%) agar neon dominan di sisi kanan/atas
-      card.style.setProperty('--mouse-y', `${scrollPercent.toFixed(1)}%`);
-    });
-  }
-
-  // Mulai mengobservasi elemen
-  elements.forEach(el => observer.observe(el));
-  
-  // Dengarkan event scroll untuk update posisi garis neon dalam
-  window.addEventListener('scroll', handleScroll, { passive: true });
-})();
 </script>
 </body>
 </html>
