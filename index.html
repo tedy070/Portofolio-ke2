@@ -1156,10 +1156,8 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 /* ── PROJECTS SECTION ── */
 #proyek { 
   background: var(--bg); 
-  /* Padding 80px atas-bawah, dan 5% kiri-kanan agar tidak nempel layar */
   padding: 80px 5%; 
   position: relative; 
-  /* Memastikan konten di dalamnya tidak meluber keluar */
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -1167,7 +1165,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 /* GRID SYSTEM */
 .proj-grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr; /* Layout desktop */
+  grid-template-columns: 1.2fr 0.8fr;
   gap: 24px;
   align-items: start;
 }
@@ -1195,12 +1193,6 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
 }
 
-.proj-see-all:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(255, 152, 0, 0.5);
-  filter: brightness(1.1);
-}
-
 /* KARTU PROYEK */
 .pcard {
   background: var(--bg2);
@@ -1217,7 +1209,6 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   grid-row: span 2;
 }
 
-/* MEDIA CONTAINER */
 .pcard-img {
   width: 100%;
   position: relative;
@@ -1238,16 +1229,10 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.pcard:hover .pcard-video, 
-.pcard:hover .pcard-img-src {
-  transform: scale(1.05);
-}
-
-/* ── RESPONSIVE OPTIMIZATION (MOBILE) ── */
+/* ── RESPONSIVE OPTIMIZATION ── */
 @media (max-width: 768px) {
   #proyek {
-    /* Padding sedikit diperkecil di mobile agar konten tetap luas tapi tidak nempel */
-    padding: 60px 20px;
+    padding: 60px 20px; /* Jarak aman di tablet/HP */
   }
 
   .proj-grid {
@@ -1267,19 +1252,27 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   .proj-header {
     flex-direction: row;
     align-items: center;
-    /* Memberikan sedikit jarak agar teks tidak terlalu mepet header */
     gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  #proyek { 
+    /* JANGAN gunakan 0 di sini agar tidak nempel ke layar */
+    padding: 50px 15px; 
+  }
+  
+  .proj-header { 
+    /* Memastikan teks header tidak bertabrakan dengan tombol di layar sangat kecil */
+    flex-direction: column; 
+    align-items: flex-start;
+    gap: 15px;
   }
 
   .proj-see-all {
-    padding: 8px 18px;
-    font-size: 0.8rem;
-    white-space: nowrap; /* Mencegah tombol pecah baris */
+    width: 100%; /* Tombol melebar penuh di layar sangat kecil (opsional) */
+    justify-content: center;
   }
-}
-@media (max-width: 480px) {
-  #proyek { padding: 50px 0; }
-  .proj-header { gap: 10px; }
 }
 /* ── PERBAIKAN IKON & LABEL ── */
 .pcard-img-inner {
