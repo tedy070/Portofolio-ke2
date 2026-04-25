@@ -306,77 +306,64 @@ nav.scrolled { background: rgba(6, 8, 15, .95); box-shadow: 0 1px 40px rgba(0,0,
 .nav-link:hover { color: var(--text); background: rgba(255, 255, 255, .05); }
 .nav-link.active { color: var(--c-hero); background: color-mix(in srgb, var(--c-hero) 10%, transparent); border-color: color-mix(in srgb, var(--c-hero) 25%, transparent); }
 
-.nav-end { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.nav-end { display: flex; align-items: center; gap: 10px; flex-shrink: 0; position: relative; z-index: 1001; }
 
-/* ── RESPONSIVE MOBILE (768px) ── */
+.nav-icon-btn, .btn-theme { 
+  display: flex !important;
+  width: 36px; height: 36px; border-radius: 8px;
+  background: var(--bg3, #1a1a1a); border: 1px solid var(--border2, #333);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: border-color .2s, background .2s;
+  color: var(--text2); flex-shrink: 0;
+}
+
+/* ── RESPONSIVE OPTIMIZATION ── */
 @media (max-width: 768px) {
+  /* Fix kebocoran padding bawah 100px */
   nav {
-    /* Navbar Atas Melayang */
     display: flex !important;
     justify-content: space-between !important;
-    align-items: center !important; /* Diubah ke center agar logo & tombol sejajar */
-    padding: 0 20px !important;
+    align-items: center !important;
+    padding: 0 15px !important;
     height: 55px !important;
-    
-    position: fixed !important;
-    top: 10px !important;
-    left: 10px !important;
-    right: 10px !important;
-    width: calc(100% - 20px) !important;
-    
-    border-radius: 15px !important; /* Efek ujung melengkung */
-    border: 1px solid var(--border) !important;
-    background: color-mix(in srgb, var(--accent) 15%, rgba(6, 8, 15, 0.8)) !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    top: 0 !important; /* Jika ingin melayang, gunakan top: 10px; left: 10px; right: 10px; width: calc(100% - 20px); */
+    border-radius: 0; 
+    box-sizing: border-box;
   }
 
-  /* Menu Tengah Jadi Floating Bottom Navigation */
   .nav-center {
-    display: flex !important;
     position: fixed !important;
-    bottom: 15px !important; /* Jarak dari bawah layar */
+    bottom: 12px !important;
+    top: auto !important; /* Reset posisi top dari desktop agar tidak bocor */
     left: 50% !important;
     transform: translateX(-50%) !important;
-    top: auto !important; /* Membatalkan posisi top desktop */
-    
-    background: color-mix(in srgb, var(--bg) 80%, transparent) !important;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    padding: 8px 15px !important;
-    border-radius: 100px !important;
-    border: 1px solid var(--border) !important;
-    
     width: 90% !important;
-    max-width: fit-content !important;
-    gap: 5px !important;
-    z-index: 9999 !important; 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    max-width: fit-content;
+    background: rgba(6, 8, 15, 0.9) !important;
+    padding: 6px 12px !important;
+    border-radius: 100px !important;
+    z-index: 9999 !important;
+    border: 1px solid var(--border) !important;
   }
 
-  .nav-center .nav-link {
-    font-size: 11px !important;
-    padding: 8px 12px !important;
-  }
+  .nav-brand-text { display: none; } /* Hemat ruang di mobile */
 
   .nav-end {
     display: flex !important;
     gap: 8px !important;
+    margin-left: auto;
   }
-
-  /* Sembunyikan teks brand jika terlalu sempit di mobile (Opsional) */
-  .nav-brand-text { display: none; }
 }
 
-/* ── KOMPONEN PENDUKUNG (Bahasa & Icon) ── */
+/* Tombol Bahasa tetap di luar media query agar global */
 .btn-lang {
   padding: 8px 16px; border-radius: 30px;
   background: var(--bg3); border: 1px solid var(--border2);
   color: var(--text); font-family: var(--sans); font-size: 13px; font-weight: 600;
   cursor: pointer; display: flex; align-items: center; gap: 8px;
-  transition: all .25s; min-width: 60px; justify-content: center;
+  transition: all .25s; min-width: 80px; justify-content: center;
 }
-.btn-lang:hover { background: var(--bg4); border-color: var(--accent); transform: translateY(-1px); }
-.btn-lang svg { width: 14px; height: 14px; color: var(--accent); }
+  
 /* ── HERO ── */
 #beranda {
   min-height: 100vh;
