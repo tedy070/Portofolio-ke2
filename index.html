@@ -331,7 +331,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
     display: flex !important;
     justify-content: space-between !important;
     align-items: flex-start !important;
-    padding: 10px 20px 110px 20px; (Atas, Kanan, Bawah, Kiri).
+    padding: 10px 20px 100px 20px; (Atas, Kanan, Bawah, Kiri).
     position: fixed !important; /* KUNCI: Nav atas tidak hilang saat scroll */
     top: 0;
     left: 0;
@@ -346,7 +346,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   .nav-center {
     display: flex !important;
     position: fixed !important; /* Tetap melayang saat scroll */
-    bottom: 10px;    /* NILAI LEBIH KECIL = LEBIH KE BAWAH (dekat pinggir layar) */
+    bottom: 8px;    /* NILAI LEBIH KECIL = LEBIH KE BAWAH (dekat pinggir layar) */
     left: 50%;
     transform: translateX(-50%);
     
@@ -649,7 +649,85 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   border-color: rgba(79, 195, 161, 0.3);
 }
 
-@media (max-width: 768px) {
+/* ── FLOATING CODE BLOCK (Optimized) ── */
+.hero-code {
+  position: absolute;
+  /* Posisikan melayang menabrak batas kiri bawah */
+  bottom: 30px;
+  left: -210px; /* Menjorok keluar dari card */
+  width: 280px;
+  background: rgba(26, 31, 46, 0.85); /* Dibuat semi-transparan untuk blur */
+  border: 1px solid rgba(124, 58, 237, 0.4);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+  z-index: 20; /* Harus di atas .hero-card-img-wrapper */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Support untuk Safari */
+  animation: floatCode 4s ease-in-out infinite;
+  pointer-events: none; /* Agar tidak mengganggu hover 3D card */
+}
+
+/* Animasi mengambang yang lebih smooth */
+@keyframes floatCode {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-15px) rotate(1deg); }
+}
+
+/* Header Bar Terminal */
+.code-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #151b2d;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.code-dot { width: 11px; height: 11px; border-radius: 50%; }
+.code-dot.r { background: #ff5f56; }
+.code-dot.y { background: #ffbd2e; }
+.code-dot.g { background: #27c93f; }
+
+.code-bar-title {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-left: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* Body Terminal */
+.code-body {
+  padding: 18px;
+  font-family: 'Fira Code', 'Courier New', Courier, monospace; /* Tambahkan font mono agar nuansa kodenya dapet */
+  font-size: 14px;
+  line-height: 1.6;
+  color: #e2e8f0;
+}
+
+/* Syntax Coloring */
+.c-const { color: #c792ea; } /* Purple */
+.c-var   { color: #82aaff; } /* Blue */
+.c-eq    { color: #89ddff; } /* Cyan */
+.c-key   { color: #f07178; } /* Pink/Red */
+.c-val   { color: #c3e88d; } /* Green */
+.c-brace { color: #ffcb6b; } /* Yellow */
+
+/* Cursor Animation */
+.c-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background: #7c3aed; /* Warna aksen ungu */
+  margin-left: 4px;
+  animation: blink 0.8s step-end infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+  @media (max-width: 768px) {
   /* 1. Targetkan Induk Utama (Beranda) */
   #beranda {
     display: flex !important;
@@ -732,93 +810,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
     z-index: 10;
   }
 } /* Penutup Media Query yang benar */
-/* ── FLOATING CODE BLOCK (Optimized) ── */
-.hero-code {
-  position: absolute;
-  /* Posisikan melayang menabrak batas kiri bawah */
-  bottom: 30px;
-  left: -210px; /* Menjorok keluar dari card */
-  width: 280px;
-  background: rgba(26, 31, 46, 0.85); /* Dibuat semi-transparan untuk blur */
-  border: 1px solid rgba(124, 58, 237, 0.4);
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
-  z-index: 20; /* Harus di atas .hero-card-img-wrapper */
-  backdrop-filter: blur(12px);
-  animation: floatCode 4s ease-in-out infinite;
-  pointer-events: none; /* Agar tidak mengganggu hover 3D card */
-}
-
-/* Animasi mengambang yang lebih smooth */
-@keyframes floatCode {
-  0%, 100% { transform: translateY(0) rotate(-1deg); }
-  50% { transform: translateY(-15px) rotate(1deg); }
-}
-
-/* Responsif Mobile */
-@media (max-width: 992px) {
-  .hero-code {
-    width: 240px;
-    left: -10px;
-    bottom: -20px;
-    transform: scale(0.9);
-  }
-}
-
-/* Header Bar Terminal */
-.code-bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 16px;
-  background: #151b2d;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.code-dot { width: 11px; height: 11px; border-radius: 50%; }
-.code-dot.r { background: #ff5f56; }
-.code-dot.y { background: #ffbd2e; }
-.code-dot.g { background: #27c93f; }
-
-.code-bar-title {
-  font-size: 11px;
-  color: #94a3b8;
-  margin-left: 4px;
-  letter-spacing: 0.5px;
-}
-
-/* Body Terminal */
-.code-body {
-  padding: 18px;
-  font-size: 14px;
-  line-height: 1.6;
-  color: #e2e8f0;
-}
-
-/* Syntax Coloring */
-.c-const { color: #c792ea; } /* Purple */
-.c-var   { color: #82aaff; } /* Blue */
-.c-eq    { color: #89ddff; } /* Cyan */
-.c-key   { color: #f07178; } /* Pink/Red */
-.c-val   { color: #c3e88d; } /* Green */
-.c-brace { color: #ffcb6b; } /* Yellow */
-
-/* Cursor Animation */
-.c-cursor {
-  display: inline-block;
-  width: 8px;
-  height: 15px;
-  background: #7c3aed; /* Warna aksen ungu */
-  margin-left: 4px;
-  animation: blink 0.8s step-end infinite;
-  vertical-align: middle;
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
-}
-
+  
 /* ── SECTION COMMON ── */
 .section{
   padding:100px 5%;
@@ -876,20 +868,23 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   /* Pastikan acard memiliki sifat yang sama dengan pcard neon */
   .acard.pcard {
     position: relative;
-    background: rgba(15, 15, 15, 0.4) !important; /* Transparansi gelap */
+    background: rgba(15, 15, 15, 0.4) !important;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 20px;
-    overflow: visible !important; /* Penting agar glow luar tidak terpotong */
+    overflow: visible !important; 
     padding: 24px;
-    transition: all 0.5s ease;
+    transition: transform 0.3s ease, border-color 0.5s ease;
+    /* Optimasi performa animasi di HP */
+    will-change: transform, border-color;
   }
 
   /* Efek Glow saat Aktif */
   .acard.pcard.active-glow {
     border-color: rgba(79, 195, 161, 0.4) !important;
-    animation: neonPulse 2s infinite alternate;
+    box-shadow: 0 0 20px rgba(79, 195, 161, 0.15); /* Tambahkan pendaran halus ke luar */
+    animation: neonPulse 2s infinite alternate ease-in-out;
   }
 
   /* Efek Shimmer Garis Neon Dalam */
@@ -899,8 +894,9 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
     inset: -1.2px;
     border-radius: inherit;
     padding: 1.5px;
+    /* Tips: Gunakan 50% jika tidak memakai JavaScript agar cahaya ada di tengah */
     background: radial-gradient(
-      180px circle at 85% var(--mouse-y, 0%), 
+      180px circle at 85% var(--mouse-y, 50%), 
       rgba(79, 195, 161, 0.9) 0%, 
       transparent 100%
     );
@@ -915,8 +911,14 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   .acard.pcard.active-glow::before {
     opacity: 1;
   }
-}
 
+  /* Pastikan Anda sudah mendefinisikan animasi neonPulse */
+  @keyframes neonPulse {
+    from { box-shadow: 0 0 10px rgba(79, 195, 161, 0.1); }
+    to { box-shadow: 0 0 25px rgba(79, 195, 161, 0.3); }
+  }
+}
+  
 /* ── EDUCATION ── */
 #edukasi {
   background: transparent !important; /* Menjamin background hero terlihat */
@@ -1112,34 +1114,45 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 .skill-bar{height:2px;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width 1.2s cubic-bezier(.4,0,.2,1);}
 
   @media (max-width: 768px) {
-  /* Berikan sifat neon pada skill-card */
+  /* 1. Ubah Grid menjadi 1 atau 2 kolom agar tidak sempit */
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom di HP agar hemat ruang tapi tetap terbaca */
+    gap: 12px;
+    padding: 0 5px;
+  }
+
+  /* 2. Sifat neon pada skill-card */
   .skill-card.pcard {
     position: relative;
     background: rgba(15, 15, 15, 0.4) !important;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 16px; /* Sedikit lebih kecil radiusnya agar pas dengan ukuran skill card */
+    border-radius: 16px;
     overflow: visible !important;
-    padding: 16px;
+    padding: 16px; /* Padding lebih kecil agar muat di grid 2 kolom */
     transition: all 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
 
-  /* Efek Glow Luar saat aktif */
+  /* 3. Efek Glow Luar saat aktif */
   .skill-card.pcard.active-glow {
     border-color: rgba(79, 195, 161, 0.4) !important;
+    box-shadow: 0 0 15px rgba(79, 195, 161, 0.15);
     animation: neonPulse 2s infinite alternate;
   }
 
-  /* Garis Neon Dalam (Shimmer) */
+  /* 4. Garis Neon Dalam (Shimmer) */
   .skill-card.pcard::before {
     content: '';
     position: absolute;
     inset: -1.2px;
     border-radius: inherit;
-    padding: 1.5px;
+    padding: 1.2px; /* Sedikit lebih tipis untuk kartu kecil */
     background: radial-gradient(
-      140px circle at 85% var(--mouse-y, 0%), 
+      120px circle at 85% var(--mouse-y, 50%), 
       rgba(79, 195, 161, 0.8) 0%, 
       transparent 100%
     );
@@ -1155,12 +1168,19 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
     opacity: 1;
   }
 
-  /* Pastikan konten tetap di atas cahaya */
+  /* 5. Konten tetap di atas */
   .skill-icon-bg, .skill-name, .skill-desc, .skill-bar-wrap {
     position: relative;
     z-index: 5;
   }
+
+  /* Sesuaikan ukuran icon agar pas di HP */
+  .skill-icon-bg {
+    width: 40px;
+    height: 40px;
+  }
 }
+  
 /* ── PROJECTS SECTION ── */
 #proyek { 
   background: var(--bg); 
@@ -1464,7 +1484,14 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 .fselect:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 12%,transparent);}
 
   @media (max-width: 768px) {
-  /* Berikan sifat neon pada contact card */
+  /* 1. Ubah Layout menjadi satu kolom */
+  .contact-layout {
+    grid-template-columns: 1fr; /* Form akan pindah ke bawah kartu kontak */
+    gap: 24px;
+    margin-top: 32px;
+  }
+
+  /* 2. Sifat neon pada contact card (ccard) */
   .ccard.pcard {
     position: relative;
     display: flex;
@@ -1480,13 +1507,14 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
     transition: all 0.5s ease;
   }
 
-  /* Efek Glow Luar saat aktif */
+  /* Efek Glow Luar */
   .ccard.pcard.active-glow {
     border-color: rgba(79, 195, 161, 0.4) !important;
+    box-shadow: 0 0 15px rgba(79, 195, 161, 0.1);
     animation: neonPulse 2s infinite alternate;
   }
 
-  /* Garis Neon Dalam (Shimmer) yang mengikuti scroll */
+  /* Garis Neon Dalam (Shimmer) */
   .ccard.pcard::before {
     content: '';
     position: absolute;
@@ -1494,7 +1522,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
     border-radius: inherit;
     padding: 1.5px;
     background: radial-gradient(
-      150px circle at 85% var(--mouse-y, 0%), 
+      150px circle at 85% var(--mouse-y, 50%), 
       rgba(79, 195, 161, 0.8) 0%, 
       transparent 100%
     );
@@ -1508,6 +1536,29 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 
   .ccard.pcard.active-glow::before {
     opacity: 1;
+  }
+
+  /* 3. Pastikan tombol copy dan konten berada di atas shimmer */
+  .ccard-icon, .ccard-info, .ccard-copy {
+    position: relative;
+    z-index: 5;
+  }
+
+  /* 4. Optimasi Form untuk HP */
+  .contact-form {
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(20, 20, 25, 0.6);
+  }
+
+  .form-title {
+    font-size: 18px;
+  }
+
+  /* Memperbesar area ketuk (tap target) pada input */
+  .fselect, .contact-form input, .contact-form textarea {
+    font-size: 16px !important; /* Mencegah auto-zoom di iPhone */
+    padding: 12px;
   }
 }
   
