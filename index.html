@@ -1703,6 +1703,71 @@ body::before{
   /* Mobile menu lang/theme in bottom area */
   .mobile-menu-bottom { flex-wrap: wrap; }
 }
+
+  #stats-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  background: #f9f9f9;
+  border: 1px solid #e8e8e8;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  color: #888;
+}
+
+#view-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding-right: 12px;
+}
+
+.divider {
+  width: 1px;
+  height: 14px;
+  background: #e0e0e0;
+  margin: 0 12px;
+}
+
+#like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.82rem;
+  color: #888;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+#like-btn:hover {
+  color: #f87171;
+}
+
+#like-btn.liked {
+  color: #f87171;
+}
+
+#like-btn.liked svg {
+  fill: #f87171;
+  stroke: #f87171;
+}
+
+  /* Override untuk dark mode */
+#stats-bar {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text2, #8b9dc3);
+}
+.divider {
+  background: rgba(255,255,255,0.1);
+}
+#like-btn {
+  color: var(--text2, #8b9dc3);
+}
 </style>
 </head>
 <body>
@@ -2375,6 +2440,25 @@ body::before{
          data-en="© 2026 Tedi Zakaria Perdana. All rights reserved.">
          © 2026 Tedi Zakaria Perdana. Semua hak cipta dilindungi.
     </div>
+
+    <div id="stats-bar">
+  <div id="view-counter">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+      <circle cx="12" cy="12" r="3"/>
+    </svg>
+    <span id="view-count">...</span> Views
+  </div>
+
+  <div class="divider"></div>
+
+  <button id="like-btn" onclick="handleLike()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+    </svg>
+    <span id="like-count">...</span> Like
+  </button>
+</div>
     
     <div class="footer-status">
       <div class="footer-online"></div>
@@ -2786,6 +2870,55 @@ Fancybox.bind("[data-fancybox]", {
   text-align: center;
   letter-spacing: .5px;
 }
-</style>
+
+  <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+<script>
+  firebase.initializeApp({
+    apiKey: "AIzaSyAmiPmFWgHnvLqNVNaykgrk1gkmaVyd1Go",
+    authDomain: "portofolio-tedi.firebaseapp.com",
+    databaseURL: "https://portofolio-tedi-default-rtdb.firebaseio.com",
+    projectId: "portofolio-tedi",
+    storageBucket: "portofolio-tedi.firebasestorage.app",
+    messagingSenderId: "435243696299",
+    appId: "1:435243696299:web:8c14fb30927884a30437ee",
+    measurementId: "G-1QN28JWQ1G"
+  });
+  const db = firebase.database();
+
+  const viewsRef = db.ref('porto_2/views');
+  const likesRef = db.ref('porto_2/likes');
+  const LIKED_KEY = 'liked_porto_2';
+
+  viewsRef.transaction(val => (val || 0) + 1);
+  viewsRef.on('value', snap => {
+    const el = document.getElementById('view-count');
+    if (el) el.textContent = (snap.val() || 0).toLocaleString('id-ID');
+  });
+  likesRef.on('value', snap => {
+    const el = document.getElementById('like-count');
+    if (el) el.textContent = (snap.val() || 0).toLocaleString('id-ID');
+  });
+  if (localStorage.getItem(LIKED_KEY) === 'yes') {
+    window.addEventListener('load', () => {
+      const btn = document.getElementById('like-btn');
+      if (btn) btn.classList.add('liked');
+    });
+  }
+  function handleLike() {
+    const btn = document.getElementById('like-btn');
+    const countEl = document.getElementById('like-count');
+    if (localStorage.getItem(LIKED_KEY) === 'yes') {
+      const orig = countEl.textContent;
+      countEl.textContent = 'Sudah like!';
+      setTimeout(() => { countEl.textContent = orig; }, 1500);
+      return;
+    }
+    likesRef.transaction(val => (val || 0) + 1);
+    localStorage.setItem(LIKED_KEY, 'yes');
+    if (btn) btn.classList.add('liked');
+  }
+</script>
 </body>
 </html>
