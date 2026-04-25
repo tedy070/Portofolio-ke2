@@ -336,7 +336,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(6, 8, 15, .85);
+     background: color-mix(in srgb, var(--accent) 10%, transparent);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px); /* Tambahan untuk dukungan Safari */
     z-index: 1000;
@@ -353,7 +353,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
     transform: translateX(-50%);
     
     /* Styling Visual */
-    background: rgba(6, 8, 15, .85);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     padding: 6px 12px;
@@ -547,14 +547,60 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   animation: fadeInUp .6s .4s both;
 }
 
+/* --- HERO BUTTONS POSITION --- */
 .hero-btns {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Mengunci tombol di kiri */
+  justify-content: flex-start; /* Posisi tetap di kiri */
   gap: 16px;
   margin-bottom: 56px;
   animation: fadeInUp .6s .45s both;
   width: 100%;
+}
+
+/* --- KEMBALIKAN TAMPILAN TOMBOL SEPERTI SEBELUMNYA --- */
+.btn-primary {
+  padding: 13px 28px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: var(--bg);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all .25s;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.btn-secondary {
+  padding: 13px 24px;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid var(--border2);
+  cursor: pointer; /* Diubah dari none ke pointer agar fungsional */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all .25s;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .hero-stats {
@@ -655,26 +701,42 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
 /* ── FLOATING CODE BLOCK (Optimized) ── */
 .hero-code {
   position: absolute;
-  /* Posisikan melayang menabrak batas kiri bawah */
   bottom: 30px;
-  left: -210px; /* Menjorok keluar dari card */
+  left: -210px;
   width: 280px;
-  background: rgba(26, 31, 46, 0.85); /* Dibuat semi-transparan untuk blur */
+  background: rgba(26, 31, 46, 0.85);
   border: 1px solid rgba(124, 58, 237, 0.4);
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
-  z-index: 20; /* Harus di atas .hero-card-img-wrapper */
+  z-index: 20;
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px); /* Support untuk Safari */
+  -webkit-backdrop-filter: blur(12px); /* Tambahan untuk dukungan Safari */
+  
+  /* PERBAIKAN: Gunakan shorthand animation yang benar */
   animation: floatCode 4s ease-in-out infinite;
-  pointer-events: none; /* Agar tidak mengganggu hover 3D card */
+  pointer-events: none;
+  /* Tambahkan transform-origin agar rotasi animasi lebih stabil */
+  transform-origin: center; 
 }
 
-/* Animasi mengambang yang lebih smooth */
+/* Animasi mengambang */
 @keyframes floatCode {
+  /* PERBAIKAN: Gunakan rotasi kecil agar tidak 'shaking' di beberapa browser */
   0%, 100% { transform: translateY(0) rotate(-1deg); }
   50% { transform: translateY(-15px) rotate(1deg); }
+}
+
+/* Responsif Mobile (Optimized) */
+@media (max-width: 992px) {
+  .hero-code {
+    width: 240px;
+    left: -10px;
+    bottom: -20px;
+    /* PERBAIKAN: Gabungkan scale dengan animasi di atas atau gunakan scale saja */
+    /* Karena ada animasi transform, scale sebaiknya diletakkan di container induk atau disesuaikan */
+    scale: 0.9; 
+  }
 }
 
 /* Header Bar Terminal */
@@ -687,7 +749,7 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.code-dot { width: 11px; height: 11px; border-radius: 50%; }
+.code-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; } /* Tambahkan flex-shrink */
 .code-dot.r { background: #ff5f56; }
 .code-dot.y { background: #ffbd2e; }
 .code-dot.g { background: #27c93f; }
@@ -697,31 +759,32 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
   color: #94a3b8;
   margin-left: 4px;
   letter-spacing: 0.5px;
+  font-family: var(--sans); /* Pastikan font konsisten */
 }
 
 /* Body Terminal */
 .code-body {
   padding: 18px;
-  font-family: 'Fira Code', 'Courier New', Courier, monospace; /* Tambahkan font mono agar nuansa kodenya dapet */
-  font-size: 14px;
+  font-size: 13px; /* Perkecil sedikit agar kode tidak terlalu sesak */
   line-height: 1.6;
   color: #e2e8f0;
+  font-family: 'Fira Code', monospace; /* Sangat disarankan untuk kode */
 }
 
-/* Syntax Coloring */
-.c-const { color: #c792ea; } /* Purple */
-.c-var   { color: #82aaff; } /* Blue */
-.c-eq    { color: #89ddff; } /* Cyan */
-.c-key   { color: #f07178; } /* Pink/Red */
-.c-val   { color: #c3e88d; } /* Green */
-.c-brace { color: #ffcb6b; } /* Yellow */
+/* Syntax Coloring (Sudah Bagus) */
+.c-const { color: #c792ea; }
+.c-var   { color: #82aaff; }
+.c-eq    { color: #89ddff; }
+.c-key   { color: #f07178; }
+.c-val   { color: #c3e88d; }
+.c-brace { color: #ffcb6b; }
 
 /* Cursor Animation */
 .c-cursor {
   display: inline-block;
-  width: 8px;
+  width: 6px; /* Lebih ramping lebih elegan */
   height: 15px;
-  background: #7c3aed; /* Warna aksen ungu */
+  background: #7c3aed;
   margin-left: 4px;
   animation: blink 0.8s step-end infinite;
   vertical-align: middle;
@@ -799,16 +862,25 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
     width: 100%;
   }
 
-  /* 6. Elemen Melayang (hero-code) */
+  /* 6. Elemen Melayang (hero-code) - DIPERBAIKI KE TENGAH BAWAH */
   .hero-code {
     display: block !important;
-    scale: 0.8; /* Sedikit diperkecil agar tidak memotong layar HP */
     position: absolute !important;
-    bottom: -40px !important; 
-    right: 20px !important; /* Disesuaikan agar tidak terlalu jauh ke kanan */
+    
+    /* Posisikan di tengah secara horizontal */
+    left: 50% !important;
+    right: auto !important; /* Reset nilai right sebelumnya */
+    
+    /* Geser ke bawah (menabrak/melewati batas bawah foto) */
+    bottom: -60px !important; 
+    
+    /* KUNCI: Gabungkan centering (50%) dan scale dalam satu transform */
+    transform: translateX(-50%) scale(0.8) !important;
+    
     z-index: 10;
+    width: 260px; /* Sesuaikan lebar agar tidak meluber keluar layar HP */
+    margin: 0 auto;
   }
-} /* KUNCI: Media Query ditutup di paling akhir */
   
 /* ── SECTION COMMON ── */
 .section{
