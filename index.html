@@ -769,20 +769,17 @@ nav.scrolled{background:rgba(6,8,15,.95);box-shadow:0 1px 40px rgba(0,0,0,.5);}
     left: 50% !important;
     right: auto !important;
     bottom: -50px !important; 
-    
-    /* Gunakan animasi khusus mobile */
     animation: floatCodeMobile 4s ease-in-out infinite !important;
     z-index: 10;
   }
+} /* <--- PENUTUP MEDIA QUERY DISINI (SUDAH DIPERBAIKI) */
 
-/* 2. Keyframes Khusus Mobile */
+/* ── KEYFRAMES (DI LUAR MEDIA QUERY AGAR TIDAK BOCOR) ── */
 @keyframes floatCodeMobile {
   0%, 100% { 
-    /* KUNCI: translateX(-50%) harus selalu ada di sini */
     transform: translateX(-50%) scale(0.85) translateY(0) rotate(-1deg); 
   }
   50% { 
-    /* Efek melayang naik 10px */
     transform: translateX(-50%) scale(0.85) translateY(-10px) rotate(1deg); 
   }
 }
