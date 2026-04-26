@@ -2872,21 +2872,27 @@ Fancybox.bind("[data-fancybox]", {
     measurementId: "G-P2SMC9F9QE"
   });
   const db = firebase.database();
-
   const viewsRef = db.ref('views');
   const likesRef = db.ref('likes');
   const LIKED_KEY = 'liked_porto_2';
+
+  // Format: 100 → "100" | 1000 → "1,000" | 10000 → "10k"
+  function formatCount(n) {
+    if (n >= 10000) return (n / 1000).toFixed(n % 1000 === 0 ? 0 : 1) + 'k';
+    if (n >= 1000)  return n.toLocaleString('id-ID');
+    return String(n);
+  }
 
   viewsRef.transaction(val => (val || 0) + 1);
 
   viewsRef.on('value', snap => {
     const el = document.getElementById('view-count');
-    if (el) el.textContent = (snap.val() || 0).toLocaleString('id-ID');
+    if (el) el.textContent = formatCount(snap.val() || 0);
   });
 
   likesRef.on('value', snap => {
     const el = document.getElementById('like-count');
-    if (el) el.textContent = (snap.val() || 0).toLocaleString('id-ID');
+    if (el) el.textContent = formatCount(snap.val() || 0);
   });
 
   if (localStorage.getItem(LIKED_KEY) === 'yes') {
@@ -2901,7 +2907,7 @@ Fancybox.bind("[data-fancybox]", {
     const countEl = document.getElementById('like-count');
     if (localStorage.getItem(LIKED_KEY) === 'yes') {
       const orig = countEl.textContent;
-      countEl.textContent = 'Sudah like!';
+      countEl.textContent = 'Liked! ♥';
       setTimeout(() => { countEl.textContent = orig; }, 1500);
       return;
     }
