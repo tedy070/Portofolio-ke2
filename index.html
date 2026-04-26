@@ -2573,22 +2573,25 @@ themeBtn.addEventListener('click', () => {
 
 // ── TESTIMONIALS ──
 const testiData = [
-  { name:'Budi Santoso', pos:'CEO, TechStart', text:'Website sangat cepat dan desainnya futuristik. Hizkia sangat paham tren 2025!', rating:5, color:'var(--c-hero)' },
-  { name:'Rina Melati', pos:'Marketing Director', text:'Sangat puas dengan hasilnya. Animasi web yang smooth membuat brand kami terlihat premium.', rating:5, color:'#2dd4bf' },
-  { name:'Siti Aminah', pos:'Owner, HijabStore', text:'Revisi cepat dan komunikasi sangat lancar. Sangat direkomendasikan untuk semua bisnis.', rating:5, color:'#f06292' },
-  { name:'David Tan', pos:'CIO, StartupX', text:'Kode yang bersih dan mudah di-maintain oleh tim internal kami. Dokumentasi sangat lengkap.', rating:5, color:'#e8b84b' },
-  { name:'Ahmad Fauzi', pos:'Founder, EdTech', text:'Landing page konversi naik 200% setelah redesign. Luar biasa hasilnya!', rating:5, color:'#a78bfa' },
-  { name:'Maya Indah', pos:'CMO, RetailCo', text:'Profesional, tepat waktu, dan hasilnya melebihi ekspektasi kami sepenuhnya.', rating:5, color:'#34d399' },
+  { name:'Budi Santoso', pos:'CEO, TechStart', text:'Website sangat cepat dan desainnya futuristik. Sangat paham tren 2025!', rating:5, color:'var(--c-hero)' },
+  { name:'Rina Melati', pos:'Marketing Director', text:'Sangat puas dengan hasilnya. Animasi smooth membuat brand kami terlihat premium.', rating:5, color:'#2dd4bf' },
+  { name:'Siti Aminah', pos:'Owner, HijabStore', text:'Revisi cepat dan komunikasi sangat lancar. Sangat direkomendasikan!', rating:5, color:'#f06292' },
+  { name:'David Tan', pos:'CIO, StartupX', text:'Kode bersih dan mudah di-maintain. Dokumentasi sangat lengkap.', rating:5, color:'#e8b84b' },
+  { name:'Ahmad Fauzi', pos:'Founder, EdTech', text:'Landing page konversi naik 200% setelah redesign. Luar biasa!', rating:5, color:'#a78bfa' },
+  { name:'Maya Indah', pos:'CMO, RetailCo', text:'Profesional, tepat waktu, dan hasilnya melebihi ekspektasi kami.', rating:5, color:'#34d399' },
 ];
+
+const avatarColors = ['var(--c-hero)','#2dd4bf','#f06292','#e8b84b','#a78bfa','#34d399','#f97316','#38bdf8'];
+let colorIdx = 0;
 
 function starSvg(filled) {
   return `<svg viewBox="0 0 24 24" width="12" height="12"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="${filled ? '#e8b84b' : 'none'}" stroke="#e8b84b" stroke-width="1.5"/></svg>`;
 }
 
 function makeTestiCard(d) {
-  const initials = d.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
-  const stars = Array.from({length:5}, (_,i) => starSvg(i < d.rating)).join('');
-  return `<div class="tcard tcard-new">
+  const initials = d.name.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
+  const stars = Array.from({length:5},(_,i) => starSvg(i < d.rating)).join('');
+  return `<div class="tcard">
     <div class="tcard-stars">${stars}</div>
     <p class="tcard-text">"${d.text}"</p>
     <div class="tcard-person">
@@ -2601,65 +2604,61 @@ function makeTestiCard(d) {
 const colUp   = document.getElementById('col-up');
 const colDown = document.getElementById('col-down');
 
-// ── Warna avatar otomatis bergantian ──
-const avatarColors = ['var(--c-hero)','#2dd4bf','#f06292','#e8b84b','#a78bfa','#34d399','#f97316','#38bdf8'];
-let colorIdx = 0;
-
-// ── Render ulasan dari Firebase ke kolom scrolling ──
-function renderTestiFirebase(userReviews) {
-  const allData = [...userReviews, ...testiData];
-  if (colUp)   colUp.innerHTML   = [...allData, ...allData].map(makeTestiCard).join('');
-  if (colDown) colDown.innerHTML = [...allData.slice(Math.floor(allData.length/2)), ...allData.slice(0, Math.floor(allData.length/2)), ...allData.slice(Math.floor(allData.length/2)), ...allData.slice(0, Math.floor(allData.length/2))].map(makeTestiCard).join('');
+function buildColumns(userReviews) {
+  const all = [...userReviews, ...testiData];
+  const doubled = [...all, ...all];
+  if (colUp)   colUp.innerHTML   = doubled.map(makeTestiCard).join('');
+  const half = Math.ceil(all.length / 2);
+  const rotated = [...all.slice(half), ...all.slice(0, half)];
+  if (colDown) colDown.innerHTML = [...rotated, ...rotated].map(makeTestiCard).join('');
 }
 
-// ── Tambah card baru di atas dengan animasi ──
-function prependNewCard(d) {
+function prependCard(d) {
   if (!colUp) return;
-  const div = document.createElement('div');
-  div.innerHTML = makeTestiCard(d);
-  const card = div.firstElementChild;
-  card.style.cssText = 'opacity:0;transform:translateY(-20px) scale(0.95);transition:all .5s cubic-bezier(.2,.8,.2,1);';
+  const wrap = document.createElement('div');
+  wrap.innerHTML = makeTestiCard(d);
+  const card = wrap.firstElementChild;
+  card.style.cssText = 'opacity:0;transform:translateY(-16px) scale(0.96);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1);';
   colUp.prepend(card);
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      card.style.opacity = '1';
-      card.style.transform = 'translateY(0) scale(1)';
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    card.style.opacity = '1';
+    card.style.transform = 'translateY(0) scale(1)';
+  }));
+}
+
+// ── Firebase realtime testimonials ──
+(function initTesti() {
+  if (typeof firebase === 'undefined' || !firebase.apps || !firebase.apps.length) {
+    buildColumns([]);
+    return;
+  }
+
+  const ref = firebase.database().ref('testimonials');
+  let loaded = false;
+
+  ref.orderByChild('timestamp').once('value', snap => {
+    const data = snap.val();
+    const reviews = data ? Object.values(data).sort((a,b) => b.timestamp - a.timestamp) : [];
+    buildColumns(reviews);
+    loaded = true;
+
+    // Setelah data pertama dimuat, dengarkan ulasan baru
+    ref.orderByChild('timestamp').startAt(Date.now()).on('child_added', childSnap => {
+      if (!loaded) return;
+      const d = childSnap.val();
+      if (d) prependCard(d);
     });
   });
-}
-
-// ── Firebase Realtime: listen ulasan ──
-let isFirstLoad = true;
-let userReviewsCache = [];
-
-if (typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length > 0) {
-  const testiRef = firebase.database().ref('testimonials');
-
-  testiRef.on('value', snap => {
-    const data = snap.val();
-    userReviewsCache = data ? Object.values(data).reverse() : [];
-    renderTestiFirebase(userReviewsCache);
-    isFirstLoad = false;
-  });
-
-  testiRef.on('child_added', snap => {
-    if (isFirstLoad) return;
-    const d = snap.val();
-    if (d) prependNewCard(d);
-  });
-} else {
-  // Fallback jika Firebase belum tersedia
-  renderTestiFirebase([]);
-}
+})();
 
 // ── TESTIMONIAL FORM ──
 let currentRating = 5;
 document.querySelectorAll('.star-btn').forEach((btn, i) => {
   btn.addEventListener('click', () => {
     currentRating = parseInt(btn.dataset.v);
-    document.querySelectorAll('.star-btn').forEach((s, j) => s.classList.toggle('lit', j < currentRating));
+    document.querySelectorAll('.star-btn').forEach((s,j) => s.classList.toggle('lit', j < currentRating));
     const prevStars = document.getElementById('prev-stars');
-    if (prevStars) prevStars.innerHTML = Array.from({length:5}, (_,k) => starSvg(k < currentRating)).join('');
+    if (prevStars) prevStars.innerHTML = Array.from({length:5},(_,k) => starSvg(k < currentRating)).join('');
   });
 });
 
@@ -2680,52 +2679,37 @@ function submitTestimonial() {
   const color = avatarColors[colorIdx % avatarColors.length];
   colorIdx++;
 
-  const newReview = {
-    name,
-    pos: comp,
-    text,
-    rating: currentRating,
-    color,
-    timestamp: Date.now()
-  };
+  const review = { name, pos: comp, text, rating: currentRating, color, timestamp: Date.now() };
+  const submitBtn = document.querySelector('[onclick="submitTestimonial()"]');
 
-  // Simpan ke Firebase jika tersedia
-  if (typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length > 0) {
-    const testiRef = firebase.database().ref('testimonials');
-    const btn = document.querySelector('[onclick="submitTestimonial()"]');
-    if (btn) { btn.textContent = 'Menyimpan...'; btn.disabled = true; }
-
-    testiRef.push(newReview)
+  if (typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length) {
+    if (submitBtn) { submitBtn.textContent = 'Menyimpan...'; submitBtn.disabled = true; }
+    firebase.database().ref('testimonials').push(review)
       .then(() => {
-        ['t-nama', 't-perus', 't-text'].forEach(id => { document.getElementById(id).value = ''; });
+        ['t-nama','t-perus','t-text'].forEach(id => { document.getElementById(id).value = ''; });
         currentRating = 5;
         document.querySelectorAll('.star-btn').forEach((s,j) => s.classList.toggle('lit', j < 5));
         updatePreview();
-        if (btn) {
-          btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg> Terkirim!`;
-          btn.disabled = false;
-          setTimeout(() => {
-            btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Kirim Ulasan`;
-          }, 2500);
+        if (submitBtn) {
+          submitBtn.textContent = '✓ Terkirim!';
+          submitBtn.disabled = false;
+          setTimeout(() => { submitBtn.textContent = 'Kirim Ulasan'; }, 2500);
         }
       })
       .catch(() => {
-        // Fallback lokal jika Firebase gagal
-        prependNewCard(newReview);
-        ['t-nama', 't-perus', 't-text'].forEach(id => { document.getElementById(id).value = ''; });
+        prependCard(review);
+        ['t-nama','t-perus','t-text'].forEach(id => { document.getElementById(id).value = ''; });
         updatePreview();
-        if (btn) { btn.textContent = 'Kirim Ulasan'; btn.disabled = false; }
-        alert('✅ Ulasan ditambahkan (mode lokal)');
+        if (submitBtn) { submitBtn.textContent = 'Kirim Ulasan'; submitBtn.disabled = false; }
       });
   } else {
-    // Fallback lokal
-    prependNewCard(newReview);
-    ['t-nama', 't-perus', 't-text'].forEach(id => { document.getElementById(id).value = ''; });
+    prependCard(review);
+    ['t-nama','t-perus','t-text'].forEach(id => { document.getElementById(id).value = ''; });
     updatePreview();
     alert('✅ Terima kasih atas ulasan Anda!');
   }
 }
-
+  
 // ── COPY TEXT ──
 function copyText(t) {
   navigator.clipboard.writeText(t).then(() => {
