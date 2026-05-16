@@ -2641,12 +2641,10 @@ function prependCard(d) {
 
 // ── Firebase realtime testimonials ──
 (function initTesti() {
-  if (typeof firebase === 'undefined' || !firebase.apps || !firebase.apps.length) {
-    buildColumns([]);
-    return;
-  }
+  let app;
+  try { app = firebase.app('portofolio'); } catch(e) { buildColumns([]); return; }
 
-  const ref = firebase.database().ref('testimonials');
+  const ref = firebase.database(firebase.app('portofolio')).ref('portfolio/testimonials');
   let knownKeys = new Set();
 
   // Load semua data yang sudah ada
@@ -2704,9 +2702,10 @@ function submitTestimonial() {
   const review = { name, pos: comp, text, rating: currentRating, color, timestamp: Date.now() };
   const submitBtn = document.querySelector('[onclick="submitTestimonial()"]');
 
-  if (typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length) {
+  let fbApp; try { fbApp = firebase.app('portofolio'); } catch(e) { fbApp = null; }
+  if (fbApp) {
     if (submitBtn) { submitBtn.textContent = 'Menyimpan...'; submitBtn.disabled = true; }
-    firebase.database().ref('testimonials').push(review)
+    firebase.database(firebase.app('portofolio')).ref('portfolio/testimonials').push(review)
       .then(() => {
         ['t-nama','t-perus','t-text'].forEach(id => { document.getElementById(id).value = ''; });
         currentRating = 5;
@@ -2958,19 +2957,23 @@ Fancybox.bind("[data-fancybox]", {
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script>
 (function() {
-  firebase.initializeApp({
-    apiKey: "AIzaSyAduAPndadw0YzdmfWKd1t75cJDXz7Z0uo",
-    authDomain: "portofolio-tedi-ke2.firebaseapp.com",
-    databaseURL: "https://portofolio-tedi-ke2-default-rtdb.firebaseio.com",
-    projectId: "portofolio-tedi-ke2",
-    storageBucket: "portofolio-tedi-ke2.firebasestorage.app",
-    messagingSenderId: "793425879228",
-    appId: "1:793425879228:web:c19b16529d0baf187b70b9",
-    measurementId: "G-P2SMC9F9QE"
-  });
-  const db = firebase.database();
-  const viewsRef = db.ref('views');
-  const likesRef = db.ref('likes');
+  let app;
+  try { app = firebase.app('portofolio'); }
+  catch(e) {
+    app = firebase.initializeApp({
+      apiKey: "AIzaSyAduAPndadw0YzdmfWKd1t75cJDXz7Z0uo",
+      authDomain: "portofolio-tedi-ke2.firebaseapp.com",
+      databaseURL: "https://portofolio-tedi-ke2-default-rtdb.firebaseio.com",
+      projectId: "portofolio-tedi-ke2",
+      storageBucket: "portofolio-tedi-ke2.firebasestorage.app",
+      messagingSenderId: "793425879228",
+      appId: "1:793425879228:web:c19b16529d0baf187b70b9",
+      measurementId: "G-P2SMC9F9QE"
+    }, 'portofolio');
+  }
+  const db = firebase.database(app);
+  const viewsRef = db.ref('portfolio/viewers');
+  const likesRef = db.ref('portfolio/likes');
   const LIKED_KEY = 'liked_porto_2';
 
   // Format: 100 → "100" | 1000 → "1,000" | 10000 → "10k"
